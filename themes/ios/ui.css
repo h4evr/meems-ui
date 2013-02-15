@@ -80,7 +80,7 @@
 }
 
 .ui-page > .ui-footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
@@ -126,6 +126,7 @@
 }
 
 .ui-button {
+    cursor: pointer;
     height: 36px;
     line-height: 36px;
     
@@ -220,6 +221,52 @@
 .ui-list > .ui-list-item:active,.ui-list > .ui-list-item:hover {
     background-color: blue;
     color: white;
+}
+
+.ui-aside {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    
+    background-color: #aaaaaa;
+}
+
+.ui-aside > .ui-aside-menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 75%;
+    z-index: 0;
+
+    overflow: auto;
+    -moz-transition: width 0.5s;
+    -webkit-transition: width 0.5s;
+    -o-transition: width 0.5s;
+}
+
+.ui-aside > .ui-aside-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+
+    -moz-transition: left 0.5s;
+    -webkit-transition: left 0.5s;
+    -o-transition: left 0.5s;
+}
+
+.ui-aside > .ui-aside-menu.ui-expanded {
+    left: 0;
+    z-index: 0;
+}
+
+.ui-aside > .ui-aside-content.ui-expanded {
+    left: 75%;
 }
 
 .ui-scroll {

@@ -1,4 +1,4 @@
-define(["meems-utils"], function(Utils) {
+define(["meems-utils", "meems-events"], function(Utils, Events) {
     function Widget() {
         this._el = null;
         this._facets = {};
@@ -7,7 +7,23 @@ define(["meems-utils"], function(Utils) {
         return this;
     }
 
-    Widget.prototype = {
+    Widget.extend(Events.Handler, {
+        on : function (eventName, fn) {
+            if (eventName.indexOf('dom:') === 0) {
+                Events.Dom.on(this.el(), eventName.substr(4), fn);
+            } else {
+                Events.Handler.prototype.on.apply(this, arguments); //super
+            }
+        },
+        
+        off : function (eventName, fn) {
+            if (eventName.indexOf('dom:') === 0) {
+                Events.Dom.off(this.el(), eventName.substr(4), fn);
+            } else {
+                Events.Handler.prototype.off.apply(this, arguments); //super
+            }
+        },
+        
         el : function (el) {
             if (el === undefined) {
                 return this._el;
@@ -42,7 +58,7 @@ define(["meems-utils"], function(Utils) {
         update : function () {
             
         }
-    };
+    });
 
     return Widget;
 });

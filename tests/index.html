@@ -19,15 +19,20 @@
         <script>
             require.config({
                 paths: {
-                    "meems-utils": "../lib/meems-utils/meems-utils"
+                    "meems-utils": "../lib/meems-utils/meems-utils",
+                    "meems-events": "../lib/meems-events/meems-events"
                 }
             });
             
-            require(["../meems-ui"], function (UI) {
+            require(["../meems-ui", "meems-utils"], function (UI, Utils) {
+                Utils.Dom.fixedViewport();
+                
                 var page1 = UI.create("page");
                 
+                var buttonExplore = UI.create("button").attr("title", "Left");
+                
                 var header = UI.create("header").attr("title", "Hello world this is a demo blah blah")
-                                .facet("buttonsleft", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Left")))
+                                .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore))
                                 .facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
                 
                 var footer = UI.create("footer")
@@ -44,9 +49,24 @@
                 page1.facet("content", content);
                 page1.facet("footer", footer);
                 
-                page1.update();
+                var menu = UI.create("list").items([
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Home")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 1")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 2")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 3"))
+                    ]);
                 
-                document.body.appendChild(page1.el());
+                var aside = UI.create("aside").facet("content", page1).facet("menu", menu);
+                
+                aside.update();
+                
+                var eventClick = 'dom:' + ('ontouchstart' in document ? 'touchstart' : 'click');
+                
+                buttonExplore.on(eventClick, function() {
+                    aside.expanded(!aside.expanded());
+                });
+                
+                document.body.appendChild(aside.el());
             });
         </script>
     </body>
