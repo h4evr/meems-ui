@@ -1,12 +1,22 @@
-define(["./ui/widget", "./ui/header", "./ui/footer", "./ui/page", "./ui/html", "./ui/button", "./ui/button_group"], 
-function (Widget, Header, Footer, Page, Html, Button, ButtonGroup) {
+define(["./ui/widget", 
+        "./ui/header", 
+        "./ui/footer", 
+        "./ui/page", 
+        "./ui/html", 
+        "./ui/button", 
+        "./ui/button_group",
+        "./ui/list_item",
+        "./ui/list"], 
+function (Widget, Header, Footer, Page, Html, Button, ButtonGroup, ListItem, List) {
     var factories = {
         "header": Header,
         "footer": Footer,
         "page": Page,
         "html": Html,
         "button": Button,
-        "buttongroup": ButtonGroup
+        "buttongroup": ButtonGroup,
+        "list": List,
+        "listitem": ListItem
     };
     
     var UI = {

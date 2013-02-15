@@ -16,15 +16,13 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             
             if (!this.el()) {
                 this.el(document.createElement("div"));
-                
                 this._titleEl = document.createElement("div");
                 this._titleEl.className = "ui-title";
-                
                 this.el().appendChild(this._titleEl);
             }
             
             Utils.Dom.addClass(this.el(), "ui-header");
-            this._titleEl.innerHTML = this.attr("title");
+            this._titleEl.innerHTML = "<h1>" + (this.attr("title") || "") + "</h1>";
             
             if (this.facet("buttonsleft")) {
                 this.facet("buttonsleft").update();

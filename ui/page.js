@@ -7,7 +7,7 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
         this.facet("footer", null);
         
         return this;
-    };
+    }
     
     Page.extend(Widget, {
         update : function () {

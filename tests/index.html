@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
@@ -8,6 +9,7 @@
                 height: 100%;
                 margin: 0;
                 padding: 0;
+                font-family: sans-serif;
             }
         </style>
         <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
@@ -23,29 +25,28 @@
             
             require(["../meems-ui"], function (UI) {
                 var page1 = UI.create("page");
-                console.log(page1);
                 
-                var header = UI.create("header").attr("title", "Demo")
+                var header = UI.create("header").attr("title", "Hello world this is a demo blah blah")
                                 .facet("buttonsleft", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Left")))
                                 .facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
-                page1.facet("header", header);
                 
                 var footer = UI.create("footer")
                                 .facet("buttons", UI.create("html").attr("html", "Buttons!"));
-                page1.facet("footer", footer);
                 
-                var content = UI.create("html").attr("html", "This is my content!");
+                var content = UI.create("list").items([
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!"))
+                    ]);
+                
+                page1.facet("header", header);
                 page1.facet("content", content);
-                
-                console.log(page1);
-                console.log(page1.facets());
+                page1.facet("footer", footer);
                 
                 page1.update();
                 
                 document.body.appendChild(page1.el());
-                
-                page1.update();
-                page1.update();
             });
         </script>
     </body>
