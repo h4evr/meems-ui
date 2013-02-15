@@ -1,3 +1,6 @@
 [submodule "lib/meems-utils"]
 	path = lib/meems-utils
 	url = git@github.com:h4evr/meems-utils.git
+[submodule "lib/meems-events"]
+	path = lib/meems-events
+	url = git@github.com:h4evr/meems-events.git
