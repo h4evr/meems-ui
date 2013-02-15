@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8" />
+    <head>
+        <title>Meems UI</title>
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+        <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
+    </head>
+    <body>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
+        <script>
+            require.config({
+                paths: {
+                    "meems-utils": "../lib/meems-utils/meems-utils"
+                }
+            });
+            
+            require(["../meems-ui"], function (UI) {
+                var page1 = UI.create("page");
+                console.log(page1);
+                
+                var header = UI.create("header").attr("title", "Demo")
+                                .facet("buttonsleft", UI.create("header").attr("title", "Left"))
+                                .facet("buttonsright", UI.create("header").attr("title", "Right"));
+                page1.facet("header", header);
+                
+                var footer = UI.create("footer")
+                                .facet("buttons", UI.create("html").attr("html", "Buttons!"));
+                page1.facet("footer", footer);
+                
+                var content = UI.create("html").attr("html", "This is my content!");
+                page1.facet("content", content);
+                
+                console.log(page1);
+                console.log(page1.facets());
+                
+                page1.update();
+                
+                document.body.appendChild(page1.el());
+                
+                page1.update();
+                page1.update();
+            });
+        </script>
+    </body>
+</html>

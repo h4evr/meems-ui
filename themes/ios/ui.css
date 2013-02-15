@@ -1,0 +1,98 @@
+.ui-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-page > .ui-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 44px;
+    
+    background: #a7cfdf; /* Old browsers */
+    background: -moz-linear-gradient(top, #a7cfdf 0%, #23538a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a7cfdf), color-stop(100%,#23538a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%); /* W3C */
+}
+
+.ui-page > .ui-header > .ui-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 44px;
+    
+    text-align: center;
+    
+    font-size: 150%;
+    color: #ffffff;
+}
+
+.ui-page > .ui-header > .ui-buttons-left,
+.ui-page > .ui-header > .ui-buttons-right {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    bottom: 5px;
+    width: 40%;
+    z-index: 1;
+    line-height: 36px;
+}
+
+.ui-page > .ui-header > .ui-buttons-right {
+    text-align: right;
+    left: auto;
+    right: 5px;
+}
+
+.ui-page > .ui-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 44px;
+    
+    background: #a7cfdf; /* Old browsers */
+    background: -moz-linear-gradient(top, #a7cfdf 0%, #23538a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a7cfdf), color-stop(100%,#23538a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #a7cfdf 0%,#23538a 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #a7cfdf 0%,#23538a 100%); /* W3C */
+}
+
+.ui-page > .ui-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44px;
+    bottom: 44px;
+}
+
+.ui-page > .ui-header-off {
+    top: 0;
+}
+
+.ui-page > .ui-footer-off {
+    bottom: 0;
+}
+
+.ui-scroll {
+    overflow: scroll;
+}
+
+.ui-scroll-x {
+    overflow-x: scroll;
+}
+
+.ui-scroll-y {
+    overflow-y: scroll;
+}
