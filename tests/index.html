@@ -26,8 +26,8 @@
                 console.log(page1);
                 
                 var header = UI.create("header").attr("title", "Demo")
-                                .facet("buttonsleft", UI.create("header").attr("title", "Left"))
-                                .facet("buttonsright", UI.create("header").attr("title", "Right"));
+                                .facet("buttonsleft", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Left")))
+                                .facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
                 page1.facet("header", header);
                 
                 var footer = UI.create("footer")
