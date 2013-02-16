@@ -1,8 +1,8 @@
 
 <!DOCTYPE html>
 <html>
-    <meta charset="UTF-8" />
     <head>
+        <meta charset="UTF-8" />
         <title>Meems UI</title>
         <style>
             html, body {
@@ -13,9 +13,10 @@
             }
         </style>
         <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
     <body>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
         <script>
             require.config({
                 paths: {
@@ -39,9 +40,9 @@
                                 .facet("buttons", UI.create("html").attr("html", "Buttons!"));
                 
                 var content = UI.create("list").items([
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "State of the art")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")).header(true),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!"))
                     ]);
                 
