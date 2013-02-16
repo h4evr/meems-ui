@@ -30,20 +30,36 @@
                 
                 var page1 = UI.create("page");
                 
-                var buttonExplore = UI.create("button").attr("title", "Left");
+                var buttonExplore = UI.create("button").attr("title", "Explore");
                 
-                var header = UI.create("header").attr("title", "Hello world this is a demo blah blah")
-                                .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore))
-                                .facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
+                var header = UI.create("header").attr("title", "Thesis - Meems Library")
+                                .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore));
+                                //.facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
                 
                 var footer = UI.create("footer")
-                                .facet("buttons", UI.create("html").attr("html", "Buttons!"));
+                                .facet("buttons", UI.create("buttongroup")
+                                    .addButton(UI.create("button").attr("title", "Hello!"))
+                                    .addButton(UI.create("button").attr("title", "Thesis!")));
                 
                 var content = UI.create("list").items([
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "State of the art")),
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!")).header(true),
-                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Hello World!"))
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Motivation and Goals")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Structure")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "State of Art")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "What are smartphones?")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Operating systems")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Approaches in mobile development")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Publishing applications")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "HTML5, Javascript and CSS3")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Frameworks for developing mobile web applications")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Analysis of the problem at hand")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions and Future Work")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
                     ]);
                 
                 page1.facet("header", header);
