@@ -11,6 +11,10 @@
                 padding: 0;
                 font-family: sans-serif;
             }
+            
+            *  {
+                -webkit-transform: translateZ(0);
+            }
         </style>
         <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,7 +25,8 @@
             require.config({
                 paths: {
                     "meems-utils": "../lib/meems-utils/meems-utils",
-                    "meems-events": "../lib/meems-events/meems-events"
+                    "meems-events": "../lib/meems-events/meems-events",
+                    "meems-scroll": "../lib/meems-scroll/meems-scroll"
                 }
             });
             

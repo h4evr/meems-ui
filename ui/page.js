@@ -1,10 +1,12 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widget) {
     function Page() {
         Widget.apply(this, arguments);
         
         this.facet("header", null);
         this.facet("content", null);
         this.facet("footer", null);
+        
+        this._contentWrapper = null;
         
         return this;
     }
@@ -30,9 +32,15 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             if (this.facet("content")) {
                 this.facet("content").update();
                 
-                if (this.facet("content").el().parentNode !== this.el()) {
-                    Utils.Dom.addClass(this.facet("content").el(), "ui-content ui-scroll-y");
-                    this.el().appendChild(this.facet("content").el());
+                if (this.facet("content").el().parentNode !== this.el()) {                    
+                    this._contentWrapper = document.createElement("div");
+                    this._contentWrapper2 = document.createElement("div");
+                    this._contentWrapper2.appendChild(this.facet("content").el());
+                    this._contentWrapper.appendChild(this._contentWrapper2);
+                    
+                    Utils.Dom.addClass(this._contentWrapper, "ui-content");
+                    this.el().appendChild(this._contentWrapper);
+                    new Scroll(this._contentWrapper);
                 }
             }
             

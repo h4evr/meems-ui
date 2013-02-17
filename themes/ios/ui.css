@@ -110,8 +110,12 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 44px;
-    bottom: 44px;
+    top: 46px;
+    bottom: 46px;
+}
+
+.ui-page > .ui-content > * {
+    width: 100%;
 }
 
 .ui-page > .ui-header-off {
