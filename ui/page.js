@@ -7,11 +7,16 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
         this.facet("footer", null);
         
         this._contentWrapper = null;
+        this._scroller = null;
         
         return this;
     }
     
     Page.extend(Widget, {
+        scroller : function () {
+            return this._scroller;
+        },
+        
         update : function () {
             Widget.prototype.update.apply(this, arguments); //super
             
@@ -40,7 +45,11 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                     
                     Utils.Dom.addClass(this._contentWrapper, "ui-content");
                     this.el().appendChild(this._contentWrapper);
-                    new Scroll(this._contentWrapper);
+                    
+                    this._scroll = new Scroll(this._contentWrapper, {
+                        scrollX: false,
+                        scrollY: true
+                    });
                 }
             }
             
