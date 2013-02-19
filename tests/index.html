@@ -24,7 +24,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
     <body>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
         <script>
             require.config({
                 paths: {
@@ -69,7 +69,7 @@
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
-                    ]);
+                    ]).style('full');
                 
                 page1.facet("header", header);
                 page1.facet("content", content);

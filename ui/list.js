@@ -2,10 +2,29 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     function List() {
         Widget.apply(this, arguments);    
         this._items = [];
+        this._style = 'normal';
         return this;
     }
     
     List.extend(Widget, {
+        style : function (val) {
+            if (val === undefined) {
+                return this._style;
+            } else {
+                if (this.el() && this._style) {
+                    Utils.Dom.removeClass(this.el(), "ui-list-" +  this._style);
+                }
+                
+                this._style = val;
+                
+                if (this.el() && this._style) {
+                    Utils.Dom.addClass(this.el(), "ui-list-" +  this._style);
+                }
+                
+                return this;
+            }
+        },
+        
         items: function (items) {
             if (items === undefined) {
                 return this._items;
@@ -23,6 +42,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
             
             Utils.Dom.addClass(this.el(), "ui-list");
+            
+            this.style(this._style);
             
             var item;
             
