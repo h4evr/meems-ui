@@ -4,6 +4,8 @@ define(["meems-utils", "meems-events"], function(Utils, Events) {
         this._facets = {};
         this._attributes = {};
         
+        Events.Handler.apply(this, arguments);
+        
         return this;
     }
 
