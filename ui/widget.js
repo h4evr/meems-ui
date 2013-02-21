@@ -12,7 +12,10 @@ define(["meems-utils", "meems-events"], function(Utils, Events) {
     Widget.extend(Events.Handler, {
         on : function (eventName, fn) {
             if (eventName.indexOf('dom:') === 0) {
-                Events.Dom.on(this.el(), eventName.substr(4), fn);
+                Events.Dom.on(this.el(), eventName.substr(4), function () {
+                    Array.prototype.unshift.call(arguments, eventName);
+                    fn.apply(this, arguments);
+                });
             } else {
                 Events.Handler.prototype.on.apply(this, arguments); //super
             }

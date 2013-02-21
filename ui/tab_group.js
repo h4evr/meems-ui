@@ -7,6 +7,7 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         this._scroller = null;
         this._tabHolder = null;
         this._footer = null;
+        this._buttonGroup = null;
         return this;
     }
     
@@ -17,7 +18,8 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         },
         
         onScrollEnd : function (eventName, x, y) {
-            var page = Math.floor(x / this.el().offsetWidth);
+            console.log(x, y);
+            var page = Math.round(x / this.el().offsetWidth);
             this.visibleTab(page);
             this.update();
         },
@@ -30,7 +32,10 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     return this;
                 }
                 
-                this._visibleTab = index;
+                if (index != this._visibleTab && this._scroller) {
+                    this._scroller.scrollTo(index * this.el().offsetWidth, 0);
+                    this._visibleTab = index;
+                }
             
                 return this;
             }
@@ -55,22 +60,31 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     scrollY: false,
                     bouncing: false,
                     paging: true,
-                    totalMaxTime: 0.15
+                    totalMaxTime: 0.25,
+                    disableTouchEvents : false
                 }).on("scroll:end", Utils.bind(TabGroup.prototype.onScrollEnd, this));
                 
                 this._footer = new Footer();
                 this._footer.update();
                 this.el().appendChild(this._footer.el());
+                
+                this._buttonGroup = new ButtonGroup();
+                this._buttonGroup.attr("stretch", true);
+                this._footer.facet("buttons", this._buttonGroup);
+                this._buttonGroup.on("button:pressed", 
+                    Utils.bind(function (eventName, btn) {
+                        var tabIndex = Utils.indexOfByProp(this._buttonGroup.buttons(), "_el", btn);
+                        this.visibleTab(tabIndex);
+                        this.update();
+                    }, this));
             }
             
             Utils.Dom.addClass(this.el(), "ui-tab-group");
             
             if (this._tabs.length > 0) {
-                var tab, 
-                    tabSize = 100.0 / this._tabs.length,
-                    buttonGroup = new ButtonGroup();
-        
-                buttonGroup.attr("stretch", true);
+                var tab, btn,
+                    tabSize = 100.0 / this._tabs.length;
+
                 this._tabHolder.style.width = this._tabs.length * 100 + "%";
                 
                 for (var i = 0; i < this._tabs.length; ++i) {
@@ -78,24 +92,22 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     
                     tab.update();
                     
-                    if (tab.el().parentNode !== this.el()) {
+                    if (tab.el().parentNode !== this._tabHolder) {
                         tab.el().style.position = "absolute";
                         tab.el().style.left = i * tabSize + "%";
                         tab.el().style.top = "0";
                         tab.el().style.width = tabSize + "%";
                         tab.el().style.bottom = "0";
                         this._tabHolder.appendChild(tab.el());
+                        this._buttonGroup.addButton((new Button()).attr("style", "vertical"));
                     }
                     
-                    buttonGroup.addButton((new Button()).
-                                            attr("style", "vertical").
-                                            attr("title", tab.attr("title")).
-                                            attr("icon", tab.attr("icon")).
-                                            attr("disabled", this._visibleTab !== i));
+                    btn = this._buttonGroup.buttons()[i];
+                    btn.attr("title", tab.attr("title")).attr("icon", tab.attr("icon"))
+                       .attr("disabled", this._visibleTab !== i);
                 }
                 
-                buttonGroup.attr("selected", this._visibleTab);
-                this._footer.facet("buttons", buttonGroup);                
+                this._buttonGroup.attr("selected", this._visibleTab);
                 this._footer.el().style.display = "block";
                 Utils.Dom.removeClass(this._tabHolder, "ui-footer-off");
             } else {
