@@ -43,6 +43,11 @@ define(["meems-utils", "meems-events"], function(Utils, Events) {
             if (facet === undefined) {
                 return this._facets[name];
             } else {
+                if (this._el && this._facets[name] && this._facets[name].el() &&
+                    this._facets[name].el().parentNode === this._el) {
+                    this._el.removeChild(this._facets[name].el());
+                }
+                
                 this._facets[name] = facet;
                 return this;
             }

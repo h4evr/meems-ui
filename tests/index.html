@@ -21,6 +21,7 @@
             }
         </style>
         <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
+        <link rel="stylesheet" href="../themes/ios/icons.css" type="text/css" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
     <body>
@@ -50,7 +51,11 @@
                                     .addButton(UI.create("button").attr("title", "Hello!"))
                                     .addButton(UI.create("button").attr("title", "Thesis!")));
                 
-                var content = UI.create("list").items([
+                var tab1 = UI.create("tab").
+                    attr("title", "Thesis").
+                    attr("icon", "facebook").
+                    facet("content", 
+                    UI.create("list").items([
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Motivation and Goals")),
@@ -69,11 +74,38 @@
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
-                    ]).style('full');
+                    ]).style('full'));
+                    
+                var tab2 = UI.create("tab").
+                    attr("title", "Teste").
+                    attr("icon", "facebook").
+                    facet("content", 
+                    UI.create("list").items([
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Motivation and Goals")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Structure")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "State of Art")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "What are smartphones?")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Operating systems")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Approaches in mobile development")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Publishing applications")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "HTML5, Javascript and CSS3")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Frameworks for developing mobile web applications")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Analysis of the problem at hand")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions and Future Work")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
+                        UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
+                    ]).style('normal'));
+                
+                var content = UI.create("tabgroup").addTab(tab1).addTab(tab2);
                 
                 page1.facet("header", header);
                 page1.facet("content", content);
-                page1.facet("footer", footer);
+                //page1.facet("footer", footer);
                 
                 var pageAside = UI.create("page")
                     .facet("header", UI.create("header").attr("title", "Menu"))

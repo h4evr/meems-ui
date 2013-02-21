@@ -8,8 +8,10 @@ define(["./ui/widget",
         "./ui/list_item",
         "./ui/list",
         "./ui/aside",
-        "./ui/split_view"], 
-function (Widget, Header, Footer, Page, Html, Button, ButtonGroup, ListItem, List, Aside, SplitView) {
+        "./ui/split_view",
+        "./ui/tab_group",
+        "./ui/tab"], 
+function (Widget, Header, Footer, Page, Html, Button, ButtonGroup, ListItem, List, Aside, SplitView, TabGroup, Tab) {
     var factories = {
         "header": Header,
         "footer": Footer,
@@ -20,7 +22,9 @@ function (Widget, Header, Footer, Page, Html, Button, ButtonGroup, ListItem, Lis
         "list": List,
         "listitem": ListItem,
         "aside": Aside,
-        "splitview": SplitView
+        "splitview": SplitView,
+        "tabgroup": TabGroup,
+        "tab": Tab
     };
     
     var UI = {

@@ -7,6 +7,26 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     }
     
     Button.extend(Widget, {
+        attr : function (name, val) {
+            if (name === 'style' && val !== undefined && this.el()) {
+                var oldStyle = Widget.prototype.attr.call(this, name);
+                
+                if (oldStyle) {
+                    Utils.Dom.removeClass(this.el(), "ui-button-" + oldStyle);
+                } else {
+                    Utils.Dom.removeClass(this.el(), "ui-button-normal");
+                }
+                
+                if (val) {
+                    Utils.Dom.addClass(this.el(), "ui-button-" + val);
+                } else {
+                    Utils.Dom.addClass(this.el(), "ui-button-normal");
+                }
+            }
+            
+            return Widget.prototype.attr.apply(this, arguments);
+        },
+        
         update : function () {
             Widget.prototype.update.apply(this, arguments); //super
             
@@ -22,10 +42,13 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 this.el().appendChild(this._titleEl);
             }
             
-            Utils.Dom.addClass(this.el(), "ui-button");
+            Utils.Dom.addClass(this.el(), "ui-button");           
             
-            this._iconEl.className = (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon");
+            this._iconEl.className = (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon") 
+                                   + (this.attr("disabled") === true ? " ui-disabled" : "");
             this._titleEl.innerHTML = this.attr("title");
+            
+            this.attr("style", this.attr("style") !== undefined ? this.attr("style") : null);
         }
     });
     

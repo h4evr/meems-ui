@@ -38,8 +38,8 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                 this.facet("content").update();
                 
                 if (this.facet("content").el().parentNode !== this.el()) {                    
-                    this._contentWrapper = document.createElement("div");
-                    this._contentWrapper2 = document.createElement("div");
+                    
+                    /*this._contentWrapper2 = document.createElement("div");
                     this._contentWrapper2.appendChild(this.facet("content").el());
                     this._contentWrapper.appendChild(this._contentWrapper2);
                     
@@ -49,7 +49,12 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                     this._scroll = new Scroll(this._contentWrapper, {
                         scrollX: false,
                         scrollY: true
-                    });
+                    });*/
+                    
+                    this._contentWrapper = document.createElement("div");
+                    this._contentWrapper.appendChild(this.facet("content").el());
+                    Utils.Dom.addClass(this._contentWrapper, "ui-content");
+                    this.el().appendChild(this._contentWrapper);
                 }
             }
             
@@ -63,15 +68,15 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
             
             if (this.facet("content")) {
                 if (this.facet("header")) {
-                    Utils.Dom.removeClass(this.facet("content").el(), "ui-header-off");
+                    Utils.Dom.removeClass(this._contentWrapper, "ui-header-off");
                 } else {
-                    Utils.Dom.addClass(this.facet("content").el(), "ui-header-off");
+                    Utils.Dom.addClass(this._contentWrapper, "ui-header-off");
                 }
                 
                 if (this.facet("footer")) {
-                    Utils.Dom.removeClass(this.facet("content").el(), "ui-footer-off");
+                    Utils.Dom.removeClass(this._contentWrapper, "ui-footer-off");
                 } else {
-                    Utils.Dom.addClass(this.facet("content").el(), "ui-footer-off");
+                    Utils.Dom.addClass(this._contentWrapper, "ui-footer-off");
                 }
             }
         }

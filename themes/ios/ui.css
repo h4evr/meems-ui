@@ -79,7 +79,7 @@
     right: 5px;
 }
 
-.ui-page > .ui-footer {
+.ui-footer {
     position: absolute;
     left: 0;
     right: 0;
@@ -97,7 +97,7 @@
     background: linear-gradient(to bottom, #484848 0%,#484848 1%,#3d3c3d 1%,#323232 21%,#272727 50%,#2a2a2a 50%,#000000 100%); /* W3C */
 }
 
-.ui-page > .ui-footer > div {
+.ui-footer > div {
     position: absolute;
     left: 5px;
     top: 3px;
@@ -118,19 +118,19 @@
     width: 100%;
 }
 
-.ui-page > .ui-header-off {
+.ui-header-off, .ui-page > .ui-header-off {
     top: 0;
 }
 
-.ui-page > .ui-footer-off {
+.ui-footer-off, .ui-page > .ui-footer-off {
     bottom: 0;
 }
 
-.ui-button, .ui-button > .ui-icon, .ui-button > .ui-title {
+.ui-button, .ui-button-normal > .ui-icon, .ui-button-normal > .ui-title {
     display: inline-block;
 }
 
-.ui-button {
+.ui-button-normal {
     cursor: pointer;
     height: 36px;
     line-height: 36px;
@@ -165,20 +165,73 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.ui-button > .ui-icon {
+.ui-button-normal > .ui-icon {
     height: 24px;
     width: 24px;
     margin-top: 2px;
 }
 
-.ui-button > .ui-no-icon {
+.ui-button-normal > .ui-no-icon {
     display: none;
 }
 
-.ui-button > .ui-icon, .ui-button > .ui-title {
+.ui-button-normal > .ui-icon, .ui-button-normal > .ui-title {
     float: left;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.ui-button-vertical {
+    cursor: pointer;
+    height: 38px;
+    line-height: 12px;
+    
+    font-family: inherit;
+    font-size: 8px;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.6) 0 -1px 0;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    
+    color: #ffffff;
+    
+    background: transparent;
+    
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    
+    opacity: 1;
+}
+
+.ui-button-vertical > .ui-icon {
+    height: 25px;
+    width: 27px;
+    margin: 0 auto;
+    margin-top: 2px;
+}
+
+.ui-button-vertical > .ui-no-icon {
+    display: none;
+}
+
+.ui-button-vertical > .ui-title {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.ui-button-vertical.ui-selected {
+    background: #484848; /* Old browsers */
+    background: -moz-linear-gradient(top, #484848 0%, #3c3c3c 40%, #2a2a2a 50%, #252525 51%, #1c1c1c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#484848), color-stop(40%,#3c3c3c), color-stop(50%,#2a2a2a), color-stop(51%,#252525), color-stop(100%,#1c1c1c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #484848 0%,#3c3c3c 40%,#2a2a2a 50%,#252525 51%,#1c1c1c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #484848 0%,#3c3c3c 40%,#2a2a2a 50%,#252525 51%,#1c1c1c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #484848 0%,#3c3c3c 40%,#2a2a2a 50%,#252525 51%,#1c1c1c 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #484848 0%,#3c3c3c 40%,#2a2a2a 50%,#252525 51%,#1c1c1c 100%); /* W3C */
+    
+    opacity: 1;
 }
 
 .ui-list {
@@ -362,6 +415,10 @@
     }
 }
 
+.ui-tab {
+    overflow: hidden;
+}
+
 .ui-scroll-bar-y, .ui-scroll-bar-x {
     background-color: #000000;
     border: 1px solid #ffffff;
@@ -379,7 +436,7 @@
 
 .ui-scroll-bar-x {
     height: 4px;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .ui-scroll {
@@ -392,4 +449,24 @@
 
 .ui-scroll-y {
     overflow-y: auto;
+}
+
+.ui-fill, .ui-tab-group {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-tab-group > div:first-child {
+    bottom: 46px;
+}
+
+.ui-tab-group > div.ui-footer-off {
+    bottom: 0;
+}
+
+.ui-fill-width {
+    width: 100%;
 }

@@ -24,7 +24,10 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             
             Utils.Dom.addClass(this.el(), "ui-button-group");
             
-            var btn;
+            var btn, 
+                stretch = (this.attr("stretch") === true),
+                buttonSize = this._buttons.length > 0 ? 100.0 / this._buttons.length : 0,
+                selected = this.attr("selected") !== undefined ? this.attr("selected") : -1;
             
             for (var i = 0; i < this._buttons.length; ++i) {
                 btn = this._buttons[i];
@@ -33,6 +36,16 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 
                 if (btn.el().parentNode !== this.el()) {
                     this.el().appendChild(btn.el());
+                }
+                
+                if (stretch) {
+                    btn.el().style.width = buttonSize + "%";
+                }
+                
+                if (selected === i) {
+                    Utils.Dom.addClass(btn.el(), "ui-selected");
+                } else {
+                    Utils.Dom.removeClass(btn.el(), "ui-selected");
                 }
             }
         }
