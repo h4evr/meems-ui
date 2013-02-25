@@ -85,7 +85,9 @@
     right: 0;
     bottom: 0;
     height: 44px;
-    
+}
+
+.ui-footer, .ui-tab-buttons {
     color: #fff;
     border-top: 1px solid #666;
     background: #484848; /* Old browsers */
@@ -232,6 +234,13 @@
     background: linear-gradient(to bottom, #484848 0%,#3c3c3c 40%,#2a2a2a 50%,#252525 51%,#1c1c1c 100%); /* W3C */
     
     opacity: 1;
+}
+
+
+.ui-header > .ui-button-group > .ui-button > .ui-icon,
+.ui-header > .ui-button-group > .ui-button-normal > .ui-icon,
+.ui-header > .ui-button-group > .ui-button-vertical > .ui-icon{
+    display: none;
 }
 
 .ui-list {
@@ -459,11 +468,31 @@
     bottom: 0;
 }
 
-.ui-tab-group > div:first-child {
-    bottom: 46px;
+.ui-tab-buttons-top > .ui-tab-holder {
+    top: 40px;
 }
 
-.ui-tab-group > div.ui-footer-off {
+.ui-tab-buttons-bottom > .ui-tab-holder {
+    bottom: 40px;
+}
+
+.ui-tab-group > .ui-footer-off {
+    top: 0;
+}
+
+.ui-tab-buttons-top > .ui-tab-buttons, .ui-tab-buttons-bottom > .ui-tab-buttons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+    color: #fff;
+}
+
+.ui-tab-buttons-top > .ui-tab-buttons {
+    top: 0;
+}
+
+.ui-tab-buttons-bottom > .ui-tab-buttons {
     bottom: 0;
 }
 

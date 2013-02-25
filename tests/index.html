@@ -18,15 +18,41 @@
                 -o-transform: translateZ(0);
                 -webkit-transform: translateZ(0);
                 transform: translateZ(0);
+                
+                -webkit-backface-visibility: hidden;
+                -webkit-perspective: 1000;
+                -webkit-transform-style: flat;
             }
         </style>
-        <link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
-        <link rel="stylesheet" href="../themes/ios/icons.css" type="text/css" />
+        <!--link rel="stylesheet" href="../themes/ios/ui.css" type="text/css" />
+        <link rel="stylesheet" href="../themes/ios/icons.css" type="text/css" /-->
         <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.4/require.min.js"></script>
         <script>
+            function loadCss(url) {
+                var link = document.createElement("link");
+                link.type = "text/css";
+                link.rel = "stylesheet";
+                link.href = url;
+                document.getElementsByTagName("head")[0].appendChild(link);
+            }
+            
+            function getTheme() {
+                var m;
+                
+                if ((m = /theme=(\w+)/.exec(window.location.search))) {
+                    return m[1];
+                }
+                
+                return null;
+            }
+            
+            var theme = getTheme() || 'android';
+            loadCss("../themes/" + theme + "/ui.css");
+            loadCss("../themes/" + theme + "/icons.css");
+        
             require.config({
                 paths: {
                     "meems-utils": "../lib/meems-utils/meems-utils",
@@ -40,7 +66,7 @@
                 
                 var page1 = UI.create("page");
                 
-                var buttonExplore = UI.create("button").attr("title", "Explore");
+                var buttonExplore = UI.create("button").attr("title", "Explore").attr("icon", "explore");
                 
                 var header = UI.create("header").attr("title", "Thesis - Meems Library")
                                 .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore));
@@ -101,7 +127,7 @@
                         UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
                     ]).style('normal'));
                 
-                var content = UI.create("tabgroup").addTab(tab1).addTab(tab2);
+                var content = UI.create("tabgroup").attr("tabPosition", theme === 'ios' ? 'bottom' : 'top').addTab(tab1).addTab(tab2);
                 
                 page1.facet("header", header);
                 page1.facet("content", content);
