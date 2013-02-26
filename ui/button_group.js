@@ -41,14 +41,11 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
+                Utils.Dom.addClass(this.el(), "ui-button-group");
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-button-group");
             
             var btn, 
                 stretch = (this.attr("stretch") === true),
@@ -77,6 +74,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                     Utils.Dom.removeClass(btn.el(), "ui-selected");
                 }
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

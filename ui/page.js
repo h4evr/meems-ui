@@ -17,14 +17,11 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
             return this._scroller;
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
+                this.el().className = "ui-page";
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-page");
             
             if (this.facet("header")) {
                 this.facet("header").update();
@@ -37,23 +34,10 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
             if (this.facet("content")) {
                 this.facet("content").update();
                 
-                if (this.facet("content").el().parentNode !== this.el()) {                    
-                    
-                    /*this._contentWrapper2 = document.createElement("div");
-                    this._contentWrapper2.appendChild(this.facet("content").el());
-                    this._contentWrapper.appendChild(this._contentWrapper2);
-                    
-                    Utils.Dom.addClass(this._contentWrapper, "ui-content");
-                    this.el().appendChild(this._contentWrapper);
-                    
-                    this._scroll = new Scroll(this._contentWrapper, {
-                        scrollX: false,
-                        scrollY: true
-                    });*/
-                    
+                if (this.facet("content").el().parentNode !== this.el()) {
                     this._contentWrapper = document.createElement("div");
+                    this._contentWrapper.className = "ui-content";
                     this._contentWrapper.appendChild(this.facet("content").el());
-                    Utils.Dom.addClass(this._contentWrapper, "ui-content");
                     this.el().appendChild(this._contentWrapper);
                 }
             }
@@ -79,6 +63,8 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                     Utils.Dom.addClass(this._contentWrapper, "ui-footer-off");
                 }
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

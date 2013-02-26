@@ -31,14 +31,12 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
+                this.el().className = "ui-splitview";
+                this.layout(this._layout);
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-splitview");
             
             if (this.facet("first")) {
                 this.facet("first").update();
@@ -55,8 +53,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                     this.el().appendChild(this.facet("second").el());
                 }
             }
-                        
-            this.expanded(this._expanded);
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

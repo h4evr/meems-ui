@@ -34,20 +34,17 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("ul"));
+                this.el().className =  "ui-list";
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-list");
             
             this.style(this._style);
             
             var item;
             
-            for (var i = 0; i < this._items.length; ++i) {
+            for (var i = 0, ln = this._items.length; i < ln; ++i) {
                 item = this._items[i];
                 
                 item.update();
@@ -57,8 +54,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 }
                 
                 if (!item.header()) {
-                    if (i < this._items.length - 1) {
-                        if (this._items[i+1].header()) {
+                    if (i < ln - 1) {
+                        if (this._items[i + 1].header()) {
                             Utils.Dom.addClass(item.el(), "ui-list-item-last");
                         } else {
                             Utils.Dom.removeClass(item.el(), "ui-list-item-last");
@@ -68,6 +65,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                     }
                 }
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

@@ -66,7 +66,7 @@ define(["meems-utils", "meems-events"], function(Utils, Events) {
         },
         
         update : function () {
-            
+            //Utils.Dom.applyChanges();
         }
     });
 

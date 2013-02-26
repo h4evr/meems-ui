@@ -34,6 +34,7 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
             var page = Math.round(x / this.el().offsetWidth);
             this.visibleTab(page);
             this.update();
+            Utils.Dom.applyChanges();
         },
         
         visibleTab : function (index) {
@@ -58,38 +59,39 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         },
         
         update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-tab-group";
+                
                 this._tabHolder = document.createElement("div");
-                this._tabHolder.className = "ui-fill";
                 this._helperHolder = document.createElement("div");
-                this._helperHolder.className = "ui-tab-holder ui-fill";
-                this._helperHolder.appendChild(this._tabHolder);
-                this.el().appendChild(this._helperHolder);
                 this._buttonGroup = document.createElement("div");
+                
+                this._tabHolder.className = "ui-fill";
+                this._helperHolder.className = "ui-tab-holder ui-fill";
                 this._buttonGroup.className = "ui-tab-buttons";
                 this._buttonGroup.buttons = [];
                 
+                this._helperHolder.appendChild(this._tabHolder);
+                this.el().appendChild(this._helperHolder);
+                
                 var position = this.attr("tabPosition") || 'top';
+                
                 if (position === 'top') {
                     this.el().className += " ui-tab-buttons-top";
-                    this.el().insertBefore(this._buttonGroup, this.el().children[0]);
                 } else {
                     this.el().className += " ui-tab-buttons-bottom";
-                    this.el().appendChild(this._buttonGroup);
                 }
+                
+                this.el().appendChild(this._buttonGroup);
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-tab-group");
             
             if (this._tabs.length > 0) {
                 var tab, btn,
                     tabSize = 100.0 / this._tabs.length;
                 this._tabHolder.style.width = this._tabs.length * 100 + "%";
-                for (var i = 0; i < this._tabs.length; ++i) {
+                
+                for (var i = 0, ln = this._tabs.length; i < ln; ++i) {
                     tab = this._tabs[i];
                     
                     tab.update();
@@ -104,26 +106,29 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                         
                         btn = (new Button()).attr("style", "vertical");
                         btn.update();
+                        btn.on("dom:" + (Utils.Dom.supportsTouch() ? "touchstart" : "click"), 
+                            Utils.bind(onButtonTapped, this));
+                            
                         this._buttonGroup.appendChild(btn.el());
                         this._buttonGroup.buttons.push(btn);
                     }
                     
-                    btn = this._buttonGroup.buttons[i];
+                    btn = btn || this._buttonGroup.buttons[i];
                     btn.attr("title", tab.attr("title")).attr("icon", tab.attr("icon"))
                        .attr("disabled", this._visibleTab !== i);
                     btn.update();
                     btn.el().style.width = tabSize + "%";
-                    btn.on("dom:" + (Utils.Dom.supportsTouch() ? "touchstart" : "click"), 
-                            Utils.bind(onButtonTapped, this));
                     
                     if (i == this._visibleTab) {
                         Utils.Dom.addClass(btn.el(), "ui-selected");
                     } else {
                         Utils.Dom.removeClass(btn.el(), "ui-selected");
                     }
+                    
+                    btn = null;
                 }
                 
-                Utils.Dom.removeClass(this._tabHolder, "ui-footer-off");
+                Utils.Dom.addClass(this._tabHolder, "ui-footer-on");
                 
                 if (!this._scroller) {
                     this._scroller = new Scroll(this._helperHolder, {
@@ -136,10 +141,11 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                         hideScroller : true
                     }).on("scroll:end", Utils.bind(TabGroup.prototype.onScrollEnd, this));
                 }
-                
             } else {
                 Utils.Dom.addClass(this._tabHolder, "ui-footer-off");
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

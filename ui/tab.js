@@ -8,12 +8,10 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
     }
     
     Tab.extend(Widget, {
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
-                Utils.Dom.addClass(this.el(), "ui-tab");
+                this.el().className = "ui-tab";
             }
             
             var _facetContent = this.facet("content");
@@ -27,9 +25,7 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                     this.el().appendChild(this._holder);
                 }                
 
-                if (_facetContent.el().parentNode !== this._holder) {
-
-                    
+                if (_facetContent.el().parentNode !== this._holder) {                
                     this._holder.appendChild(_facetContent.el());
                     
                     if (this._scroller) {
@@ -43,6 +39,7 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                 }
             }
             
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

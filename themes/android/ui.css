@@ -29,7 +29,7 @@
 
 .ui-page > .ui-header > .ui-title {
     position: absolute;
-    left: 55px;
+    left: 40px;
     right: 0;
     top: 0;
     height: 48px;
@@ -43,7 +43,7 @@
     
     color: #ffffff;
     line-height: 48px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     text-decoration: none;
     
@@ -172,8 +172,8 @@
 
 .ui-button-vertical {
     cursor: pointer;
-    height: 24px;
-    line-height: 24px;
+    height: 32px;
+    line-height: 32px;
     
     font-family: inherit;
     font-size: 12px;
@@ -398,11 +398,11 @@
 }
 
 .ui-tab-buttons-top > .ui-tab-holder {
-    top: 30px;
+    top: 44px;
 }
 
 .ui-tab-buttons-bottom > .ui-tab-holder {
-    bottom: 30px;
+    bottom: 44px;
 }
 
 .ui-tab-group > .ui-footer-off {
@@ -413,7 +413,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 28px;
+    height: 36px;
+    text-transform: uppercase;
 }
 
 .ui-tab-buttons-top > .ui-tab-buttons {
@@ -428,4 +429,42 @@
 
 .ui-fill-width {
     width: 100%;
+}
+
+.ui-form {
+     width: 100%;
+}
+
+.ui-form > .ui-title {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    padding-left: 6px;
+    font-weight: bold;
+    background-color: #303030;
+    border-bottom: 2px solid #4C4C4C;
+    color: #dddddd;
+    text-transform: uppercase;
+}
+
+.ui-textfield {
+    background-color: transparent;
+    border-color: #4C4C4C;
+    border-image: none;
+    border-style: none none solid;
+    border-width: 0px 0px 1px;
+    color: #FFFFFF;
+    height: 24px;
+    line-height: 16px;
+    margin: 10px;
+    padding: 5px 5px;
+    width: 90%;
+}
+
+.ui-textfield:focus {
+    border-color: #33B5E5;
+    border-image: none;
+    border-style: none none solid;
+    border-width: 0px 0px 2px;
 }

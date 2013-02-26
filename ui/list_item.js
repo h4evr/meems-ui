@@ -27,14 +27,11 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("li"));
+                this.header(this._header);
             }
-            
-            this.header(this._header);
             
             if (this.facet("item")) {
                 this.facet("item").update();
@@ -43,6 +40,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                     this.el().appendChild(this.facet("item").el());
                 }
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

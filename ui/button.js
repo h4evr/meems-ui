@@ -27,9 +27,7 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             return Widget.prototype.attr.apply(this, arguments);
         },
         
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 
@@ -40,15 +38,17 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 this._titleEl = document.createElement("div");
                 this._titleEl.className = "ui-title";
                 this.el().appendChild(this._titleEl);
+                
+                Utils.Dom.addClass(this.el(), "ui-button");
             }
             
-            Utils.Dom.addClass(this.el(), "ui-button");           
-            
-            this._iconEl.className = (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon") 
-                                   + (this.attr("disabled") === true ? " ui-disabled" : "");
-            this._titleEl.innerHTML = this.attr("title");
+            Utils.Dom.setClass(this._iconEl, (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon") 
+                                   + (this.attr("disabled") === true ? " ui-disabled" : ""));
+            Utils.Dom.setHtml(this._titleEl, this.attr("title"));
             
             this.attr("style", this.attr("style") !== undefined ? this.attr("style") : null);
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     

@@ -8,14 +8,11 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     }
     
     Footer.extend(Widget, {
-        update : function () {
-            Widget.prototype.update.apply(this, arguments); //super
-            
+        update : function () {            
             if (!this.el()) {
                 this.el(document.createElement("div"));
+                Utils.Dom.addClass(this.el(), "ui-footer");
             }
-            
-            Utils.Dom.addClass(this.el(), "ui-footer");
             
             if (this.facet("buttons")) {
                 this.facet("buttons").update();
@@ -25,6 +22,8 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                     this.el().appendChild(this.facet("buttons").el());
                 }
             }
+            
+            Widget.prototype.update.apply(this, arguments); //super
         }
     });
     
