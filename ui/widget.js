@@ -1,8 +1,11 @@
-define(["meems-utils", "meems-events"], function(Utils, Events) {
+/*global define*/
+define(["meems-utils", "meems-events"], function (Utils, Events) {
+    "use strict";
+
     function Widget() {
-        this._el = null;
-        this._facets = {};
-        this._attributes = {};
+        this.$el = null;
+        this.$facets = {};
+        this.$attributes = {};
         
         Events.Handler.apply(this, arguments);
         
@@ -31,36 +34,36 @@ define(["meems-utils", "meems-events"], function(Utils, Events) {
         
         el : function (el) {
             if (el === undefined) {
-                return this._el;
+                return this.$el;
             } else {
-                this._el = el;
+                this.$el = el;
                 return this;
             }
         },
         
-        facets : function() {
-            return Utils.Map.getKeys(this._facets);
+        facets : function () {
+            return Utils.Map.getKeys(this.$facets);
         },
         
-        facet : function(name, facet) {
+        facet : function (name, facet) {
             if (facet === undefined) {
-                return this._facets[name];
+                return this.$facets[name];
             } else {
-                if (this._el && this._facets[name] && this._facets[name].el() &&
-                    this._facets[name].el().parentNode === this._el) {
-                    this._el.removeChild(this._facets[name].el());
+                if (this.$el && this.$facets[name] && this.$facets[name].el() &&
+                    this.$facets[name].el().parentNode === this.$el) {
+                    this.$el.removeChild(this.$facets[name].el());
                 }
                 
-                this._facets[name] = facet;
+                this.$facets[name] = facet;
                 return this;
             }
         },
         
         attr : function (name, val) {
             if (val === undefined) {
-                return this._attributes[name];
+                return this.$attributes[name];
             } else {
-                this._attributes[name] = val;
+                this.$attributes[name] = val;
                 return this;
             }
         },

@@ -1,13 +1,16 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function TextField() {
-        this._input = null;
-        this._label = null;
+        this.$input = null;
+        this.$label = null;
         Widget.apply(this, arguments);
         return this;
     }
     
     TextField.extend(Widget, {
-        value : function(val) {
+        value : function (val) {
             if (this.el()) {
                 if (val === undefined) {
                     return this.el().value;
@@ -23,15 +26,15 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
         update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
-                this._label = document.createElement("label");
-                this._input = document.createElement("input");
-                this._input.setAttribute("type", this.attr("type") || "text");
-                this.el().appendChild(this._label);
-                this.el().appendChild(this._input);
+                this.$label = document.createElement("label");
+                this.$input = document.createElement("input");
+                this.$input.setAttribute("type", this.attr("type") || "text");
+                this.el().appendChild(this.$label);
+                this.el().appendChild(this.$input);
                 this.el().className = "ui-textfield";
             }
             
-            Utils.Dom.setHtml(this._label, this.attr("label") || "");
+            Utils.Dom.setHtml(this.$label, this.attr("label") || "");
             
             Widget.prototype.update.apply(this, arguments); //super
         }

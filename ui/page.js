@@ -1,4 +1,7 @@
-define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widget) {
+/*global define*/
+define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Widget) {
+    "use strict";
+
     function Page() {
         Widget.apply(this, arguments);
         
@@ -6,18 +9,18 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
         this.facet("content", null);
         this.facet("footer", null);
         
-        this._contentWrapper = null;
-        this._scroller = null;
+        this.$contentWrapper = null;
+        this.$scroller = null;
         
         return this;
     }
     
     Page.extend(Widget, {
         scroller : function () {
-            return this._scroller;
+            return this.$scroller;
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-page";
@@ -35,10 +38,10 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
                 this.facet("content").update();
                 
                 if (this.facet("content").el().parentNode !== this.el()) {
-                    this._contentWrapper = document.createElement("div");
-                    this._contentWrapper.className = "ui-content";
-                    this._contentWrapper.appendChild(this.facet("content").el());
-                    this.el().appendChild(this._contentWrapper);
+                    this.$contentWrapper = document.createElement("div");
+                    this.$contentWrapper.className = "ui-content";
+                    this.$contentWrapper.appendChild(this.facet("content").el());
+                    this.el().appendChild(this.$contentWrapper);
                 }
             }
             
@@ -52,15 +55,15 @@ define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widg
             
             if (this.facet("content")) {
                 if (this.facet("header")) {
-                    Utils.Dom.removeClass(this._contentWrapper, "ui-header-off");
+                    Utils.Dom.removeClass(this.$contentWrapper, "ui-header-off");
                 } else {
-                    Utils.Dom.addClass(this._contentWrapper, "ui-header-off");
+                    Utils.Dom.addClass(this.$contentWrapper, "ui-header-off");
                 }
                 
                 if (this.facet("footer")) {
-                    Utils.Dom.removeClass(this._contentWrapper, "ui-footer-off");
+                    Utils.Dom.removeClass(this.$contentWrapper, "ui-footer-off");
                 } else {
-                    Utils.Dom.addClass(this._contentWrapper, "ui-footer-off");
+                    Utils.Dom.addClass(this.$contentWrapper, "ui-footer-off");
                 }
             }
             

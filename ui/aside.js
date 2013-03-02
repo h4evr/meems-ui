@@ -1,8 +1,12 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function Aside() {
         Widget.apply(this, arguments);
         
-        this._expanded = false;
+        this.$expanded = false;
         
         this.facet("menu", null);
         this.facet("content", null);
@@ -13,11 +17,11 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     Aside.extend(Widget, {
         expanded : function (val) {
             if (val === undefined) {
-                return this._expanded;
+                return this.$expanded;
             } else {
-                this._expanded = val;
+                this.$expanded = val;
                 
-                if (this._expanded) {
+                if (this.$expanded) {
                     if (this.facet("menu")) {
                         Utils.Dom.addClass(this.facet("menu").el(), "ui-expanded");
                         Utils.Dom.removeClass(this.facet("menu").el(), "ui-collapsed");
@@ -43,7 +47,7 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-aside");
@@ -70,7 +74,7 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 }
             }
             
-            this.expanded(this._expanded);
+            this.expanded(this.$expanded);
             Widget.prototype.update.apply(this, arguments); //super
         }
     });

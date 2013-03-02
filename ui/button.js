@@ -1,8 +1,11 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function Button() {
-        Widget.apply(this, arguments);    
-        this._iconEl = null;
-        this._titleEl = null;
+        Widget.apply(this, arguments);
+        this.$iconEl = null;
+        this.$titleEl = null;
         return this;
     }
     
@@ -27,24 +30,24 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             return Widget.prototype.attr.apply(this, arguments);
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 
-                this._iconEl = document.createElement("div");
-                this._iconEl.className = "ui-icon";
-                this.el().appendChild(this._iconEl);
+                this.$iconEl = document.createElement("div");
+                this.$iconEl.className = "ui-icon";
+                this.el().appendChild(this.$iconEl);
                 
-                this._titleEl = document.createElement("div");
-                this._titleEl.className = "ui-title";
-                this.el().appendChild(this._titleEl);
+                this.$titleEl = document.createElement("div");
+                this.$titleEl.className = "ui-title";
+                this.el().appendChild(this.$titleEl);
                 
                 Utils.Dom.addClass(this.el(), "ui-button");
             }
             
-            Utils.Dom.setClass(this._iconEl, (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon") 
+            Utils.Dom.setClass(this.$iconEl, (this.attr("icon") ? "ui-icon ui-icon-" + this.attr("icon") : "ui-no-icon")
                                    + (this.attr("disabled") === true ? " ui-disabled" : ""));
-            Utils.Dom.setHtml(this._titleEl, this.attr("title"));
+            Utils.Dom.setHtml(this.$titleEl, this.attr("title"));
             
             this.attr("style", this.attr("style") !== undefined ? this.attr("style") : null);
             

@@ -1,33 +1,36 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function Header() {
         Widget.apply(this, arguments);
         
         this.facet("buttonsleft", null);
         this.facet("buttonsright", null);
         
-        this._titleEl = null;
+        this.$titleEl = null;
         
         return this;
     }
     
     Header.extend(Widget, {
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-header";
-                this._titleEl = document.createElement("div");
-                this._titleEl.className = "ui-title";
-                this.el().appendChild(this._titleEl);
+                this.$titleEl = document.createElement("div");
+                this.$titleEl.className = "ui-title";
+                this.el().appendChild(this.$titleEl);
             }
             
-            Utils.Dom.setHtml(this._titleEl, "<h1>" + (this.attr("title") || "") + "</h1>");
+            Utils.Dom.setHtml(this.$titleEl, "<h1>" + (this.attr("title") || "") + "</h1>");
             
             if (this.facet("buttonsleft")) {
                 this.facet("buttonsleft").update();
                 
                 if (this.facet("buttonsleft").el().parentNode !== this.el()) {
                     Utils.Dom.addClass(this.facet("buttonsleft").el(), "ui-buttons-left");
-                    this.el().insertBefore(this.facet("buttonsleft").el(), this._titleEl);
+                    this.el().insertBefore(this.facet("buttonsleft").el(), this.$titleEl);
                 }
             }
             

@@ -1,32 +1,35 @@
-define(["meems-utils", "meems-scroll", "./widget", "./footer", "./button_group", "./button"], 
-function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {    
+/*global define*/
+define(["meems-utils", "meems-scroll", "./widget", "./footer", "./button_group", "./button"],
+function (Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
+    "use strict";
+
     function TabGroup() {
-        Widget.apply(this, arguments);    
-        this._tabs = [];
-        this._visibleTab = 0;
-        this._scroller = null;
-        this._tabHolder = null;
-        this._buttonGroup = null;
+        Widget.apply(this, arguments);
+        this.$tabs = [];
+        this.$visibleTab = 0;
+        this.$scroller = null;
+        this.$tabHolder = null;
+        this.$buttonGroup = null;
         return this;
     }
     
-    function onButtonTapped(eventName, e) {
+    var onButtonTapped = function (eventName, e) {
         var target = e.target;
         while (target && target.className.indexOf("ui-button") === -1) {
             target = target.parentNode;
         }
         
         if (target) {
-            var tabIndex = Utils.indexOfByProp(this._buttonGroup.buttons, "_el", target);
+            var tabIndex = Utils.indexOfByProp(this.$buttonGroup.buttons, "$el", target);
             if (tabIndex > -1) {
                 this.visibleTab(tabIndex);
             }
         }
-    }
+    };
     
     TabGroup.extend(Widget, {
         addTab : function (tab) {
-            this._tabs.push(tab);
+            this.$tabs.push(tab);
             return this;
         },
         
@@ -39,15 +42,15 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         
         visibleTab : function (index) {
             if (index === undefined) {
-                return this._visibleTab;
+                return this.$visibleTab;
             } else {
-                if (index < 0 || index >= this._tabs.length) {
+                if (index < 0 || index >= this.$tabs.length) {
                     return this;
                 }
                 
-                if (index != this._visibleTab && this._scroller) {
-                    this._scroller.scrollTo(index * this.el().offsetWidth);
-                    this._visibleTab = index;
+                if (index !== this.$visibleTab && this.$scroller) {
+                    this.$scroller.scrollTo(index * this.el().offsetWidth);
+                    this.$visibleTab = index;
                 }
             
                 return this;
@@ -55,7 +58,7 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         },
         
         tabs : function () {
-            return this._tabs;
+            return this.$tabs;
         },
         
         update : function () {
@@ -63,17 +66,17 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-tab-group";
                 
-                this._tabHolder = document.createElement("div");
-                this._helperHolder = document.createElement("div");
-                this._buttonGroup = document.createElement("div");
+                this.$tabHolder = document.createElement("div");
+                this.$helperHolder = document.createElement("div");
+                this.$buttonGroup = document.createElement("div");
                 
-                this._tabHolder.className = "ui-fill";
-                this._helperHolder.className = "ui-tab-holder ui-fill";
-                this._buttonGroup.className = "ui-tab-buttons";
-                this._buttonGroup.buttons = [];
+                this.$tabHolder.className = "ui-fill";
+                this.$helperHolder.className = "ui-tab-holder ui-fill";
+                this.$buttonGroup.className = "ui-tab-buttons";
+                this.$buttonGroup.buttons = [];
                 
-                this._helperHolder.appendChild(this._tabHolder);
-                this.el().appendChild(this._helperHolder);
+                this.$helperHolder.appendChild(this.$tabHolder);
+                this.el().appendChild(this.$helperHolder);
                 
                 var position = this.attr("tabPosition") || 'top';
                 
@@ -83,43 +86,43 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     this.el().className += " ui-tab-buttons-bottom";
                 }
                 
-                this.el().appendChild(this._buttonGroup);
+                this.el().appendChild(this.$buttonGroup);
             }
             
-            if (this._tabs.length > 0) {
+            if (this.$tabs.length > 0) {
                 var tab, btn,
-                    tabSize = 100.0 / this._tabs.length;
-                this._tabHolder.style.width = this._tabs.length * 100 + "%";
+                    tabSize = 100.0 / this.$tabs.length;
+                this.$tabHolder.style.width = this.$tabs.length * 100 + "%";
                 
-                for (var i = 0, ln = this._tabs.length; i < ln; ++i) {
-                    tab = this._tabs[i];
+                for (var i = 0, ln = this.$tabs.length; i < ln; ++i) {
+                    tab = this.$tabs[i];
                     
                     tab.update();
                     
-                    if (tab.el().parentNode !== this._tabHolder) {
+                    if (tab.el().parentNode !== this.$tabHolder) {
                         tab.el().style.position = "absolute";
                         tab.el().style.left = i * tabSize + "%";
                         tab.el().style.top = "0";
                         tab.el().style.width = tabSize + "%";
                         tab.el().style.bottom = "0";
-                        this._tabHolder.appendChild(tab.el());
+                        this.$tabHolder.appendChild(tab.el());
                         
                         btn = (new Button()).attr("style", "vertical");
                         btn.update();
-                        btn.on("dom:" + (Utils.Dom.supportsTouch() ? "touchstart" : "click"), 
+                        btn.on("dom:" + (Utils.Dom.supportsTouch() ? "touchstart" : "click"),
                             Utils.bind(onButtonTapped, this));
                             
-                        this._buttonGroup.appendChild(btn.el());
-                        this._buttonGroup.buttons.push(btn);
+                        this.$buttonGroup.appendChild(btn.el());
+                        this.$buttonGroup.buttons.push(btn);
                     }
                     
-                    btn = btn || this._buttonGroup.buttons[i];
+                    btn = btn || this.$buttonGroup.buttons[i];
                     btn.attr("title", tab.attr("title")).attr("icon", tab.attr("icon"))
-                       .attr("disabled", this._visibleTab !== i);
+                       .attr("disabled", this.$visibleTab !== i);
                     btn.update();
                     btn.el().style.width = tabSize + "%";
                     
-                    if (i == this._visibleTab) {
+                    if (i === this.$visibleTab) {
                         Utils.Dom.addClass(btn.el(), "ui-selected");
                     } else {
                         Utils.Dom.removeClass(btn.el(), "ui-selected");
@@ -128,10 +131,10 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     btn = null;
                 }
                 
-                Utils.Dom.addClass(this._tabHolder, "ui-footer-on");
+                Utils.Dom.addClass(this.$tabHolder, "ui-footer-on");
                 
-                if (!this._scroller) {
-                    this._scroller = new Scroll(this._helperHolder, {
+                if (!this.$scroller) {
+                    this.$scroller = new Scroll(this.$helperHolder, {
                         scrollX: true,
                         scrollY: false,
                         bouncing: false,
@@ -142,7 +145,7 @@ function(Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
                     }).on("scroll:end", Utils.bind(TabGroup.prototype.onScrollEnd, this));
                 }
             } else {
-                Utils.Dom.addClass(this._tabHolder, "ui-footer-off");
+                Utils.Dom.addClass(this.$tabHolder, "ui-footer-off");
             }
             
             Widget.prototype.update.apply(this, arguments); //super

@@ -1,38 +1,41 @@
-define(["meems-utils", "meems-scroll", "./widget"], function(Utils, Scroll, Widget) {
+/*global define*/
+define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Widget) {
+    "use strict";
+
     function Tab() {
         Widget.apply(this, arguments);
-        this._scroller = null;
-        this._holder = null;
+        this.$scroller = null;
+        this.$holder = null;
         this.facet('content', null);
         return this;
     }
     
     Tab.extend(Widget, {
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-tab";
             }
             
-            var _facetContent = this.facet("content");
+            var facetContent = this.facet("content");
             
-            if (_facetContent) {
-                _facetContent.update();
+            if (facetContent) {
+                facetContent.update();
                 
-                if (!this._holder) {
-                    this._holder = document.createElement("div");
-                    this._holder.className = "ui-fill-width";
-                    this.el().appendChild(this._holder);
-                }                
+                if (!this.$holder) {
+                    this.$holder = document.createElement("div");
+                    this.$holder.className = "ui-fill-width";
+                    this.el().appendChild(this.$holder);
+                }
 
-                if (_facetContent.el().parentNode !== this._holder) {                
-                    this._holder.appendChild(_facetContent.el());
+                if (facetContent.el().parentNode !== this.$holder) {
+                    this.$holder.appendChild(facetContent.el());
                     
-                    if (this._scroller) {
-                        this._scroller.destroy();
+                    if (this.$scroller) {
+                        this.$scroller.destroy();
                     }
                     
-                    this._scroller = new Scroll(this.el(), {
+                    this.$scroller = new Scroll(this.el(), {
                         scrollX: false,
                         scrollY: true
                     });

@@ -1,24 +1,27 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function List() {
-        Widget.apply(this, arguments);    
-        this._items = [];
-        this._style = 'normal';
+        Widget.apply(this, arguments);
+        this.$items = [];
+        this.$style = 'normal';
         return this;
     }
     
     List.extend(Widget, {
         style : function (val) {
             if (val === undefined) {
-                return this._style;
+                return this.$style;
             } else {
-                if (this.el() && this._style) {
-                    Utils.Dom.removeClass(this.el(), "ui-list-" +  this._style);
+                if (this.el() && this.$style) {
+                    Utils.Dom.removeClass(this.el(), "ui-list-" +  this.$style);
                 }
                 
-                this._style = val;
+                this.$style = val;
                 
-                if (this.el() && this._style) {
-                    Utils.Dom.addClass(this.el(), "ui-list-" +  this._style);
+                if (this.el() && this.$style) {
+                    Utils.Dom.addClass(this.el(), "ui-list-" +  this.$style);
                 }
                 
                 return this;
@@ -27,25 +30,25 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
         
         items: function (items) {
             if (items === undefined) {
-                return this._items;
+                return this.$items;
             } else {
-                this._items = items;
+                this.$items = items;
                 return this;
             }
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("ul"));
                 this.el().className =  "ui-list";
             }
             
-            this.style(this._style);
+            this.style(this.$style);
             
             var item;
             
-            for (var i = 0, ln = this._items.length; i < ln; ++i) {
-                item = this._items[i];
+            for (var i = 0, ln = this.$items.length; i < ln; ++i) {
+                item = this.$items[i];
                 
                 item.update();
                 
@@ -55,7 +58,7 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
                 
                 if (!item.header()) {
                     if (i < ln - 1) {
-                        if (this._items[i + 1].header()) {
+                        if (this.$items[i + 1].header()) {
                             Utils.Dom.addClass(item.el(), "ui-list-item-last");
                         } else {
                             Utils.Dom.removeClass(item.el(), "ui-list-item-last");

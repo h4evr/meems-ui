@@ -1,4 +1,5 @@
 function loadCss(url) {
+    "use strict";
     var link = document.createElement("link");
     link.type = "text/css";
     link.rel = "stylesheet";
@@ -7,6 +8,8 @@ function loadCss(url) {
 }
 
 function getTheme() {
+    "use strict";
+
     var m;
     
     if ((m = /theme=(\w+)/.exec(window.location.search))) {
@@ -29,20 +32,16 @@ require.config({
 });
 
 require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function (UI, Utils, Scroll, Events) {
+    "use strict";
     //Utils.Dom.fixedViewport();
     
-    var page1 = UI.create("page");
-    
-    var buttonExplore = UI.create("button").attr("title", "Explore").attr("icon", "explore");
-    
-    var header = UI.create("header").attr("title", "Thesis - Meems Library")
+    var page1 = UI.create("page"),
+        buttonExplore = UI.create("button").attr("title", "Explore").attr("icon", "explore"),
+        header = UI.create("header").attr("title", "Thesis - Meems Library")
                     .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore));
                     //.facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
 
-    var tab1 = UI.create("tab").
-        attr("title", "Thesis").
-        attr("icon", "facebook").
-        facet("content", 
+    var tab1 = UI.create("tab").attr("title", "Thesis").attr("icon", "facebook").facet("content",
         UI.create("list").items([
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
@@ -64,10 +63,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
         ]).style('full'));
     
-    var tab2 = UI.create("tab").
-        attr("title", "Teste").
-        attr("icon", "facebook").
-        facet("content", 
+    var tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
         UI.create("list").items([
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
@@ -89,10 +85,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
         ]).style('normal'));
         
-    var tab3 = UI.create("tab").
-        attr("title", "Form").
-        attr("icon", "facebook").
-        facet("content", 
+    var tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
         UI.create("form").attr("title", "Form Demo").fields([
             UI.create("textfield").attr("label", "First Name"),
             UI.create("textfield").attr("label", "Last Name"),
@@ -125,7 +118,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
     
     var eventClick = 'dom:' + ('ontouchstart' in document ? 'touchstart' : 'click');
     
-    buttonExplore.on(eventClick, function() {
+    buttonExplore.on(eventClick, function () {
         aside.expanded(!aside.expanded());
         Utils.Dom.applyChanges();
     });

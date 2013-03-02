@@ -1,7 +1,10 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function ListItem() {
         Widget.apply(this, arguments);
-        this._header = false;
+        this.$header = false;
         this.facet("item", null);
         return this;
     }
@@ -9,12 +12,12 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     ListItem.extend(Widget, {
         header : function (val) {
             if (val === undefined) {
-                return this._header;
+                return this.$header;
             } else {
-                this._header = val;
+                this.$header = val;
                 
                 if (this.el()) {
-                    if (this._header) {
+                    if (this.$header) {
                         Utils.Dom.addClass(this.el(), "ui-list-header");
                         Utils.Dom.removeClass(this.el(), "ui-list-item");
                     } else {
@@ -27,10 +30,10 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("li"));
-                this.header(this._header);
+                this.header(this.$header);
             }
             
             if (this.facet("item")) {

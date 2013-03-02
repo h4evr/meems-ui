@@ -1,11 +1,14 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function Html() {
-        Widget.apply(this, arguments);        
+        Widget.apply(this, arguments);
         return this;
     }
     
     Html.extend(Widget, {
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-html");

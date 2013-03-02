@@ -1,11 +1,14 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function ButtonGroup() {
-        Widget.apply(this, arguments);    
-        this._buttons = [];
+        Widget.apply(this, arguments);
+        this.$buttons = [];
         return this;
     }
     
-    function onButtonTapped(eventName, e) {
+    var onButtonTapped = function (eventName, e) {
         var target = e.target;
         while (target && target.className.indexOf("ui-button") === -1) {
             target = target.parentNode;
@@ -14,23 +17,23 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
         if (target) {
             this.fire("button:pressed", target);
         }
-    }
+    };
     
     ButtonGroup.extend(Widget, {
         addButton : function (btn) {
-            this._buttons.push(btn);
+            this.$buttons.push(btn);
             return this;
         },
         
         buttons : function (newButtons) {
             if (newButtons === undefined) {
-                return this._buttons;
+                return this.$buttons;
             } else {
-                if (this._buttons && this._buttons.length > 0) {
+                if (this.$buttons && this.$buttons.length > 0) {
                     var btn, i;
                     
-                    for (i = 0; i < this._buttons.length; ++i) {
-                        btn = this._buttons[i];
+                    for (i = 0; i < this.$buttons.length; ++i) {
+                        btn = this.$buttons[i];
                         if (btn.el() && btn.el().parentNode === this.el()) {
                             this.el().removeChild(btn.el());
                         }
@@ -41,19 +44,19 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-button-group");
             }
             
-            var btn, 
+            var btn,
                 stretch = (this.attr("stretch") === true),
-                buttonSize = this._buttons.length > 0 ? 100.0 / this._buttons.length : 0,
+                buttonSize = this.$buttons.length > 0 ? 100.0 / this.$buttons.length : 0,
                 selected = this.attr("selected") !== undefined ? this.attr("selected") : -1;
             
-            for (var i = 0; i < this._buttons.length; ++i) {
-                btn = this._buttons[i];
+            for (var i = 0; i < this.$buttons.length; ++i) {
+                btn = this.$buttons[i];
                 
                 btn.update();
                 

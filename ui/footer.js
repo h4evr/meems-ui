@@ -1,14 +1,15 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function Footer() {
         Widget.apply(this, arguments);
-        
         this.facet("buttons", null);
-        
         return this;
     }
     
     Footer.extend(Widget, {
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-footer");

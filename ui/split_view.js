@@ -1,8 +1,11 @@
-define(["meems-utils", "./widget"], function(Utils, Widget) {
+/*global define*/
+define(["meems-utils", "./widget"], function (Utils, Widget) {
+    "use strict";
+
     function SplitView() {
         Widget.apply(this, arguments);
         
-        this._layout = 'horizontal';
+        this.$layout = 'horizontal';
         
         this.facet("first", null);
         this.facet("second", null);
@@ -13,12 +16,12 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
     SplitView.extend(Widget, {
         layout : function (val) {
             if (val === undefined) {
-                return this._layout;
+                return this.$layout;
             } else {
-                this._layout = val;
+                this.$layout = val;
                 
                 if (this.el()) {
-                    if (this._layout === 'horizontal') {
+                    if (this.$layout === 'horizontal') {
                         Utils.Dom.removeClass(this.el(), "ui-vertical");
                         Utils.Dom.addClass(this.el(), "ui-horizontal");
                     } else {
@@ -31,11 +34,11 @@ define(["meems-utils", "./widget"], function(Utils, Widget) {
             }
         },
         
-        update : function () {            
+        update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-splitview";
-                this.layout(this._layout);
+                this.layout(this.$layout);
             }
             
             if (this.facet("first")) {
