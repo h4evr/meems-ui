@@ -98,7 +98,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("textfield").attr("label", "Last Name"),
             UI.create("textfield").attr("label", "Birthdate").attr("type", "date"),
             UI.create("textfield").attr("label", "Email").attr("type", "email"),
-            UI.create("textfield").attr("label", "Phone Number").attr("type", "tel"),
+            UI.create("textfield").attr("label", "Phone").attr("type", "tel"),
             UI.create("textfield").attr("label", "Notes")
         ]));
     
@@ -130,7 +130,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
         Utils.Dom.applyChanges();
     });
     
-    Events.Dom.on(window, 'resize', Scroll.updateAll);
+    Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
     document.body.appendChild(aside.el());
     Scroll.updateAll();
 });
