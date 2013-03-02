@@ -4,3 +4,6 @@
 [submodule "lib/meems-events"]
 	path = lib/meems-events
 	url = git@github.com:h4evr/meems-events.git
+[submodule "lib/meems-scroll"]
+    path = lib/meems-scroll
+	url = git@github.com:h4evr/meems-scroll.git
