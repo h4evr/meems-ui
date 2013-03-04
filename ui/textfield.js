@@ -30,7 +30,9 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 this.$input = document.createElement("input");
                 this.$input.setAttribute("type", this.attr("type") || "text");
                 this.el().appendChild(this.$label);
-                this.el().appendChild(this.$input);
+                var tmp = document.createElement("div");
+                tmp.appendChild(this.$input);
+                this.el().appendChild(tmp);
                 this.el().className = "ui-textfield";
             }
             

@@ -449,22 +449,59 @@
 }
 
 .ui-textfield {
-    background-color: transparent;
-    border-color: #4C4C4C;
-    border-image: none;
-    border-style: none none solid;
-    border-width: 0px 0px 1px;
-    color: #FFFFFF;
-    height: 24px;
-    line-height: 16px;
-    margin: 10px;
-    padding: 5px 5px;
-    width: 90%;
+     display: block;
+     font-size: 16px;
+     margin: 15px 20px;
 }
 
-.ui-textfield:focus {
-    border-color: #33B5E5;
-    border-image: none;
-    border-style: none none solid;
-    border-width: 0px 0px 2px;
+.ui-textfield > div {
+     border-width: 0px;
+     margin: 5px 0px;
 }
+
+.ui-textfield > div > input {
+     background-color: transparent;
+     background-position: left bottom;
+     background-repeat: no-repeat;
+     background-size: 100% 21%;
+     border-color: #4C4C4C;
+     border-style: none solid solid;
+     color: #FFFFFF;
+     display: block;
+     height: 2em;
+     line-height: 2em;
+     margin: -1px 0 5px 0;
+     padding: 0px 2%;
+     position: relative;
+     width: 96%;
+}
+
+.ui-textfield > label {
+     display: block;
+     font-size: 14px;
+     margin: 5px 0px;
+     position: relative;
+     z-index: 3;
+}
+
+.ui-textfield > div > input:focus {
+     border-color: #33B5E5;
+     outline: none;
+}
+
+.ui-textfield > div:after {
+     background-color: transparent;
+     border-left: 5px solid #303030;
+     border-right: 5px solid #303030;
+     content: "";
+     display: block;
+     height: 1.9em;
+     margin-left: -3px;
+     margin-right: -4px;
+     margin-top: -2.8em;
+     opacity: 1;
+     pointer-events: none;
+     position: relative;
+     z-index: 2;
+}
+

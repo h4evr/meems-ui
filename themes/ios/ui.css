@@ -564,13 +564,17 @@
     width: 50%;
 }
 
-.ui-textfield > input {
+.ui-textfield > div {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    font-size: 17px;
     width: 50%;
-    border: 0;
-    color: #4C566C;
-    background: solid #ffffff;
+}
+
+.ui-textfield > div > input {
+     border: 0px none;
+     color: #4C566C;
+     display: inline-block;
+     font-size: 17px;
+     margin: 0px;
+     padding: 0px;
+     width: 100%;
 }
