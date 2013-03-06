@@ -33,13 +33,23 @@ require.config({
 
 require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function (UI, Utils, Scroll, Events) {
     "use strict";
-    //Utils.Dom.fixedViewport();
-    
-    var page1 = UI.create("page"),
-        buttonExplore = UI.create("button").attr("title", "Explore").attr("icon", "explore"),
-        header = UI.create("header").attr("title", "Thesis - Meems Library")
-                    .facet("buttonsleft", UI.create("buttongroup").addButton(buttonExplore));
-                    //.facet("buttonsright", UI.create("buttongroup").addButton(UI.create("button").attr("title", "Right")));
+
+    var eventClick = 'dom:' + ('ontouchstart' in document ? 'touchstart' : 'click'),
+        
+        aside = UI.create("aside"),
+        
+        page1 = UI.create("page").facet("header",
+        UI.create("header")
+            .attr("title", "Thesis - Meems Library")
+            .facet("buttonsleft",
+                UI.create("buttongroup")
+                .addButton(UI.create("button")
+                    .attr("title", "Explore")
+                    .attr("icon", "explore")
+                    .on(eventClick, function () {
+                        aside.expanded(!aside.expanded());
+                        Utils.Dom.applyChanges();
+                    }))));
 
     var tab1 = UI.create("tab").attr("title", "Thesis").attr("icon", "facebook").facet("content",
         UI.create("list").items([
@@ -61,9 +71,9 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
-        ]).style('full'));
+        ]).style('full')),
     
-    var tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
+    tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
         UI.create("list").items([
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
@@ -83,9 +93,9 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
-        ]).style('normal'));
-        
-    var tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
+        ]).style('normal')),
+
+    tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
         UI.create("form").attr("title", "Form Demo").fields([
             UI.create("textfield").attr("label", "First Name"),
             UI.create("textfield").attr("label", "Last Name"),
@@ -93,36 +103,75 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
             UI.create("textfield").attr("label", "Email").attr("type", "email"),
             UI.create("textfield").attr("label", "Phone").attr("type", "tel"),
             UI.create("textfield").attr("label", "Notes")
-        ]));
+        ])),
     
-    var content = UI.create("tabgroup").attr("tabPosition", theme === 'ios' ? 'bottom' : 'top')
-                .addTab(tab1).addTab(tab2).addTab(tab3);
+    page2 = UI.create("page")
+        .facet("content", UI.create("list").items([
+            UI.create("listitem").facet("item", UI.create("html").attr("html", "Segundo ecra!"))
+        ]))
+        .facet("header", UI.create("header")
+            .attr("title", "Thesis - Page 2")
+            .facet("buttonsleft", UI.create("buttongroup")
+                .addButton(UI.create("button")
+                    .attr("title", "Explore")
+                    .attr("icon", "explore")
+                    .on(eventClick, function () {
+                        aside.expanded(!aside.expanded());
+                        Utils.Dom.applyChanges();
+                    })))),
     
-    page1.facet("header", header);
-    page1.facet("content", content);
-    //page1.facet("footer", footer);
+    page3 = UI.create("page")
+        .facet("content", UI.create("list").items([
+            UI.create("listitem").facet("item", UI.create("html").attr("html", "Terceiro ecra!"))
+        ]))
+        .facet("header", UI.create("header")
+            .attr("title", "Thesis - Page 3")
+            .facet("buttonsleft", UI.create("buttongroup")
+                .addButton(UI.create("button")
+                    .attr("title", "Explore")
+                    .attr("icon", "explore")
+                    .on(eventClick, function () {
+                        aside.expanded(!aside.expanded());
+                        Utils.Dom.applyChanges();
+                    })))),
     
-    var pageAside = UI.create("page")
+    pageAside = UI.create("page")
         .facet("header", UI.create("header").attr("title", "Menu"))
         .facet("content", UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Home")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 1")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 2")),
+            UI.create("listitem").facet("item", UI.create("html").attr("html", "Home"))
+                .on(eventClick, function () {
+                    aside.expanded(false);
+                    pageHolder.currentPage(page1);
+                    Utils.Dom.applyChanges();
+                }),
+            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 1"))
+                .on(eventClick, function () {
+                    aside.expanded(false);
+                    pageHolder.currentPage(page2);
+                    Utils.Dom.applyChanges();
+                }),
+            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 2"))
+                .on(eventClick, function () {
+                    aside.expanded(false);
+                    pageHolder.currentPage(page3);
+                    Utils.Dom.applyChanges();
+                }),
             UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 3"))
-        ]));
-        
-    var aside = UI.create("aside").facet("content", page1).facet("menu", pageAside);
+        ]).style('full')),
+
+    pageHolder = UI.create("pageholder").pages([ page1, page2, page3 ]);
+
+    page1.facet("content", UI.create("tabgroup")
+        .attr("tabPosition", theme === 'ios' ? 'bottom' : 'top')
+        .addTab(tab1)
+        .addTab(tab2)
+        .addTab(tab3));
+    
+    aside.facet("content", pageHolder).facet("menu", pageAside);
     
     aside.update();
     Utils.Dom.applyChanges();
-    
-    var eventClick = 'dom:' + ('ontouchstart' in document ? 'touchstart' : 'click');
-    
-    buttonExplore.on(eventClick, function () {
-        aside.expanded(!aside.expanded());
-        Utils.Dom.applyChanges();
-    });
-    
+
     Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
     document.body.appendChild(aside.el());
     Scroll.updateAll();

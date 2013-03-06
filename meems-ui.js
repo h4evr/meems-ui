@@ -13,10 +13,12 @@ define(["./ui/widget",
         "./ui/tab_group",
         "./ui/tab",
         "./ui/form",
-        "./ui/textfield"],
+        "./ui/textfield",
+        "./ui/page_holder"],
 function (Widget, Header, Footer, Page,
           Html, Button, ButtonGroup, ListItem, List,
-          Aside, SplitView, TabGroup, Tab, Form, TextField) {
+          Aside, SplitView, TabGroup, Tab, Form,
+          TextField, PageHolder) {
     "use strict";
 
     var factories = {
@@ -33,7 +35,8 @@ function (Widget, Header, Footer, Page,
         "tabgroup"   : TabGroup,
         "tab"        : Tab,
         "form"       : Form,
-        "textfield"  : TextField
+        "textfield"  : TextField,
+        "pageholder" : PageHolder
     };
     
     var UI = {

@@ -1,3 +1,11 @@
+.ui-show {
+    display: block;
+}
+
+.ui-hide {
+    display: none;
+}
+
 .ui-page {
     position: absolute;
     left: 0;
