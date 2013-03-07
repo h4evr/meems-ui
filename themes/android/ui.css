@@ -1,3 +1,8 @@
+body {
+    background-color: #303030; /* Background color */
+    overflow: hidden;
+}
+
 .ui-show {
     display: block;
 }
@@ -437,6 +442,10 @@
 
 .ui-fill-width {
     width: 100%;
+}
+
+.ui-page-holder {
+    overflow: hidden;
 }
 
 .ui-form {

@@ -22,6 +22,7 @@ function getTheme() {
 var theme = getTheme() || 'android';
 loadCss("../themes/" + theme + "/ui.css");
 loadCss("../themes/" + theme + "/icons.css");
+loadCss("../themes/" + theme + "/effects.css");
 
 require.config({
     paths: {
