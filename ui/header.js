@@ -14,6 +14,12 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     }
     
     Header.extend(Widget, {
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === "title" && this.$titleEl) {
+                Utils.Dom.setHtml(this.$titleEl, "<h1>" + (newValue || "") + "</h1>");
+            }
+        },
+
         update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));
@@ -22,9 +28,9 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 this.$titleEl.className = "ui-title";
                 this.el().appendChild(this.$titleEl);
             }
-            
+
             Utils.Dom.setHtml(this.$titleEl, "<h1>" + (this.attr("title") || "") + "</h1>");
-            
+
             if (this.facet("buttonsleft")) {
                 this.facet("buttonsleft").update();
                 

@@ -8,6 +8,12 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     }
     
     Html.extend(Widget, {
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === 'html' && this.el()) {
+                Utils.Dom.setHtml(this.el(), newValue);
+            }
+        },
+
         update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));

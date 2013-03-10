@@ -22,7 +22,13 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 return val === undefined ? this : null;
             }
         },
-        
+
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === 'label' && this.$label) {
+                Utils.Dom.setHtml(this.$label, newValue || "");
+            }
+        },
+
         update : function () {
             if (!this.el()) {
                 this.el(document.createElement("div"));

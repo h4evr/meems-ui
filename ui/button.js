@@ -11,9 +11,10 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     
     Button.extend(Widget, {
         attr : function (name, val) {
+            var oldStyle = name === 'style' ? Widget.prototype.attr.call(this, name) : null;
+            var ret = Widget.prototype.attr.apply(this, arguments);
+
             if (name === 'style' && val !== undefined && this.el()) {
-                var oldStyle = Widget.prototype.attr.call(this, name);
-                
                 if (oldStyle) {
                     Utils.Dom.removeClass(this.el(), "ui-button-" + oldStyle);
                 } else {
@@ -27,7 +28,26 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 }
             }
             
-            return Widget.prototype.attr.apply(this, arguments);
+            return ret;
+        },
+
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === 'title' && this.$titleEl) {
+                Utils.Dom.setHtml(this.$titleEl, this.attr("title"));
+                Utils.Dom.applyChanges();
+            } else if (attrName === 'style' && this.el()) {
+                if (oldValue) {
+                    Utils.Dom.removeClass(this.el(), "ui-button-" + oldValue);
+                } else {
+                    Utils.Dom.removeClass(this.el(), "ui-button-normal");
+                }
+
+                if (newValue) {
+                    Utils.Dom.addClass(this.el(), "ui-button-" + newValue);
+                } else {
+                    Utils.Dom.addClass(this.el(), "ui-button-normal");
+                }
+            }
         },
         
         update : function () {

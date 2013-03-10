@@ -1,5 +1,6 @@
 /*global define*/
-define(["./ui/widget",
+define(["./observable",
+        "./ui/widget",
         "./ui/header",
         "./ui/footer",
         "./ui/page",
@@ -15,7 +16,7 @@ define(["./ui/widget",
         "./ui/form",
         "./ui/textfield",
         "./ui/page_holder"],
-function (Widget, Header, Footer, Page,
+function (Observable, Widget, Header, Footer, Page,
           Html, Button, ButtonGroup, ListItem, List,
           Aside, SplitView, TabGroup, Tab, Form,
           TextField, PageHolder) {

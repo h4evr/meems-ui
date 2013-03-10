@@ -82,11 +82,30 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
         
         attr : function (name, val) {
             if (val === undefined) {
-                return this.$attributes[name];
+                var value = this.$attributes[name];
+
+                if (typeof value === 'function') {
+                    return value();
+                } else {
+                    return value;
+                }
             } else {
                 this.$attributes[name] = val;
+
+                if (val && val.subscribe !== undefined && typeof(val.subscribe) === 'function') {
+                    val.subscribe((function (name, self) {
+                        return Utils.bind(function(oldValue, newValue) {
+                            this.partialUpdate(name, oldValue, newValue);
+                        }, self);
+                    }(name, this)));
+                }
+
                 return this;
             }
+        },
+
+        partialUpdate : function (attrName, oldValue, newValue) {
+            this.update();
         },
         
         update : function () {

@@ -1,10 +1,27 @@
-function loadCss(url) {
+/*globals require */
+require.config({
+    paths: {
+        "meems-utils": "../lib/meems-utils/meems-utils",
+        "meems-events": "../lib/meems-events/meems-events",
+        "meems-scroll": "../lib/meems-scroll/meems-scroll",
+        "mustache": "//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min"
+    }
+});
+
+function loadCss(urls) {
     "use strict";
-    var link = document.createElement("link");
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.href = url;
-    document.getElementsByTagName("head")[0].appendChild(link);
+
+    var link,
+        head = document.getElementsByTagName("head")[0],
+        firstSibling = head.childNodes[0];
+
+    for (var i = 0, ln = urls.length; i < ln; ++i) {
+        link = document.createElement("link");
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = urls[i];
+        head.insertBefore(link, firstSibling);
+    }
 }
 
 function getTheme() {
@@ -20,32 +37,30 @@ function getTheme() {
 }
 
 var theme = getTheme() || 'android';
-loadCss("../themes/" + theme + "/ui.css");
-loadCss("../themes/" + theme + "/icons.css");
-loadCss("../themes/" + theme + "/effects.css");
+loadCss([
+    "../themes/" + theme + "/ui.css",
+    "../themes/" + theme + "/icons.css",
+    "../themes/" + theme + "/effects.css"
+]);
 
-require.config({
-    paths: {
-        "meems-utils": "../lib/meems-utils/meems-utils",
-        "meems-events": "../lib/meems-events/meems-events",
-        "meems-scroll": "../lib/meems-scroll/meems-scroll"
-    }
-});
-
-require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function (UI, Utils, Scroll, Events) {
+require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-events"], function (UI, VmUtils, Utils, Scroll, Events) {
     "use strict";
 
-    var eventClick = 'dom:' + ('ontouchstart' in document ? 'touchstart' : 'click'),
-        
+    var eventClick = 'dom:' + Events.touchEndEventName,
+
+        buttonTitle = VmUtils.observable("Explore"),
+
+        title = VmUtils.observable("Thesis - Meems Library"),
+
         aside = UI.create("aside"),
         
         page1 = UI.create("page").facet("header",
         UI.create("header")
-            .attr("title", "Thesis - Meems Library")
+            .attr("title", title)
             .facet("buttonsleft",
                 UI.create("buttongroup")
                 .addButton(UI.create("button")
-                    .attr("title", "Explore")
+                    .attr("title", buttonTitle)
                     .attr("icon", "explore")
                     .on(eventClick, function () {
                         aside.expanded(!aside.expanded());
@@ -54,46 +69,46 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
 
     var tab1 = UI.create("tab").attr("title", "Thesis").attr("icon", "facebook").facet("content",
         UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Motivation and Goals")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Structure")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "State of Art")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "What are smartphones?")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Operating systems")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Approaches in mobile development")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Publishing applications")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "HTML5, Javascript and CSS3")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Frameworks for developing mobile web applications")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Analysis of the problem at hand")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions and Future Work")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
+            { text: "Introduction", header : true },
+            { text: "Context" },
+            { text: "Motivation and Goals" },
+            { text: "Structure" },
+            { text: "State of Art", header : true },
+            { text: "What are smartphones?" },
+            { text: "Operating systems" },
+            { text: "Approaches in mobile development" },
+            { text: "Publishing applications" },
+            { text: "HTML5, Javascript and CSS3" },
+            { text: "Frameworks for developing mobile web applications" },
+            { text: "Analysis of the problem at hand", header : true },
+            { text: "Conclusions" },
+            { text: "", header : true },
+            { text: "Conclusions and Future Work" },
+            { text: "Future Work" },
+            { text: "", header : true },
+            { text: "References" }
         ]).style('full')),
     
     tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
         UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Introduction")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Context")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Motivation and Goals")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Structure")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "State of Art")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "What are smartphones?")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Operating systems")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Approaches in mobile development")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Publishing applications")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "HTML5, Javascript and CSS3")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Frameworks for developing mobile web applications")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Analysis of the problem at hand")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Conclusions and Future Work")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Future Work")),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "")).header(true),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "References"))
+            { text: "Introduction", header : true },
+            { text: "Context" },
+            { text: "Motivation and Goals" },
+            { text: "Structure" },
+            { text: "State of Art", header : true },
+            { text: "What are smartphones?" },
+            { text: "Operating systems" },
+            { text: "Approaches in mobile development" },
+            { text: "Publishing applications" },
+            { text: "HTML5, Javascript and CSS3" },
+            { text: "Frameworks for developing mobile web applications" },
+            { text: "Analysis of the problem at hand", header : true },
+            { text: "Conclusions" },
+            { text: "", header : true },
+            { text: "Conclusions and Future Work" },
+            { text: "Future Work" },
+            { text: "", header : true },
+            { text: "References" }
         ]).style('normal')),
 
     tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
@@ -108,7 +123,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
     
     page2 = UI.create("page")
         .facet("content", UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Segundo ecra!"))
+            { text: "Segundo ecra!" }
         ]))
         .facet("header", UI.create("header")
             .attr("title", "Thesis - Page 2")
@@ -123,7 +138,7 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
     
     page3 = UI.create("page")
         .facet("content", UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Terceiro ecra!"))
+            { text: "Terceiro ecra!" }
         ]))
         .facet("header", UI.create("header")
             .attr("title", "Thesis - Page 3")
@@ -137,28 +152,30 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
                     })))),
     
     pageAside = UI.create("page")
-        .facet("header", UI.create("header").attr("title", "Menu"))
+        .facet("header", UI.create("header").attr("title", title))
         .facet("content", UI.create("list").items([
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Home"))
-                .on(eventClick, function () {
-                    aside.expanded(false);
+            { id: 1, text : "Home" },
+            { id: 2, text : "Page 1" },
+            { id: 3, text : "Page 2" },
+            { id: 4, text : "Page 3" }
+        ]).style('full').on("item:clicked", function (eventName, item) {
+                var id = item.id;
+
+                if (id === 1) {
                     pageHolder.currentPage(page1);
-                    Utils.Dom.applyChanges();
-                }),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 1"))
-                .on(eventClick, function () {
-                    aside.expanded(false);
+                } else if (id === 2) {
                     pageHolder.currentPage(page2);
-                    Utils.Dom.applyChanges();
-                }),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 2"))
-                .on(eventClick, function () {
-                    aside.expanded(false);
+                } else if (id === 3) {
                     pageHolder.currentPage(page3);
-                    Utils.Dom.applyChanges();
-                }),
-            UI.create("listitem").facet("item", UI.create("html").attr("html", "Page 3"))
-        ]).style('full')),
+                } else {
+                    return true;
+                }
+
+                aside.expanded(false);
+                Utils.Dom.applyChanges();
+
+                return true;
+        })),
 
     pageHolder = UI.create("pageholder").pages([ page1, page2, page3 ]);
 
@@ -176,4 +193,9 @@ require(["../meems-ui", "meems-utils", "meems-scroll", "meems-events"], function
     Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
     document.body.appendChild(aside.el());
     Scroll.updateAll();
+
+    window.setInterval(function () {
+        buttonTitle(Math.random() < 0.5 ? "Explore" : "Not");
+        title("blah blah " + Math.random());
+    }, 1000);
 });

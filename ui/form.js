@@ -23,6 +23,21 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 return this;
             }
         },
+
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === 'action' && this.el()) {
+                this.el().setAttribute("action", newValue || "#");
+            } else if (attrName === 'title' && this.$titleEl) {
+                Utils.Dom.setHtml(this.$titleEl, newValue);
+                if (newValue.length > 0) {
+                    Utils.Dom.addClass(this.$titleEl, 'ui-show');
+                    Utils.Dom.removeClass(this.$titleEl, 'ui-hide');
+                } else {
+                    Utils.Dom.addClass(this.$titleEl, 'ui-hide');
+                    Utils.Dom.removeClass(this.$titleEl, 'ui-show');
+                }
+            }
+        },
         
         update : function () {
             if (!this.el()) {
@@ -41,7 +56,13 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
 
             var newTitle = this.attr("title") || "";
             Utils.Dom.setHtml(this.$titleEl, newTitle);
-            this.$titleEl.style.display = (newTitle.length > 0 ? 'block' : 'none');
+            if (newTitle.length > 0) {
+                Utils.Dom.addClass(this.$titleEl, 'ui-show');
+                Utils.Dom.removeClass(this.$titleEl, 'ui-hide');
+            } else {
+                Utils.Dom.addClass(this.$titleEl, 'ui-hide');
+                Utils.Dom.removeClass(this.$titleEl, 'ui-show');
+            }
             
             var field;
             

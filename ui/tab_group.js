@@ -60,6 +60,13 @@ function (Utils, Scroll, Widget, Footer, ButtonGroup, Button) {
         tabs : function () {
             return this.$tabs;
         },
+
+        partialUpdate : function (attrName, oldValue, newValue) {
+            if (attrName === 'tabPosition' && this.el()) {
+                Utils.Dom.removeClass(this.el(), "ui-tab-buttons-" + oldValue);
+                Utils.Dom.addClass(this.el(), "ui-tab-buttons-" + newValue);
+            }
+        },
         
         update : function () {
             if (!this.el()) {

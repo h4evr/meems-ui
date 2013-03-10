@@ -4,11 +4,11 @@ body {
 }
 
 .ui-show {
-    display: block;
+    visibility: visible;
 }
 
 .ui-hide {
-    display: none;
+    visibility: hidden;
 }
 
 .ui-page {
