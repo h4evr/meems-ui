@@ -4,6 +4,7 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
 
     function Widget() {
         this.$el = null;
+        this.$parent = null;
         this.$facets = {};
         this.$attributes = {};
         this.$eventHandlers = null;
@@ -41,6 +42,17 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
 
             return this;
         },
+
+        fire : function (eventName /*, args */) {
+            var elm = this;
+
+            while (elm) {
+                Events.Handler.prototype.fire.apply(elm, arguments);
+                elm = elm.parent();
+            }
+
+            return this;
+        },
         
         el : function (el) {
             if (el === undefined) {
@@ -65,7 +77,16 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
         facets : function () {
             return Utils.Map.getKeys(this.$facets);
         },
-        
+
+        parent : function (val) {
+            if (val === undefined) {
+                return this.$parent;
+            } else {
+                this.$parent = val;
+                return this;
+            }
+        },
+
         facet : function (name, facet) {
             if (facet === undefined) {
                 return this.$facets[name];

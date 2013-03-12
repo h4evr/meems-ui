@@ -150,15 +150,18 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
                         aside.expanded(!aside.expanded());
                         Utils.Dom.applyChanges();
                     })))),
-    
+
+    menuItems = VmUtils.observableArray([
+        { id: 1, text : "Home" },
+        { id: 2, text : "Page 1" },
+        { id: 3, text : "Page 2" },
+        { id: 4, text : "Page 3" }
+    ]),
+
     pageAside = UI.create("page")
         .facet("header", UI.create("header").attr("title", title))
-        .facet("content", UI.create("list").items([
-            { id: 1, text : "Home" },
-            { id: 2, text : "Page 1" },
-            { id: 3, text : "Page 2" },
-            { id: 4, text : "Page 3" }
-        ]).style('full').on("item:clicked", function (eventName, item) {
+        .facet("content", UI.create("list").items(menuItems)
+            .style('full').on("item:clicked", function (eventName, item) {
                 var id = item.id;
 
                 if (id === 1) {
@@ -193,9 +196,4 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
     Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
     document.body.appendChild(aside.el());
     Scroll.updateAll();
-
-    window.setInterval(function () {
-        buttonTitle(Math.random() < 0.5 ? "Explore" : "Not");
-        title("blah blah " + Math.random());
-    }, 1000);
 });

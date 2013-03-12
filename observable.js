@@ -44,8 +44,32 @@ define(function() {
         return funcRet
     }
 
+    var createProxyMethod = function (method) {
+        return function () {
+            var oldValue = this.$currentVal;
+            method.apply(this.$currentVal, arguments);
+            this.notify(oldValue, this.$currentVal);
+        };
+    };
+
+    var arrayMethods = {
+        'indexOf': createProxyMethod(Array.prototype.indexOf),
+        'push': createProxyMethod(Array.prototype.push),
+        'pop': createProxyMethod(Array.prototype.pop),
+        'slice': createProxyMethod(Array.prototype.slice),
+        'splice': createProxyMethod(Array.prototype.splice),
+        'shift': createProxyMethod(Array.prototype.shift),
+        'unshift': createProxyMethod(Array.prototype.unshift),
+        'reverse': createProxyMethod(Array.prototype.reverse),
+        'sort': createProxyMethod(Array.prototype.sort),
+        'remove': createProxyMethod(Array.prototype.remove)
+    };
+
     function observableArray(startArray) {
         var funcRet = observable(startArray || []);
+        for (var k in arrayMethods) {
+            funcRet[k] = arrayMethods[k];
+        }
         return funcRet;
     }
 

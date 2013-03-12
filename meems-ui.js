@@ -41,8 +41,14 @@ function (Observable, Widget, Header, Footer, Page,
     };
     
     var UI = {
-        create : function (type) {
-            return factories[type] ? new factories[type]() : null;
+        create : function (type, parent) {
+            var obj = factories[type] ? new factories[type]() : null;
+
+            if (obj && parent) {
+                obj.parent(parent);
+            }
+
+            return obj;
         }
     };
     

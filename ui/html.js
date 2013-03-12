@@ -1,16 +1,26 @@
 /*global define*/
-define(["meems-utils", "./widget"], function (Utils, Widget) {
+define(["meems-utils", "./widget", "mustache"], function (Utils, Widget, Mustache) {
     "use strict";
 
     function Html() {
+        this._compiledTemplate = Mustache.compile("");
+
         Widget.apply(this, arguments);
         return this;
     }
     
     Html.extend(Widget, {
-        partialUpdate : function (attrName, oldValue, newValue) {
-            if (attrName === 'html' && this.el()) {
-                Utils.Dom.setHtml(this.el(), newValue);
+        attr : function (attrName, val) {
+            if (val !== undefined && attrName === 'html') {
+                this._compiledTemplate = Mustache.compile(val || "");
+            }
+
+            return Widget.prototype.attr.apply(this, arguments); // super
+        },
+
+        partialUpdate : function (attrName) {
+            if ((attrName === 'html' || attrName === 'data') && this.el()) {
+                Utils.Dom.setHtml(this.el(), this._compiledTemplate(this.attr("data")));
             }
         },
 
@@ -19,8 +29,8 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-html");
             }
-            
-            Utils.Dom.setHtml(this.el(), this.attr("html"));
+
+            Utils.Dom.setHtml(this.el(), this._compiledTemplate(this.attr("data")));
             
             Widget.prototype.update.apply(this, arguments); //super
         }

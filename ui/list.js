@@ -13,7 +13,79 @@ define(["mustache", "meems-utils", "meems-events", "./widget", "./list_item", ".
         this.$headerCompiledTemplate = Mustache.compile(this.$template);
         return this;
     }
-    
+
+    var createItem = function (curItem, i, ln) {
+        var item = new ListItem();
+        item.header(curItem.header === true);
+
+        if (this.$headerCompiledTemplate && item.header()) {
+            item.facet("item", (new Html()).attr("html", this.$headerCompiledTemplate(curItem)));
+        } else {
+            item.facet("item", (new Html()).attr("html", this.$compiledTemplate(curItem)));
+        }
+
+        item.update();
+
+        item.el()._meems_parentList = this;
+        item.el()._meems_item_index = i;
+        item.el()._meems_item = curItem;
+
+        return item;
+    };
+
+    var updateItems = function (oldItems, newItems) {
+        if (!this.el()) {
+            return;
+        }
+
+        var item, curItem, i, ln, el = this.el(), j, ln2;
+        var processed = [];
+
+        if (this.$generatedItems) {
+            for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
+                item = this.$generatedItems[i];
+
+                var found = false;
+                for (j = 0, ln2 = newItems.length; j < ln2; ++j) {
+                    if (item.el()._meems_item === newItems[j]) {
+                        found = true;
+                        processed.push(j);
+                        Utils.Dom.removeClass(item.el(), "ui-list-item-last");
+                        break;
+                    }
+                }
+
+                if (!found && item.el() && item.el().parentNode === el) {
+                    el.removeChild(item.el());
+                }
+            }
+        }
+
+        for (i = 0, ln = newItems.length; i < ln; ++i) {
+            curItem = newItems[i];
+
+            if (processed.indexOf(i) == -1) {
+                item = createItem.call(this, curItem, i, ln);
+                el.insertBefore(item.el(), el.childNodes[i]);
+                this.$generatedItems.splice(i, 0, item);
+            } else {
+                item = this.$generatedItems[i];
+            }
+
+            if (!item.header()) {
+                if (i < ln - 1) {
+                    if (newItems[i + 1].header === true) {
+                        Utils.Dom.addClass(item.el(), "ui-list-item-last");
+                    } else {
+                        Utils.Dom.removeClass(item.el(), "ui-list-item-last");
+                    }
+                } else {
+                    Utils.Dom.addClass(item.el(), "ui-list-item-last");
+                }
+            }
+        }
+    };
+
     List.extend(Widget, {
         onItemClicked : function (eventName, e) {
             var target = e.target;
@@ -23,7 +95,7 @@ define(["mustache", "meems-utils", "meems-events", "./widget", "./list_item", ".
             }
 
             if (target) {
-                this.fire("item:clicked", this.$items[target._meems_item_index]);
+                this.fire("item:clicked", target._meems_item);
             }
         },
 
@@ -66,7 +138,7 @@ define(["mustache", "meems-utils", "meems-events", "./widget", "./list_item", ".
                 return this;
             }
         },
-        
+
         items: function (items) {
             if (items === undefined) {
                 return this.$items;
@@ -85,25 +157,17 @@ define(["mustache", "meems-utils", "meems-events", "./widget", "./list_item", ".
                 this.$items = items;
 
                 if (this.$items && el) {
+                    var newItems = typeof(this.$items) === 'function' ? this.$items() : this.$items;
+
                     this.$generatedItems = [];
 
-                    for (i = 0, ln = this.$items.length; i < ln; ++i) {
-                        curItem = this.$items[i];
-
-                        item = new ListItem();
-                        item.header(curItem.header === true);
-
-                        if (this.$headerCompiledTemplate && item.header()) {
-                            item.facet("item", (new Html()).attr("html", this.$headerCompiledTemplate(curItem)));
-                        } else {
-                            item.facet("item", (new Html()).attr("html", this.$compiledTemplate(curItem)));
-                        }
-
-                        item.update();
+                    for (i = 0, ln = newItems.length; i < ln; ++i) {
+                        curItem = newItems[i];
+                        item = createItem.call(this, curItem, i, ln);
 
                         if (!item.header()) {
                             if (i < ln - 1) {
-                                if (this.$items[i + 1].header === true) {
+                                if (newItems[i + 1].header === true) {
                                     Utils.Dom.addClass(item.el(), "ui-list-item-last");
                                 } else {
                                     Utils.Dom.removeClass(item.el(), "ui-list-item-last");
@@ -113,12 +177,12 @@ define(["mustache", "meems-utils", "meems-events", "./widget", "./list_item", ".
                             }
                         }
 
-                        item.el()._meems_parentList = this;
-                        item.el()._meems_item_index = i;
-
                         el.appendChild(item.el());
-
                         this.$generatedItems.push(item);
+                    }
+
+                    if (typeof(this.$items.subscribe) === 'function') {
+                        this.$items.subscribe(Utils.bind(updateItems, this));
                     }
                 }
 

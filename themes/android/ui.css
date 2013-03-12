@@ -234,6 +234,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 .ui-list-normal > .ui-list-item, .ui-list-full > .ui-list-item { 

@@ -8,6 +8,7 @@ define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Wid
         this.facet("header", null);
         this.facet("content", null);
         this.facet("footer", null);
+        this.attr("enableScroll", false);
         
         this.$contentWrapper = null;
         this.$scroller = null;
@@ -66,7 +67,16 @@ define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Wid
                     Utils.Dom.addClass(this.$contentWrapper, "ui-footer-off");
                 }
             }
-            
+
+            if (this.attr("enableScroll") === true && !this.$scroller) {
+                this.$scroller = new Scroll(this.$contentWrapper, {
+                    scrollX: false,
+                    scrollY: true,
+                    disableTouchEvents : false,
+                    hideScroller : false
+                });
+            }
+
             Widget.prototype.update.apply(this, arguments); //super
         }
     });
