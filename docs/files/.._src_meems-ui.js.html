@@ -73,6 +73,8 @@
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
             
+                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
+            
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
                 <li><a href="..&#x2F;classes/observable.Observable.html">observable.Observable</a></li>
@@ -239,7 +241,7 @@ function (Observable, Widget, Header, Footer, Page,
          * @static
          * @param {String} type The name of the type of widget to create.
          * @param {Widget} [parent] Registers the created widget as child of the given parent.
-         * @return {Widget} The widget, or null in case of error.
+         * @return {mixed} The widget, or null in case of error.
          *&#x2F;
         create : function (type, parent) {
             var obj = factories[type] ? new factories[type]() : null;

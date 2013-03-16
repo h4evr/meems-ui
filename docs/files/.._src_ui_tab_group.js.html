@@ -73,6 +73,8 @@
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
             
+                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
+            
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
                 <li><a href="..&#x2F;classes/observable.Observable.html">observable.Observable</a></li>
@@ -243,7 +245,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
         }
         
         if (target) {
-            var tabIndex = Utils.indexOfByProp(this.$buttonGroup.buttons, &quot;$el&quot;, target);
+            var tabIndex = Utils.Array.indexOfByProp(this.$buttonGroup.buttons, &quot;$el&quot;, target);
             if (tabIndex &gt; -1) {
                 this.visibleTab(tabIndex);
             }
@@ -360,7 +362,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
                         btn = (new Button()).attr(&quot;style&quot;, &quot;vertical&quot;);
                         btn.update();
                         btn.on(&quot;dom:&quot; + (Utils.Dom.supportsTouch() ? &quot;touchstart&quot; : &quot;click&quot;),
-                            Utils.bind(onButtonTapped, this));
+                            Utils.Fn.bind(onButtonTapped, this));
                             
                         this.$buttonGroup.appendChild(btn.el());
                         this.$buttonGroup.buttons.push(btn);
@@ -392,7 +394,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
                         totalMaxTime: 0.25,
                         disableTouchEvents : false,
                         hideScroller : true
-                    }).on(&quot;scroll:end&quot;, Utils.bind(onScrollEnd, this));
+                    }).on(&quot;scroll:end&quot;, Utils.Fn.bind(onScrollEnd, this));
                 }
             } else {
                 Utils.Dom.addClass(this.$tabHolder, &quot;ui-footer-off&quot;);

@@ -7,6 +7,7 @@
                 "meems-events": 1
             },
             "classes": {
+                "NativeDomEvents": 1,
                 "DomEvents": 1,
                 "Handler": 1,
                 "Touch": 1
@@ -234,6 +235,7 @@
             "name": "meems-events",
             "submodules": {},
             "classes": {
+                "NativeDomEvents": 1,
                 "DomEvents": 1,
                 "Handler": 1,
                 "Touch": 1
@@ -242,7 +244,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../lib/meems-events/meems-events.js",
-            "line": 157,
+            "line": 274,
             "description": "Module that provides methods and mixins related with event handling."
         },
         "meems-scroll": {
@@ -255,7 +257,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 512,
+            "line": 511,
             "description": "Emulates scrolling on a set of components, with scrollbars, as if on a mobile environment.",
             "requires": [
                 "meems-utils",
@@ -623,6 +625,23 @@
         }
     },
     "classes": {
+        "NativeDomEvents": {
+            "name": "NativeDomEvents",
+            "shortname": "NativeDomEvents",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-events",
+            "namespace": "",
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 77,
+            "description": "Provides functions to add and remove event listeners to the DOM.",
+            "access": "private",
+            "tagname": "",
+            "is_constructor": 1
+        },
         "DomEvents": {
             "name": "DomEvents",
             "shortname": "DomEvents",
@@ -634,7 +653,7 @@
             "module": "meems-events",
             "namespace": "",
             "file": "../lib/meems-events/meems-events.js",
-            "line": 34,
+            "line": 134,
             "description": "Provides functions to add and remove event listeners to the DOM.",
             "is_constructor": 1
         },
@@ -649,7 +668,7 @@
             "module": "meems-events",
             "namespace": "",
             "file": "../lib/meems-events/meems-events.js",
-            "line": 88,
+            "line": 205,
             "description": "Class that enables an object to act as an event handler.",
             "is_constructor": 1
         },
@@ -664,7 +683,7 @@
             "module": "meems-events",
             "namespace": "",
             "file": "../lib/meems-events/meems-events.js",
-            "line": 157
+            "line": 274
         },
         "Scroll": {
             "name": "Scroll",
@@ -677,7 +696,7 @@
             "module": "meems-scroll",
             "namespace": "",
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 512,
+            "line": 511,
             "is_constructor": 1
         },
         "Fn": {
@@ -1049,7 +1068,82 @@
     "classitems": [
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 68,
+            "line": 37,
+            "description": "Generic handler for all DOM events.",
+            "itemtype": "method",
+            "name": "onDomEvent",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "e",
+                    "description": "The event object.",
+                    "type": "Event"
+                }
+            ],
+            "class": "NativeDomEvents",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 113,
+            "description": "Add an event listener to a DOM element.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to add the listener to.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "event",
+                    "description": "The event name.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback function for when the event occurs.",
+                    "type": "Function"
+                }
+            ],
+            "class": "NativeDomEvents",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 122,
+            "description": "Remove an event listener from a DOM element.",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to remove the listener from.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "event",
+                    "description": "The event name.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback function that was previously added.",
+                    "type": "Function"
+                }
+            ],
+            "class": "NativeDomEvents",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 140,
             "description": "Add an event listener to a DOM element.",
             "itemtype": "method",
             "name": "on",
@@ -1075,7 +1169,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 77,
+            "line": 178,
             "description": "Remove an event listener from a DOM element.",
             "itemtype": "method",
             "name": "off",
@@ -1101,7 +1195,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 99,
+            "line": 216,
             "description": "Listen for an event.",
             "itemtype": "method",
             "name": "on",
@@ -1135,7 +1229,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 115,
+            "line": 232,
             "description": "Stop listening for an event.",
             "itemtype": "method",
             "name": "off",
@@ -1158,7 +1252,9 @@
                         {
                             "name": "args",
                             "description": "Extra parameters passed to the fire method.",
-                            "type": "...Mixed"
+                            "type": "Mixed",
+                            "optional": true,
+                            "multiple": true
                         }
                     ]
                 }
@@ -1169,7 +1265,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 134,
+            "line": 251,
             "description": "Fire an event name, triggering all listeners.",
             "itemtype": "method",
             "name": "fire",
@@ -1191,7 +1287,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 161,
+            "line": 278,
             "description": "Event name for when the user starts to press the screen.",
             "itemtype": "property",
             "name": "touchStartEventName",
@@ -1202,7 +1298,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 169,
+            "line": 286,
             "description": "Event name for when the user releases a press on the screen.",
             "itemtype": "property",
             "name": "touchEndEventName",
@@ -1213,7 +1309,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 177,
+            "line": 294,
             "description": "Event name for when the user moves the finger/cursor on the screen.",
             "itemtype": "property",
             "name": "touchMoveEventName",
@@ -1224,7 +1320,7 @@
         },
         {
             "file": "../lib/meems-events/meems-events.js",
-            "line": 185,
+            "line": 302,
             "description": "Transforms an MouseMouve or TouchMouve event into an object\nwith x and y coordinates of the first touch.",
             "itemtype": "method",
             "name": "getCursorPosition",
@@ -1245,7 +1341,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 556,
+            "line": 555,
             "description": "Updates all scroller that were ever created and are still active.",
             "itemtype": "method",
             "name": "updateAll",
@@ -1255,7 +1351,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 571,
+            "line": 570,
             "description": "Update the size of the scroller, should be called after a layout change.",
             "itemtype": "method",
             "name": "update",
@@ -1264,7 +1360,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 582,
+            "line": 581,
             "description": "Destroy this scroller instance.",
             "itemtype": "method",
             "name": "destroy",
@@ -1273,7 +1369,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 592,
+            "line": 591,
             "description": "Scroll to the given position, with animation.",
             "itemtype": "method",
             "name": "scrollTo",
@@ -1614,7 +1710,29 @@
         },
         {
             "file": "../src/ui/button_group.js",
-            "line": 36,
+            "line": 23,
+            "description": "Triggered when the button is clicked.",
+            "itemtype": "event",
+            "name": "button:pressed",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "e",
+                    "description": "The button element.",
+                    "type": "HTMLElement"
+                }
+            ],
+            "class": "ButtonGroup",
+            "module": "meems-ui",
+            "submodule": "buttongroup"
+        },
+        {
+            "file": "../src/ui/button_group.js",
+            "line": 43,
             "description": "Adds a new button to the group.",
             "itemtype": "method",
             "name": "addButton",
@@ -1635,7 +1753,7 @@
         },
         {
             "file": "../src/ui/button_group.js",
-            "line": 48,
+            "line": 55,
             "description": "Getter and setter for all the buttons in this group.",
             "itemtype": "method",
             "name": "buttons",
@@ -1720,7 +1838,55 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 93,
+            "line": 85,
+            "itemtype": "property",
+            "name": "$generatedItems",
+            "access": "private",
+            "tagname": "",
+            "type": "{ListItem[]}",
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 91,
+            "itemtype": "property",
+            "name": "$items",
+            "access": "private",
+            "tagname": "",
+            "type": "{observable.Observable|Array}",
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 97,
+            "itemtype": "property",
+            "name": "$template",
+            "access": "private",
+            "tagname": "",
+            "type": "{string}",
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 103,
+            "itemtype": "property",
+            "name": "$headerTemplate",
+            "access": "private",
+            "tagname": "",
+            "type": "{string}",
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 113,
             "description": "Create a new list item.",
             "itemtype": "method",
             "name": "createItem",
@@ -1748,7 +1914,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 121,
+            "line": 141,
             "description": "Update the items DOM, based of the array of items before and after.",
             "itemtype": "method",
             "name": "updateItems",
@@ -1772,7 +1938,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 182,
+            "line": 202,
             "description": "Fired when an item is clicked.",
             "itemtype": "event",
             "name": "item:clicked",
@@ -1794,7 +1960,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 202,
+            "line": 222,
             "description": "Getter and setter for the template of an item.",
             "itemtype": "method",
             "name": "template",
@@ -1817,7 +1983,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 221,
+            "line": 241,
             "description": "Getter and setter for the template of a header item.",
             "itemtype": "method",
             "name": "headerTemplate",
@@ -1840,7 +2006,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 240,
+            "line": 260,
             "description": "Getter and setter for the items of the list.",
             "itemtype": "method",
             "name": "item",
@@ -2280,7 +2446,7 @@
             ],
             "return": {
                 "description": "The widget, or null in case of error.",
-                "type": "Widget"
+                "type": "Mixed"
             },
             "class": "meems-ui",
             "module": "meems-ui"

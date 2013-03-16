@@ -73,6 +73,8 @@
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
             
+                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
+            
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
                 <li><a href="..&#x2F;classes/observable.Observable.html">observable.Observable</a></li>
@@ -352,7 +354,7 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
 
                 if (val &amp;&amp; val.subscribe !== undefined &amp;&amp; typeof(val.subscribe) === &#x27;function&#x27;) {
                     val.subscribe((function (name, self) {
-                        return Utils.bind(function(oldValue, newValue) {
+                        return Utils.Fn.bind(function(oldValue, newValue) {
                             this.partialUpdate(name, oldValue, newValue);
                         }, self);
                     }(name, this)));

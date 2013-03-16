@@ -73,6 +73,8 @@
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
             
+                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
+            
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
                 <li><a href="..&#x2F;classes/observable.Observable.html">observable.Observable</a></li>
@@ -200,6 +202,13 @@ define([&quot;meems-utils&quot;, &quot;.&#x2F;widget&quot;], function (Utils, Wi
         return this;
     }
 
+    &#x2F;**
+     * Triggered when the button is clicked.
+     *
+     * @event button:pressed
+     * @param {String} eventName The name of the event.
+     * @param {HTMLElement} e The button element.
+     *&#x2F;
     &#x2F;&#x2F; Called when a button is clicked.
     var onButtonTapped = function (eventName, e) {
         var target = e.target;
@@ -269,7 +278,7 @@ define([&quot;meems-utils&quot;, &quot;.&#x2F;widget&quot;], function (Utils, Wi
                 
                 if (btn.el().parentNode !== this.el()) {
                     this.el().appendChild(btn.el());
-                    btn.on(&quot;dom:&quot; + (Utils.Dom.supportsTouch() ? &#x27;touchstart&#x27; : &#x27;click&#x27;), Utils.bind(onButtonTapped, this));
+                    btn.on(&quot;dom:&quot; + (Utils.Dom.supportsTouch() ? &#x27;touchstart&#x27; : &#x27;click&#x27;), Utils.Fn.bind(onButtonTapped, this));
                 }
                 
                 if (stretch) {

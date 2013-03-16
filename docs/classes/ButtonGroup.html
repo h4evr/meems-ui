@@ -73,6 +73,8 @@
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
             
+                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
+            
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
                 <li><a href="..&#x2F;classes/observable.Observable.html">observable.Observable</a></li>
@@ -275,6 +277,8 @@
         
         
         
+            <li class="api-class-tab events"><a href="#events">Events</a></li>
+        
     </ul>
 
     <div>
@@ -380,6 +384,21 @@
             
 
             
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events extends">
+                        
+                            <li class="index-item event">
+                                <a href="#event_button:pressed">button:pressed</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
         </div>
 
         
@@ -433,7 +452,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_button_group.js.html#l36"><code>..&#x2F;src&#x2F;ui&#x2F;button_group.js:36</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_button_group.js.html#l43"><code>..&#x2F;src&#x2F;ui&#x2F;button_group.js:43</code></a>
         
         </p>
 
@@ -663,7 +682,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_button_group.js.html#l48"><code>..&#x2F;src&#x2F;ui&#x2F;button_group.js:48</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_button_group.js.html#l55"><code>..&#x2F;src&#x2F;ui&#x2F;button_group.js:55</code></a>
         
         </p>
 
@@ -1068,7 +1087,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l134"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:134</code></a>
+        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l251"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:251</code></a>
         
         </p>
 
@@ -1175,7 +1194,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l115"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:115</code></a>
+        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l232"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:232</code></a>
         
         </p>
 
@@ -1240,8 +1259,9 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
                             
                             <li class="param">
                                 
-                                    <code class="param-name">args</code>
-                                    <span class="type">...Mixed</span>
+                                    <code class="param-name optional">[args]</code>
+                                    <span class="type">Mixed</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
                                 
 
                                 <div class="param-description">
@@ -1312,7 +1332,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l99"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:99</code></a>
+        <a href="..&#x2F;files&#x2F;.._lib_meems-events_meems-events.js.html#l216"><code>..&#x2F;lib&#x2F;meems-events&#x2F;meems-events.js:216</code></a>
         
         </p>
 
@@ -1691,6 +1711,93 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
 
         
 
+        
+            <div id="events" class="api-class-tabpanel">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_button:pressed" class="events item">
+    <h3 class="name"><code>button:pressed</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;.._src_ui_button_group.js.html#l23"><code>..&#x2F;src&#x2F;ui&#x2F;button_group.js:23</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Triggered when the button is clicked.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventName</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the event.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">e</code>
+                        <span class="type">HTMLElement</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The button element.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+            </div>
         
     </div>
 </div>

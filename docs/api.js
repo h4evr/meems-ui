@@ -16,6 +16,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "List",
         "ListItem",
         "Map",
+        "NativeDomEvents",
         "Page",
         "PageHolder",
         "Scroll",
