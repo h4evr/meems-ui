@@ -3,7 +3,7 @@ require.config({
     paths: {
         "viewmodel": "./viewmodel",
         "view": "./view",
-        "meems": "../../",
+        "meems": "../../src/",
         "meems-utils": "../../lib/meems-utils/meems-utils",
         "meems-events": "../../lib/meems-events/meems-events",
         "meems-scroll": "../../lib/meems-scroll/meems-scroll",
@@ -60,7 +60,7 @@ require([
     PhoneViewModel.init(phoneUi);
     phoneUi.refresh();
 
-    Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
+    Events.Dom.on(window, 'resize', Utils.Fn.throttle(Scroll.updateAll, 100));
     document.body.appendChild(phoneUi.ui.el());
     Scroll.updateAll();
 

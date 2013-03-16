@@ -25,7 +25,7 @@ define([ "meems/meems-ui", "meems-utils", "meems-events", "meems/observable" ], 
                                 .addButton(UI.create("button")
                                     .attr("title", "List")
                                     .attr("icon", "explore")
-                                    .on('dom:' + Events.touchEndEventName, function () {
+                                    .on('dom:' + Events.Touch.touchEndEventName, function () {
                                         parentView.fire("goto:people");
                                     }))))
 

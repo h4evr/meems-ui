@@ -21,7 +21,7 @@ define([
             asideMenu = UI.create("page")
                 .facet("header", UI.create("header").attr("title", title))
                 .facet("content", UI.create("list").items(menuItems)
-                    .style('normal')
+                    .attr('style', 'normal')
 
                     /* Pages should listen for the aside:click event if
                        they want to do react to aside menu items.  */

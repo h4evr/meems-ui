@@ -23,7 +23,7 @@ define([
                                 .addButton(UI.create("button")
                                     .attr("title", "Explore")
                                     .attr("icon", "explore")
-                                    .on('dom:' + Events.touchEndEventName, function () {
+                                    .on('dom:' + Events.Touch.touchEndEventName, function () {
                                         pageUsers.fire("aside:toggle");
                                     }))))
 
@@ -33,7 +33,7 @@ define([
                         /* Bind to an observable array. */
                         .items(users)
                         .template(itemTemplate)
-                        .style('normal')
+                        .attr('style', 'normal')
                         .on("item:clicked", function (eventName, item) {
                             pageUsers.fire("user:clicked", item);
                             return true;

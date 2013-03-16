@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# Remove previous documentation
 rm -rf ../docs
-jsdoc --verbose -d ../docs ../lib/meems-events ../observable.js ../ui ../meems-ui.js
+
+# Use YUIDoc (must be in path) to generate the documentation
+yuidoc -o ../docs ../src ../lib

@@ -43,7 +43,7 @@ loadCss([
     "../themes/" + theme + "/effects.css"
 ]);
 
-require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-events"], function (UI, VmUtils, Utils, Scroll, Events) {
+require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", "meems-events"], function (UI, VmUtils, Utils, Scroll, Events) {
     "use strict";
 
     var eventClick = 'dom:' + Events.touchEndEventName,
@@ -67,6 +67,7 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
                         Utils.Dom.applyChanges();
                     }))));
 
+    /** @type {Tab} */
     var tab1 = UI.create("tab").attr("title", "Thesis").attr("icon", "facebook").facet("content",
         UI.create("list").items([
             { text: "Introduction", header : true },
@@ -87,9 +88,10 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
             { text: "Future Work" },
             { text: "", header : true },
             { text: "References" }
-        ]).style('full')),
-    
-    tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
+        ]).attr('style', 'full'));
+
+    /** @type {Tab} */
+    var tab2 = UI.create("tab").attr("title", "Teste").attr("icon", "facebook").facet("content",
         UI.create("list").items([
             { text: "Introduction", header : true },
             { text: "Context" },
@@ -109,9 +111,10 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
             { text: "Future Work" },
             { text: "", header : true },
             { text: "References" }
-        ]).style('normal')),
+        ]).attr('style', 'normal'));
 
-    tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
+    /** @type {Tab} */
+    var tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
         UI.create("form").attr("title", "Form Demo").fields([
             UI.create("textfield").attr("label", "First Name"),
             UI.create("textfield").attr("label", "Last Name"),
@@ -161,7 +164,7 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
     pageAside = UI.create("page")
         .facet("header", UI.create("header").attr("title", title))
         .facet("content", UI.create("list").items(menuItems)
-            .style('full').on("item:clicked", function (eventName, item) {
+            .attr('style', 'full').on("item:clicked", function (eventName, item) {
                 var id = item.id;
 
                 if (id === 1) {
@@ -193,7 +196,7 @@ require(["../meems-ui", "../observable", "meems-utils", "meems-scroll", "meems-e
     aside.update();
     Utils.Dom.applyChanges();
 
-    Events.Dom.on(window, 'resize', Utils.throttle(Scroll.updateAll, 100));
+    Events.Dom.on(window, 'resize', Utils.Fn.throttle(Scroll.updateAll, 100));
     document.body.appendChild(aside.el());
     Scroll.updateAll();
 });
