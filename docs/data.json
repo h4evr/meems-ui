@@ -1,0 +1,2436 @@
+{
+    "project": {},
+    "files": {
+        "../lib/meems-events/meems-events.js": {
+            "name": "../lib/meems-events/meems-events.js",
+            "modules": {
+                "meems-events": 1
+            },
+            "classes": {
+                "DomEvents": 1,
+                "Handler": 1,
+                "Touch": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../lib/meems-scroll/meems-scroll.js": {
+            "name": "../lib/meems-scroll/meems-scroll.js",
+            "modules": {
+                "meems-scroll": 1
+            },
+            "classes": {
+                "Scroll": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../lib/meems-utils/meems-utils.js": {
+            "name": "../lib/meems-utils/meems-utils.js",
+            "modules": {
+                "meems-utils": 1
+            },
+            "classes": {
+                "Fn": 1,
+                "Array": 1,
+                "Map": 1,
+                "Dom": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/aside.js": {
+            "name": "../src/ui/aside.js",
+            "modules": {
+                "aside": 1
+            },
+            "classes": {
+                "Aside": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/button.js": {
+            "name": "../src/ui/button.js",
+            "modules": {
+                "button": 1
+            },
+            "classes": {
+                "Button": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/button_group.js": {
+            "name": "../src/ui/button_group.js",
+            "modules": {
+                "buttongroup": 1
+            },
+            "classes": {
+                "ButtonGroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/footer.js": {
+            "name": "../src/ui/footer.js",
+            "modules": {
+                "footer": 1
+            },
+            "classes": {
+                "Footer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/form.js": {
+            "name": "../src/ui/form.js",
+            "modules": {
+                "form": 1
+            },
+            "classes": {
+                "Form": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/header.js": {
+            "name": "../src/ui/header.js",
+            "modules": {
+                "header": 1
+            },
+            "classes": {
+                "Header": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/html.js": {
+            "name": "../src/ui/html.js",
+            "modules": {
+                "html": 1
+            },
+            "classes": {
+                "Html": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/list.js": {
+            "name": "../src/ui/list.js",
+            "modules": {
+                "list": 1
+            },
+            "classes": {
+                "ListItem": 1,
+                "List": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/page.js": {
+            "name": "../src/ui/page.js",
+            "modules": {
+                "page": 1
+            },
+            "classes": {
+                "Page": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/page_holder.js": {
+            "name": "../src/ui/page_holder.js",
+            "modules": {
+                "pageholder": 1
+            },
+            "classes": {
+                "PageHolder": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/split_view.js": {
+            "name": "../src/ui/split_view.js",
+            "modules": {
+                "splitview": 1
+            },
+            "classes": {
+                "SplitView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/tab.js": {
+            "name": "../src/ui/tab.js",
+            "modules": {
+                "tab": 1
+            },
+            "classes": {
+                "Tab": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/tab_group.js": {
+            "name": "../src/ui/tab_group.js",
+            "modules": {
+                "tabgroup": 1
+            },
+            "classes": {
+                "TabGroup": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/textfield.js": {
+            "name": "../src/ui/textfield.js",
+            "modules": {
+                "textfield": 1
+            },
+            "classes": {
+                "TextField": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/widget.js": {
+            "name": "../src/ui/widget.js",
+            "modules": {
+                "widget": 1
+            },
+            "classes": {
+                "Widget": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/meems-ui.js": {
+            "name": "../src/meems-ui.js",
+            "modules": {
+                "meems-ui": 1
+            },
+            "classes": {
+                "meems-ui": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/observable.js": {
+            "name": "../src/observable.js",
+            "modules": {
+                "observable": 1
+            },
+            "classes": {
+                "observable.Observable": 1,
+                "observable": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "meems-events": {
+            "name": "meems-events",
+            "submodules": {},
+            "classes": {
+                "DomEvents": 1,
+                "Handler": 1,
+                "Touch": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 157,
+            "description": "Module that provides methods and mixins related with event handling."
+        },
+        "meems-scroll": {
+            "name": "meems-scroll",
+            "submodules": {},
+            "classes": {
+                "Scroll": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 512,
+            "description": "Emulates scrolling on a set of components, with scrollbars, as if on a mobile environment.",
+            "requires": [
+                "meems-utils",
+                "meems-events"
+            ]
+        },
+        "meems-utils": {
+            "name": "meems-utils",
+            "submodules": {},
+            "classes": {
+                "Fn": 1,
+                "Array": 1,
+                "Map": 1,
+                "Dom": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 149,
+            "description": "Contains a set of methods that facilitate several tasks."
+        },
+        "meems-ui": {
+            "name": "meems-ui",
+            "submodules": {
+                "aside": 1,
+                "button": 1,
+                "buttongroup": 1,
+                "footer": 1,
+                "form": 1,
+                "header": 1,
+                "html": 1,
+                "list": 1,
+                "page": 1,
+                "pageholder": 1,
+                "splitview": 1,
+                "tab": 1,
+                "tabgroup": 1,
+                "textfield": 1,
+                "widget": 1
+            },
+            "classes": {
+                "Aside": 1,
+                "Button": 1,
+                "ButtonGroup": 1,
+                "Footer": 1,
+                "Form": 1,
+                "Header": 1,
+                "Html": 1,
+                "ListItem": 1,
+                "List": 1,
+                "Page": 1,
+                "PageHolder": 1,
+                "SplitView": 1,
+                "Tab": 1,
+                "TabGroup": 1,
+                "TextField": 1,
+                "Widget": 1,
+                "meems-ui": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../src/meems-ui.js",
+            "line": 51,
+            "description": "Provides all Meems UI components.\nFactory module, allows the user to create any UI widget through a single method.",
+            "requires": [
+                "observable"
+            ]
+        },
+        "aside": {
+            "name": "aside",
+            "submodules": {},
+            "classes": {
+                "Aside": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/aside.js",
+            "line": 12,
+            "description": "A component that holds a menu and a content area, allowing the menu to be toggled on and off.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "button": {
+            "name": "button",
+            "submodules": {},
+            "classes": {
+                "Button": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/button.js",
+            "line": 12,
+            "description": "A component that represents a button.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "buttongroup": {
+            "name": "buttongroup",
+            "submodules": {},
+            "classes": {
+                "ButtonGroup": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/button_group.js",
+            "line": 12,
+            "description": "A component that represents a button group.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "footer": {
+            "name": "footer",
+            "submodules": {},
+            "classes": {
+                "Footer": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/footer.js",
+            "line": 13,
+            "description": "A footer component, to be used with the Page component.\nExposes a 'buttons' facet.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "form": {
+            "name": "form",
+            "submodules": {},
+            "classes": {
+                "Form": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/form.js",
+            "line": 13,
+            "description": "A form that can hold several input widgets.\nThe attributes 'action' and 'title' are available.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "header": {
+            "name": "header",
+            "submodules": {},
+            "classes": {
+                "Header": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/header.js",
+            "line": 14,
+            "description": "A header component, to be used with the Page component.\nExposes a 'buttonsleft' and 'buttonsright' facet.\nThe attribute 'title' must be used to set the title of the page.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "html": {
+            "name": "html",
+            "submodules": {},
+            "classes": {
+                "Html": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/html.js",
+            "line": 16,
+            "description": "Component that can render HTML using Mustache templates.\nDefine the template using the 'html' attribute and bind data using the 'data' attribute.\nIf any of those are observable attributes, the component will be updated when any of them\nchanges.",
+            "requires": [
+                "mustache",
+                "meems-utils"
+            ]
+        },
+        "list": {
+            "name": "list",
+            "submodules": {},
+            "classes": {
+                "ListItem": 1,
+                "List": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/list.js",
+            "line": 78,
+            "description": "List component that will render based on templates.\nSupports header items for grouping.",
+            "requires": [
+                "meems-utils",
+                "meems-events",
+                "listitem",
+                "html"
+            ]
+        },
+        "page": {
+            "name": "page",
+            "submodules": {},
+            "classes": {
+                "Page": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/page.js",
+            "line": 15,
+            "description": "A page component.\nExposes several facets: header, content, footer.",
+            "requires": [
+                "meems-utils",
+                "meems-scroll"
+            ]
+        },
+        "pageholder": {
+            "name": "pageholder",
+            "submodules": {},
+            "classes": {
+                "PageHolder": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/page_holder.js",
+            "line": 12,
+            "description": "A bag for all the pages in a program. Allows to transition between pages.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "splitview": {
+            "name": "splitview",
+            "submodules": {},
+            "classes": {
+                "SplitView": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/split_view.js",
+            "line": 13,
+            "description": "Component that holds two widgets and puts them side by side.\nExposes the facets `first` and `second`.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "tab": {
+            "name": "tab",
+            "submodules": {},
+            "classes": {
+                "Tab": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/tab.js",
+            "line": 14,
+            "description": "A tab to be used with the `TabGroup` component.\nExposes the `content` facet.",
+            "requires": [
+                "meems-utils",
+                "meems-scroll"
+            ]
+        },
+        "tabgroup": {
+            "name": "tabgroup",
+            "submodules": {},
+            "classes": {
+                "TabGroup": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/tab_group.js",
+            "line": 16,
+            "description": "Groups several tabs and allows to change between them.",
+            "requires": [
+                "meems-utils",
+                "meems-scroll",
+                "meems-ui/button",
+                "meems-ui/buttongroup"
+            ]
+        },
+        "textfield": {
+            "name": "textfield",
+            "submodules": {},
+            "classes": {
+                "TextField": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/textfield.js",
+            "line": 14,
+            "description": "A component that allows the user to input information.\nExposes the attributes `label` and `type`.\nThe later can be used to change the type of input it expects, according to the HTML5 specs.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "widget": {
+            "name": "widget",
+            "submodules": {},
+            "classes": {
+                "Widget": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/widget.js",
+            "line": 13,
+            "description": "A base class for all widgets.",
+            "requires": [
+                "meems-utils",
+                "meems-events"
+            ]
+        },
+        "observable": {
+            "name": "observable",
+            "submodules": {},
+            "classes": {
+                "observable.Observable": 1,
+                "observable": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../src/observable.js",
+            "line": 120,
+            "description": "This module provides helper methods for detecting changes in object properties,\ntriggering observers when anything happens."
+        }
+    },
+    "classes": {
+        "DomEvents": {
+            "name": "DomEvents",
+            "shortname": "DomEvents",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-events",
+            "namespace": "",
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 34,
+            "description": "Provides functions to add and remove event listeners to the DOM.",
+            "is_constructor": 1
+        },
+        "Handler": {
+            "name": "Handler",
+            "shortname": "Handler",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-events",
+            "namespace": "",
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 88,
+            "description": "Class that enables an object to act as an event handler.",
+            "is_constructor": 1
+        },
+        "Touch": {
+            "name": "Touch",
+            "shortname": "Touch",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-events",
+            "namespace": "",
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 157
+        },
+        "Scroll": {
+            "name": "Scroll",
+            "shortname": "Scroll",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-scroll",
+            "namespace": "",
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 512,
+            "is_constructor": 1
+        },
+        "Fn": {
+            "name": "Fn",
+            "shortname": "Fn",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-utils",
+            "namespace": "",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 17,
+            "description": "Methods related with function manipulation."
+        },
+        "Array": {
+            "name": "Array",
+            "shortname": "Array",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-utils",
+            "namespace": "",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 94,
+            "description": "All methods related to array manipulation."
+        },
+        "Map": {
+            "name": "Map",
+            "shortname": "Map",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-utils",
+            "namespace": "",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 122,
+            "description": "All methods related to map manipulation."
+        },
+        "Dom": {
+            "name": "Dom",
+            "shortname": "Dom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-utils",
+            "namespace": "",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 149,
+            "description": "All methods related with DOM manipulation."
+        },
+        "Aside": {
+            "name": "Aside",
+            "shortname": "Aside",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "aside",
+            "namespace": "",
+            "file": "../src/ui/aside.js",
+            "line": 12,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Button": {
+            "name": "Button",
+            "shortname": "Button",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "button",
+            "namespace": "",
+            "file": "../src/ui/button.js",
+            "line": 12,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "ButtonGroup": {
+            "name": "ButtonGroup",
+            "shortname": "ButtonGroup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "buttongroup",
+            "namespace": "",
+            "file": "../src/ui/button_group.js",
+            "line": 12,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Footer": {
+            "name": "Footer",
+            "shortname": "Footer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "footer",
+            "namespace": "",
+            "file": "../src/ui/footer.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Form": {
+            "name": "Form",
+            "shortname": "Form",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "form",
+            "namespace": "",
+            "file": "../src/ui/form.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Header": {
+            "name": "Header",
+            "shortname": "Header",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "header",
+            "namespace": "",
+            "file": "../src/ui/header.js",
+            "line": 14,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Html": {
+            "name": "Html",
+            "shortname": "Html",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "html",
+            "namespace": "",
+            "file": "../src/ui/html.js",
+            "line": 16,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "ListItem": {
+            "name": "ListItem",
+            "shortname": "ListItem",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "list",
+            "namespace": "",
+            "file": "../src/ui/list.js",
+            "line": 16,
+            "description": "Internal class that holds a single item.",
+            "access": "private",
+            "tagname": "",
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "List": {
+            "name": "List",
+            "shortname": "List",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "list",
+            "namespace": "",
+            "file": "../src/ui/list.js",
+            "line": 78,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Page": {
+            "name": "Page",
+            "shortname": "Page",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "page",
+            "namespace": "",
+            "file": "../src/ui/page.js",
+            "line": 15,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "PageHolder": {
+            "name": "PageHolder",
+            "shortname": "PageHolder",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "pageholder",
+            "namespace": "",
+            "file": "../src/ui/page_holder.js",
+            "line": 12,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "SplitView": {
+            "name": "SplitView",
+            "shortname": "SplitView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "splitview",
+            "namespace": "",
+            "file": "../src/ui/split_view.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Tab": {
+            "name": "Tab",
+            "shortname": "Tab",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "tab",
+            "namespace": "",
+            "file": "../src/ui/tab.js",
+            "line": 14,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "TabGroup": {
+            "name": "TabGroup",
+            "shortname": "TabGroup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "tabgroup",
+            "namespace": "",
+            "file": "../src/ui/tab_group.js",
+            "line": 16,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "TextField": {
+            "name": "TextField",
+            "shortname": "TextField",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "textfield",
+            "namespace": "",
+            "file": "../src/ui/textfield.js",
+            "line": 14,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Widget": {
+            "name": "Widget",
+            "shortname": "Widget",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "widget",
+            "namespace": "",
+            "file": "../src/ui/widget.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Handler"
+        },
+        "meems-ui": {
+            "name": "meems-ui",
+            "shortname": "meems-ui",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/meems-ui.js",
+            "line": 51
+        },
+        "observable.Observable": {
+            "name": "observable.Observable",
+            "shortname": "observable.Observable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "observable",
+            "namespace": "",
+            "file": "../src/observable.js",
+            "line": 9,
+            "description": "Represents an observable object.\nTo retrieve the current value, just call as a function without parameters.\nTo change the current value, call as a function, providing the new value as first parameter.",
+            "is_constructor": 1,
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The initial value.",
+                    "type": "*"
+                }
+            ]
+        },
+        "observable": {
+            "name": "observable",
+            "shortname": "observable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "observable",
+            "namespace": "",
+            "file": "../src/observable.js",
+            "line": 120
+        }
+    },
+    "classitems": [
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 68,
+            "description": "Add an event listener to a DOM element.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to add the listener to.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "event",
+                    "description": "The event name.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback function for when the event occurs.",
+                    "type": "Function"
+                }
+            ],
+            "class": "DomEvents",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 77,
+            "description": "Remove an event listener from a DOM element.",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to remove the listener from.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "event",
+                    "description": "The event name.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback function that was previously added.",
+                    "type": "Function"
+                }
+            ],
+            "class": "DomEvents",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 99,
+            "description": "Listen for an event.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback.",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "eventName",
+                            "description": "The name of the event to trigger.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "args",
+                            "description": "Extra parameters passed to the fire method.",
+                            "type": "...Mixed"
+                        }
+                    ]
+                }
+            ],
+            "chainable": 1,
+            "class": "Handler",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 115,
+            "description": "Stop listening for an event.",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event.",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "The callback.",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "eventName",
+                            "description": "The name of the event to trigger.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "args",
+                            "description": "Extra parameters passed to the fire method.",
+                            "type": "...Mixed"
+                        }
+                    ]
+                }
+            ],
+            "chainable": 1,
+            "class": "Handler",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 134,
+            "description": "Fire an event name, triggering all listeners.",
+            "itemtype": "method",
+            "name": "fire",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The name of the event to trigger.",
+                    "type": "String"
+                },
+                {
+                    "name": "args",
+                    "description": "All extra parameters will be passed to the listeners.",
+                    "type": "...Mixed"
+                }
+            ],
+            "chainable": 1,
+            "class": "Handler",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 161,
+            "description": "Event name for when the user starts to press the screen.",
+            "itemtype": "property",
+            "name": "touchStartEventName",
+            "static": 1,
+            "type": "String",
+            "class": "Touch",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 169,
+            "description": "Event name for when the user releases a press on the screen.",
+            "itemtype": "property",
+            "name": "touchEndEventName",
+            "static": 1,
+            "type": "String",
+            "class": "Touch",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 177,
+            "description": "Event name for when the user moves the finger/cursor on the screen.",
+            "itemtype": "property",
+            "name": "touchMoveEventName",
+            "static": 1,
+            "type": "String",
+            "class": "Touch",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-events/meems-events.js",
+            "line": 185,
+            "description": "Transforms an MouseMouve or TouchMouve event into an object\nwith x and y coordinates of the first touch.",
+            "itemtype": "method",
+            "name": "getCursorPosition",
+            "static": 1,
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The event object",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "Object with the x and y coordinates.",
+                "type": "Object"
+            },
+            "class": "Touch",
+            "module": "meems-events"
+        },
+        {
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 556,
+            "description": "Updates all scroller that were ever created and are still active.",
+            "itemtype": "method",
+            "name": "updateAll",
+            "static": 1,
+            "class": "Scroll",
+            "module": "meems-scroll"
+        },
+        {
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 571,
+            "description": "Update the size of the scroller, should be called after a layout change.",
+            "itemtype": "method",
+            "name": "update",
+            "class": "Scroll",
+            "module": "meems-scroll"
+        },
+        {
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 582,
+            "description": "Destroy this scroller instance.",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "Scroll",
+            "module": "meems-scroll"
+        },
+        {
+            "file": "../lib/meems-scroll/meems-scroll.js",
+            "line": 592,
+            "description": "Scroll to the given position, with animation.",
+            "itemtype": "method",
+            "name": "scrollTo",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "What x coordinate should be at the left-top corner after scrolling.",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "What y coordinate should be at the left-top corner after scrolling.",
+                    "type": "Number",
+                    "optional": true
+                },
+                {
+                    "name": "duration",
+                    "description": "How long the animation should last.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "class": "Scroll",
+            "module": "meems-scroll"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 23,
+            "description": "Used for extending classes.",
+            "itemtype": "method",
+            "name": "extend",
+            "static": 1,
+            "params": [
+                {
+                    "name": "newClass",
+                    "description": "The new class that will contain the extended methods.",
+                    "type": "Function|Object"
+                },
+                {
+                    "name": "ClassToExtend",
+                    "description": "Base class.",
+                    "type": "Function"
+                },
+                {
+                    "name": "newMethods",
+                    "description": "Object with all the new methods.",
+                    "type": "Object"
+                }
+            ],
+            "class": "Fn",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 46,
+            "description": "Postpones the invocation of a function until the current method chain is finished.",
+            "itemtype": "method",
+            "name": "postPone",
+            "static": 1,
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be called",
+                    "type": "Function"
+                }
+            ],
+            "class": "Fn",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 57,
+            "description": "Binds the 'this' variable of a function to the given variable.",
+            "itemtype": "method",
+            "name": "bind",
+            "static": 1,
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be bind-ed.",
+                    "type": "Function"
+                },
+                {
+                    "name": "self",
+                    "description": "The new 'this'.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "The bind-ed function.",
+                "type": "Function"
+            },
+            "class": "Fn",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 72,
+            "description": "Ensures a function is called at most once in the given time interval.",
+            "itemtype": "method",
+            "name": "throttle",
+            "static": 1,
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be protected.",
+                    "type": "Function"
+                },
+                {
+                    "name": "ms",
+                    "description": "How many milliseconds must pass before the function can be called again.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The protected function.",
+                "type": "Function"
+            },
+            "class": "Fn",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 100,
+            "description": "Allows to search an array of objects by a property of those objects.",
+            "itemtype": "method",
+            "name": "indexOfByProp",
+            "static": 1,
+            "params": [
+                {
+                    "name": "arr",
+                    "description": "The array to be searched.",
+                    "type": "Array"
+                },
+                {
+                    "name": "prop",
+                    "description": "The name of the property to be matched.",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to match.",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "The position of the matched element in the array,\n                  -1 if none matched the criteria.",
+                "type": "Number"
+            },
+            "class": "Array",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 128,
+            "description": "Extracts all the keys from a map object.",
+            "itemtype": "method",
+            "name": "getKeys",
+            "static": 1,
+            "params": [
+                {
+                    "name": "map",
+                    "description": "The map to extract keys from.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Array with the keys.",
+                "type": "String[]"
+            },
+            "class": "Map",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 155,
+            "description": "Retrieves the className of an element.\nUsing this method is required when using other methods from this namespace,\nbecause it will return the most recent changes (even before calling applyChanges).",
+            "itemtype": "method",
+            "name": "getClass",
+            "static": 1,
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to retrieve the className from.",
+                    "type": "HTMLElement"
+                }
+            ],
+            "return": {
+                "description": "The className.",
+                "type": "String"
+            },
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 177,
+            "description": "Append a new class name to an element.",
+            "itemtype": "method",
+            "name": "addClass",
+            "static": 1,
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to add the class name to.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "clazz",
+                    "description": "The class name to add.",
+                    "type": "String"
+                }
+            ],
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 190,
+            "description": "Remove a class name from an element.",
+            "itemtype": "method",
+            "name": "removeClass",
+            "static": 1,
+            "params": [
+                {
+                    "name": "el",
+                    "description": "Element to remove the class name from.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "clazz",
+                    "description": "The class name to remove.",
+                    "type": "String"
+                }
+            ],
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 203,
+            "description": "Replace the className of an element.",
+            "itemtype": "method",
+            "name": "setClass",
+            "static": 1,
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to set the className of.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "clazz",
+                    "description": "The new className.",
+                    "type": "String"
+                }
+            ],
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 219,
+            "description": "Set the innerHTML property of an element.",
+            "itemtype": "method",
+            "name": "setHtml",
+            "static": 1,
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to change.",
+                    "type": "HTMLElement"
+                },
+                {
+                    "name": "html",
+                    "description": "The new innerHTML property.",
+                    "type": "String"
+                }
+            ],
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 235,
+            "description": "Applies all the changes made by the addClass, setClass, removeClass, setHtml methods.\nThis is a way to reduce DOM manipulation, speeding up the update process.",
+            "itemtype": "method",
+            "name": "applyChanges",
+            "static": 1,
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 268,
+            "description": "Add a meta tag to the head element, disabling zooming and fixing the viewport.\nUse only when you can't easily add the tag yourself to the HTML file.",
+            "itemtype": "method",
+            "name": "fixedViewport",
+            "static": 1,
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 282,
+            "description": "Checks if the browser supports touch events.",
+            "itemtype": "method",
+            "name": "supportsTouch",
+            "static": 1,
+            "return": {
+                "description": "True if it supports touch events, false otherwise.",
+                "type": "Boolean"
+            },
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../src/ui/aside.js",
+            "line": 29,
+            "description": "Getter and setter for the menu's visibility.",
+            "itemtype": "method",
+            "name": "expanded",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "True to show the menu, false to\n                       hide the menu or undefined to return the current value.",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "If used as getter, returns the current visibility state of the menu,\n                         otherwise returns the Aside widget itself to allow chaining.",
+                "type": "Aside|Boolean"
+            },
+            "class": "Aside",
+            "module": "meems-ui",
+            "submodule": "aside"
+        },
+        {
+            "file": "../src/ui/button_group.js",
+            "line": 36,
+            "description": "Adds a new button to the group.",
+            "itemtype": "method",
+            "name": "addButton",
+            "params": [
+                {
+                    "name": "btn",
+                    "description": "The new button",
+                    "type": "Button"
+                }
+            ],
+            "return": {
+                "description": "return this to allow chaining.",
+                "type": "ButtonGroup"
+            },
+            "class": "ButtonGroup",
+            "module": "meems-ui",
+            "submodule": "buttongroup"
+        },
+        {
+            "file": "../src/ui/button_group.js",
+            "line": 48,
+            "description": "Getter and setter for all the buttons in this group.",
+            "itemtype": "method",
+            "name": "buttons",
+            "params": [
+                {
+                    "name": "newButtons",
+                    "description": "New array of buttons",
+                    "type": "Button[]",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "return this if used as a setter or the buttons if used as getter.",
+                "type": "ButtonGroup|Button[]"
+            },
+            "class": "ButtonGroup",
+            "module": "meems-ui",
+            "submodule": "buttongroup"
+        },
+        {
+            "file": "../src/ui/form.js",
+            "line": 27,
+            "description": "Add a new field to the form.",
+            "itemtype": "method",
+            "name": "addField",
+            "params": [
+                {
+                    "name": "field",
+                    "description": "",
+                    "type": "Widget"
+                }
+            ],
+            "chainable": 1,
+            "class": "Form",
+            "module": "meems-ui",
+            "submodule": "form"
+        },
+        {
+            "file": "../src/ui/form.js",
+            "line": 39,
+            "description": "Getter and setter for the fields of the form.",
+            "itemtype": "method",
+            "name": "fields",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "Array with the new fields",
+                    "type": "Widget[]",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the Form itself is returned to allow chaining.",
+                "type": "Widget"
+            },
+            "class": "Form",
+            "module": "meems-ui",
+            "submodule": "form"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 32,
+            "description": "Getter and setter for indicating if the item is a header.",
+            "itemtype": "method",
+            "name": "header",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new value for the property.",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "`this` if called as a setter, the current value otherwise.",
+                "type": "Boolean|ListItem"
+            },
+            "class": "ListItem",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 93,
+            "description": "Create a new list item.",
+            "itemtype": "method",
+            "name": "createItem",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "curItem",
+                    "description": "The data to bind to the item.",
+                    "type": "Object"
+                },
+                {
+                    "name": "i",
+                    "description": "The position of the item in the array.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The new item.",
+                "type": "ListItem"
+            },
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 121,
+            "description": "Update the items DOM, based of the array of items before and after.",
+            "itemtype": "method",
+            "name": "updateItems",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "oldItems",
+                    "description": "The items before.",
+                    "type": "Object[]"
+                },
+                {
+                    "name": "newItems",
+                    "description": "The new items.",
+                    "type": "Object[]"
+                }
+            ],
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 182,
+            "description": "Fired when an item is clicked.",
+            "itemtype": "event",
+            "name": "item:clicked",
+            "params": [
+                {
+                    "name": "eventName",
+                    "description": "The event name.",
+                    "type": "String"
+                },
+                {
+                    "name": "e",
+                    "description": "The item object associated with the item that was clicked.",
+                    "type": "Object|observable.Observable"
+                }
+            ],
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 202,
+            "description": "Getter and setter for the template of an item.",
+            "itemtype": "method",
+            "name": "template",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new template",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the List itself is returned to allow chaining.",
+                "type": "String|List"
+            },
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 221,
+            "description": "Getter and setter for the template of a header item.",
+            "itemtype": "method",
+            "name": "headerTemplate",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new template",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the List itself is returned to allow chaining.",
+                "type": "String|List"
+            },
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/list.js",
+            "line": 240,
+            "description": "Getter and setter for the items of the list.",
+            "itemtype": "method",
+            "name": "item",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "The new items.",
+                    "type": "|observable.Observable|Object[]|observable.Observable[]",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the List itself is returned to allow chaining.",
+                "type": "|observable.Observable|Object[]|observable.Observable[]|List"
+            },
+            "class": "List",
+            "module": "meems-ui",
+            "submodule": "list"
+        },
+        {
+            "file": "../src/ui/page.js",
+            "line": 35,
+            "description": "Getter for the Scroll component associated with this page.",
+            "itemtype": "method",
+            "name": "scroller",
+            "return": {
+                "description": "The scroller.",
+                "type": "Scroll"
+            },
+            "class": "Page",
+            "module": "meems-ui",
+            "submodule": "page"
+        },
+        {
+            "file": "../src/ui/page_holder.js",
+            "line": 20,
+            "itemtype": "property",
+            "name": "$pages",
+            "access": "private",
+            "tagname": "",
+            "type": "Page[]",
+            "class": "PageHolder",
+            "module": "meems-ui",
+            "submodule": "pageholder"
+        },
+        {
+            "file": "../src/ui/page_holder.js",
+            "line": 27,
+            "itemtype": "property",
+            "name": "$currentPage",
+            "access": "private",
+            "tagname": "",
+            "type": "Page",
+            "class": "PageHolder",
+            "module": "meems-ui",
+            "submodule": "pageholder"
+        },
+        {
+            "file": "../src/ui/page_holder.js",
+            "line": 37,
+            "description": "Getter and setter for all the pages in the bag.",
+            "itemtype": "method",
+            "name": "pages",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "Array with the new pages.",
+                    "type": "Page[]",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "`this` if called as a setter, the current array of pages otherwise.",
+                "type": "Page[]|PageHolder"
+            },
+            "class": "PageHolder",
+            "module": "meems-ui",
+            "submodule": "pageholder"
+        },
+        {
+            "file": "../src/ui/page_holder.js",
+            "line": 75,
+            "description": "Getter and setter for the current page.",
+            "itemtype": "method",
+            "name": "currentPage",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The page to go to.",
+                    "type": "Page",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "`this` if called as a setter, the current page otherwise.",
+                "type": "Page|PageHolder"
+            },
+            "class": "PageHolder",
+            "module": "meems-ui",
+            "submodule": "pageholder"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 23,
+            "itemtype": "property",
+            "name": "$tabs",
+            "access": "private",
+            "tagname": "",
+            "type": "{Tab[]}",
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 30,
+            "itemtype": "property",
+            "name": "$visibleTab",
+            "access": "private",
+            "tagname": "",
+            "type": "{number}",
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 37,
+            "itemtype": "property",
+            "name": "$scroller",
+            "access": "private",
+            "tagname": "",
+            "type": "{Scroll}",
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 43,
+            "itemtype": "property",
+            "name": "$tabHolder",
+            "access": "private",
+            "tagname": "",
+            "type": "{HTMLElement}",
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 50,
+            "itemtype": "property",
+            "name": "$buttonGroup",
+            "access": "private",
+            "tagname": "",
+            "type": "{ButtonGroup}",
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 81,
+            "description": "Adds a new tab to the group.",
+            "itemtype": "method",
+            "name": "addTab",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "The new tab to add.",
+                    "type": "Tab"
+                }
+            ],
+            "chainable": 1,
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 93,
+            "description": "Getter and setter for the visible page.",
+            "itemtype": "method",
+            "name": "visibleTab",
+            "params": [
+                {
+                    "name": "index",
+                    "description": "Position of page in the array.",
+                    "type": "Number",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "`this` if called as a setter, the current page if called as getter.",
+                "type": "Number|TabGroup"
+            },
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/tab_group.js",
+            "line": 117,
+            "description": "Getter for all the tabs.",
+            "itemtype": "method",
+            "name": "tabs",
+            "return": {
+                "description": "The array to tabs.",
+                "type": "Tab[]"
+            },
+            "class": "TabGroup",
+            "module": "meems-ui",
+            "submodule": "tabgroup"
+        },
+        {
+            "file": "../src/ui/textfield.js",
+            "line": 20,
+            "itemtype": "property",
+            "name": "$input",
+            "access": "private",
+            "tagname": "",
+            "type": "{HTMLElement}",
+            "class": "TextField",
+            "module": "meems-ui",
+            "submodule": "textfield"
+        },
+        {
+            "file": "../src/ui/textfield.js",
+            "line": 27,
+            "itemtype": "property",
+            "name": "$label",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "class": "TextField",
+            "module": "meems-ui",
+            "submodule": "textfield"
+        },
+        {
+            "file": "../src/ui/textfield.js",
+            "line": 38,
+            "description": "Getter and setter for the value of the field.",
+            "itemtype": "method",
+            "name": "value",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new value.",
+                    "type": "observable.Observable|String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "`this` if called as a setter,\nthe current value otherwise.",
+                "type": "TextField|observable,Observable|String"
+            },
+            "class": "TextField",
+            "module": "meems-ui",
+            "submodule": "textfield"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 70,
+            "description": "Setter and getter for the DOMElement associated with this widget.",
+            "itemtype": "method",
+            "name": "el",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "New value.",
+                    "type": "HTMLElement",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the Widget itself is returned to allow chaining.",
+                "type": "HTMLElement|Widget"
+            },
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 99,
+            "description": "Returns all the facet names of this widget.",
+            "itemtype": "method",
+            "name": "facets",
+            "return": {
+                "description": "return the names of all the facets of this widget.",
+                "type": "String[]"
+            },
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 109,
+            "description": "Setter and getter for the parent of this widget.",
+            "itemtype": "method",
+            "name": "parent",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "New parent.",
+                    "type": "Widget",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the Widget itself is returned to allow chaining.",
+                "type": "HTMLElement|Widget"
+            },
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 127,
+            "description": "Setter and getter for the facets of this widget.",
+            "itemtype": "method",
+            "name": "facet",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the facet.",
+                    "type": "String"
+                },
+                {
+                    "name": "facet",
+                    "description": "New content of the facet.",
+                    "type": "Widget",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the Widget itself is returned to allow chaining.",
+                "type": "Widget"
+            },
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 151,
+            "description": "Setter and getter for the attributes of this widget.",
+            "itemtype": "method",
+            "name": "attr",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the attribute.",
+                    "type": "String"
+                },
+                {
+                    "name": "val",
+                    "description": "New value of the attribute.",
+                    "type": "observable.Observable|mixed",
+                    "optional": true
+                }
+            ],
+            "chainable": 1,
+            "return": {
+                "description": "If no parameter is provided, the current value is returned.\nOtherwise, the new value is stored and the Widget itself is returned to allow chaining.",
+                "type": "Widget|observable.Observable|mixed"
+            },
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 185,
+            "description": "Called when an (observable) attribute changes, in order to allow the Widget to update itself.",
+            "itemtype": "method",
+            "name": "partialUpdate",
+            "params": [
+                {
+                    "name": "attrName",
+                    "description": "The name of the attribute that has changed.",
+                    "type": "String"
+                },
+                {
+                    "name": "oldValue",
+                    "description": "Its old value.",
+                    "type": "Mixed"
+                },
+                {
+                    "name": "newValue",
+                    "description": "Its new value.",
+                    "type": "Mixed"
+                }
+            ],
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/ui/widget.js",
+            "line": 197,
+            "description": "Called for creating and updating the Widget's DOM nodes.",
+            "itemtype": "method",
+            "name": "update",
+            "class": "Widget",
+            "module": "meems-ui",
+            "submodule": "widget"
+        },
+        {
+            "file": "../src/meems-ui.js",
+            "line": 55,
+            "description": "Creates a new widget.",
+            "itemtype": "method",
+            "name": "create",
+            "static": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The name of the type of widget to create.",
+                    "type": "String"
+                },
+                {
+                    "name": "parent",
+                    "description": "Registers the created widget as child of the given parent.",
+                    "type": "Widget",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The widget, or null in case of error.",
+                "type": "Widget"
+            },
+            "class": "meems-ui",
+            "module": "meems-ui"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 43,
+            "description": "Subscribe a new observer.",
+            "itemtype": "method",
+            "name": "subscribe",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "- The observer to subscribe.",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "oldValue",
+                            "description": "- The value of the property before being changed.",
+                            "type": "*"
+                        },
+                        {
+                            "name": "newValue",
+                            "description": "- The new value of the property.",
+                            "type": "*"
+                        }
+                    ]
+                }
+            ],
+            "chainable": 1,
+            "class": "observable.Observable",
+            "module": "observable"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 57,
+            "description": "Remove an existing observer.",
+            "itemtype": "method",
+            "name": "unsubscribe",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "- The observer to remove.",
+                    "type": "Function",
+                    "props": [
+                        {
+                            "name": "oldValue",
+                            "description": "- The value of the property before being changed.",
+                            "type": "*"
+                        },
+                        {
+                            "name": "newValue",
+                            "description": "- The new value of the property.",
+                            "type": "*"
+                        }
+                    ]
+                }
+            ],
+            "chainable": 1,
+            "class": "observable.Observable",
+            "module": "observable"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 71,
+            "description": "Notify all subscribers that a change has occurred.",
+            "itemtype": "method",
+            "name": "notify",
+            "params": [
+                {
+                    "name": "oldValue",
+                    "description": "- The value of the property before being changed.",
+                    "type": "*"
+                },
+                {
+                    "name": "newValue",
+                    "description": "- The new value of the property.",
+                    "type": "*"
+                }
+            ],
+            "chainable": 1,
+            "class": "observable.Observable",
+            "module": "observable"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 87,
+            "description": "Helper method for intercepting method calls and invoking notify.",
+            "itemtype": "method",
+            "name": "createProxyMethod",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "method",
+                    "description": "- The method to intercept.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The method with an interceptor.",
+                "type": "Function"
+            },
+            "class": "observable.Observable",
+            "module": "observable"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 124,
+            "description": "Creates a new observable property.",
+            "itemtype": "method",
+            "name": "observable",
+            "static": 1,
+            "params": [
+                {
+                    "name": "val",
+                    "description": "- The initial value for the property.",
+                    "type": "*",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The new observable.",
+                "type": "observable.Observable"
+            },
+            "class": "observable",
+            "module": "observable"
+        },
+        {
+            "file": "../src/observable.js",
+            "line": 136,
+            "description": "Creates a new observable array.\nNote that notifications will only be triggered when the structure of the\narray is changed. Modifications to properties of elements of the array will\nnot be detected. For that, you must define them as observable properties.",
+            "itemtype": "method",
+            "name": "observableArray",
+            "static": 1,
+            "params": [
+                {
+                    "name": "startArray",
+                    "description": "- The initial array.",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The new observable.",
+                "type": "observable.Observable"
+            },
+            "class": "observable",
+            "module": "observable"
+        }
+    ],
+    "warnings": []
+}
