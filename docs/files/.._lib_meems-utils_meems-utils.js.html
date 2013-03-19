@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/Form.html">Form</a></li>
             
+                <li><a href="..&#x2F;classes/Group.html">Group</a></li>
+            
                 <li><a href="..&#x2F;classes/Handler.html">Handler</a></li>
             
                 <li><a href="..&#x2F;classes/Header.html">Header</a></li>
@@ -72,8 +74,6 @@
                 <li><a href="..&#x2F;classes/Map.html">Map</a></li>
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
-            
-                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
             
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
@@ -110,6 +110,8 @@
                 <li><a href="..&#x2F;modules/footer.html">footer</a></li>
             
                 <li><a href="..&#x2F;modules/form.html">form</a></li>
+            
+                <li><a href="..&#x2F;modules/group.html">group</a></li>
             
                 <li><a href="..&#x2F;modules/header.html">header</a></li>
             
@@ -298,6 +300,23 @@ define(function () {
                 }
 
                 return -1;
+            },
+
+            &#x2F;**
+             * Removes an element from an array (in-place).
+             *
+             * @method remove
+             * @static
+             * @param {Array} arr The array to remove the element from.
+             * @param {mixed} el The element to remove.
+             *&#x2F;
+            remove : function (arr, el) {
+                for (var i = 0, ln = arr.length; i &lt; ln; ++i) {
+                    if (arr[i] === el) {
+                        arr.splice(i, 0);
+                        return;
+                    }
+                }
             }
         },
 
@@ -470,6 +489,31 @@ define(function () {
              *&#x2F;
             supportsTouch : function () {
                 return supportsTouch;
+            },
+
+            &#x2F;**
+             * Retrieves the absolute x and y components of the provided element,
+             * relative to its closest parent with position absolute.
+             *
+             * @method getAbsolutePosition
+             * @param {HTMLElement} el The element to calculate the position of.
+             * @return {Object} x and y
+             *&#x2F;
+            getAbsolutePosition : function (el) {
+                var currentEl = el,
+                    ret = {
+                        x: 0,
+                        y: 0
+                    };
+
+                while (currentEl &amp;&amp; currentEl.style.position !== &#x27;absolute&#x27;) {
+                    ret.x += currentEl.offsetLeft;
+                    ret.y += currentEl.offsetTop;
+                    currentEl = currentEl.offsetParent;
+                    break;
+                }
+
+                return ret;
             }
         }
     };

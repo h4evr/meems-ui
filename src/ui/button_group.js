@@ -30,7 +30,8 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     // Called when a button is clicked.
     var onButtonTapped = function (eventName, e) {
         var target = e.target;
-        while (target && target.className.indexOf("ui-button") === -1) {
+
+        while (target && ((target.className && target.className.indexOf("ui-button") === -1) || !target.className)) {
             target = target.parentNode;
         }
         

@@ -175,10 +175,22 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.ui-button-normal > .ui-icon {
+.ui-button-normal.ui-button-red {
+    background: #f76a7d; /* Old browsers */
+    background: -moz-linear-gradient(top, #f76a7d 0%, #dc1a42 50%, #b20000 50%, #b90000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f76a7d), color-stop(50%,#dc1a42), color-stop(50%,#b20000), color-stop(100%,#b90000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f76a7d 0%,#dc1a42 50%,#b20000 50%,#b90000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f76a7d 0%,#dc1a42 50%,#b20000 50%,#b90000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f76a7d 0%,#dc1a42 50%,#b20000 50%,#b90000 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #f76a7d 0%,#dc1a42 50%,#b20000 50%,#b90000 100%); /* W3C */
+    border: 1px solid #dc1a42;
+}
+
+.ui-icon, .ui-button-normal > .ui-icon {
     height: 24px;
     width: 24px;
     margin-top: 2px;
+    display:none;
 }
 
 .ui-button-normal > .ui-no-icon {
@@ -219,7 +231,7 @@
 .ui-button-vertical > .ui-icon {
     height: 25px;
     width: 27px;
-    margin: 0 auto;
+    margin: 2px auto;
     margin-top: 2px;
 }
 
@@ -256,6 +268,22 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    text-align: left;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.ui-list-item .ui-icon-order {
+    height: 24px;
+    width: 24px;
+    margin-top: 2px;
+}
+
+.ui-list-item-drag {
+    position: absolute;
+    z-index: 100;
+    opacity: 0.5;
 }
 
 .ui-list-normal > .ui-list-item { 
@@ -511,6 +539,7 @@
 
 .ui-form {
     width: 100%;
+    text-align: left;
 }
 
 .ui-textfield:first-child {
@@ -586,4 +615,20 @@
      margin: 0px;
      padding: 0px;
      width: 100%;
+}
+
+.ui-form .ui-button {
+    margin: 20px;
+}
+
+.ui-group .ui-button {
+    margin: 0 10px;
+}
+
+.ui-align-left {
+    text-align: left;
+}
+
+.ui-align-right {
+    text-align: right;
 }

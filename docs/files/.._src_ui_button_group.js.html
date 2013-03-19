@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/Form.html">Form</a></li>
             
+                <li><a href="..&#x2F;classes/Group.html">Group</a></li>
+            
                 <li><a href="..&#x2F;classes/Handler.html">Handler</a></li>
             
                 <li><a href="..&#x2F;classes/Header.html">Header</a></li>
@@ -72,8 +74,6 @@
                 <li><a href="..&#x2F;classes/Map.html">Map</a></li>
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
-            
-                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
             
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
@@ -110,6 +110,8 @@
                 <li><a href="..&#x2F;modules/footer.html">footer</a></li>
             
                 <li><a href="..&#x2F;modules/form.html">form</a></li>
+            
+                <li><a href="..&#x2F;modules/group.html">group</a></li>
             
                 <li><a href="..&#x2F;modules/header.html">header</a></li>
             
@@ -212,7 +214,8 @@ define([&quot;meems-utils&quot;, &quot;.&#x2F;widget&quot;], function (Utils, Wi
     &#x2F;&#x2F; Called when a button is clicked.
     var onButtonTapped = function (eventName, e) {
         var target = e.target;
-        while (target &amp;&amp; target.className.indexOf(&quot;ui-button&quot;) === -1) {
+
+        while (target &amp;&amp; ((target.className &amp;&amp; target.className.indexOf(&quot;ui-button&quot;) === -1) || !target.className)) {
             target = target.parentNode;
         }
         

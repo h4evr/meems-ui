@@ -14,6 +14,137 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
     "use strict";
 
     /**
+     * Called when the order button of an item is pressed.
+     *
+     * @method onStartOrdering
+     * @private
+     * @param {Event} e The associated mouse event.
+     */
+    var onStartOrdering = function (e) {
+        if (this.$dragging) {
+            return;
+        }
+
+        var el = this.el(),
+            parent = this.parent(),
+            parentEl = parent.el(),
+            placeHolder = parent.$placeHolder;
+
+        this.$dragging = true;
+
+        Events.Dom.on(document, Events.Touch.touchMoveEventName, this.$onItemMoved);
+        Events.Dom.on(document, Events.Touch.touchEndEventName, this.$onEndOrdering);
+
+        this.$elementStartPosition = Utils.Dom.getAbsolutePosition(el);
+
+        el.style.top = this.$elementStartPosition.y + "px";
+        el.style.width = el.offsetWidth + "px";
+        el.style.height = el.offsetHeight + "px";
+
+        placeHolder.style.width = el.style.width;
+        placeHolder.style.height = el.style.height;
+
+        Utils.Dom.addClass(el, "ui-list-item-drag");
+        parentEl.insertBefore(placeHolder, el);
+
+        Utils.Dom.applyChanges();
+
+        this.$cursorStartPosition = Events.Touch.getCursorPosition(e);
+        this.$elementStartPosition = Utils.Dom.getAbsolutePosition(el);
+        console.log(this.$elementStartPosition);
+
+        return Events.Dom.cancelEvent(e);
+    };
+
+    /**
+     * Called when the item is moved.
+     *
+     * @method onItemMoved
+     * @private
+     * @param {Event} e The associated mouse event.
+     */
+    var onItemMoved = function (e) {
+        if (!this.$dragging) {
+            return;
+        }
+
+        var el = this.el(),
+            parent = this.parent(),
+            parentEl = parent.el(),
+            placeHolder = parent.$placeHolder,
+            pos = Events.Touch.getCursorPosition(e),
+            listItems = parentEl.children,
+            bestItem = null,
+            elHeight,
+            item;
+
+        pos.y += this.$elementStartPosition.y - this.$cursorStartPosition.y;
+
+        el.style.top = pos.y + "px";
+
+        var yPos = pos.y; //+ (e.layerY ? e.layerY : e.offsetY);
+
+        for (var i = 0, ln = listItems.length; i < ln; ++i) {
+            item = listItems[i];
+
+            if (item !== el) {
+                elHeight = item.offsetHeight;
+
+                if (elHeight / 2 >= yPos) {
+                    bestItem = item;
+                    break;
+                } else {
+                    yPos -= elHeight;
+                }
+            }
+        }
+
+        if (bestItem === placeHolder) {
+            return Events.Dom.cancelEvent(e);
+        } else if (bestItem) {
+            parentEl.insertBefore(placeHolder, bestItem);
+        } else {
+            parentEl.appendChild(placeHolder);
+        }
+
+        return Events.Dom.cancelEvent(e);
+    };
+
+    /**
+     * Called when the order button of an item is released.
+     *
+     * @method onEndOrdering
+     * @private
+     * @param {Event} e The associated mouse event.
+     */
+    var onEndOrdering = function (e) {
+        if (!this.$dragging) {
+            return;
+        }
+
+        var el = this.el(),
+            parent = this.parent(),
+            parentEl = parent.el(),
+            placeHolder = parent.$placeHolder;
+
+        Utils.Dom.removeClass(el, "ui-list-item-drag");
+        el.style.top = "";
+        el.style.width = "";
+        el.style.height = "";
+
+        Events.Dom.off(document, Events.Touch.touchMoveEventName, this.$onItemMoved);
+        Events.Dom.off(document, Events.Touch.touchEndEventName, this.$onEndOrdering);
+
+        Utils.Dom.applyChanges();
+
+        parentEl.replaceChild(el, placeHolder);
+
+        this.$dragging = false;
+
+        return Events.Dom.cancelEvent(e);
+    };
+
+    /**
      * Internal class that holds a single item.
      *
      * @class ListItem
@@ -24,7 +155,20 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
     function ListItem() {
         Widget.apply(this, arguments);
         this.$header = false;
+        this.$table = null;
+        this.$leftFacet = null;
+        this.$rightFacet = null;
+        this.$middleFacet = null;
+
+        this.$dragging = false;
+        this.$cursorStartPosition = null;
+        this.$elementStartPosition = null;
+
         this.facet("item", null);
+
+        this.$onItemMoved = Utils.Fn.bind(onItemMoved, this);
+        this.$onEndOrdering = Utils.Fn.bind(onEndOrdering, this);
+
         return this;
     }
 
@@ -60,14 +204,55 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         update : function () {
             if (!this.el()) {
                 this.el(document.createElement("li"));
+                this.$table = document.createElement("table");
+                this.$table.className = "ui-fill-width";
+
+                this.$leftFacet = document.createElement("td");
+                this.$middleFacet = document.createElement("td");
+                this.$middleFacet.className = "ui-fill-width";
+                this.$rightFacet = document.createElement("td");
+
+                var selectBox = document.createElement("input");
+                selectBox.setAttribute("type", "checkbox");
+                this.$leftFacet.appendChild(selectBox);
+
+                var orderButton = document.createElement("div");
+                orderButton.className = "ui-icon-order meems-scroll-skip";
+
+                Events.Dom.on(orderButton, Events.Touch.touchStartEventName, Utils.Fn.bind(onStartOrdering, this));
+
+                this.$rightFacet.appendChild(orderButton);
+
+                var tr = document.createElement("tr");
+                tr.appendChild(this.$leftFacet);
+                tr.appendChild(this.$middleFacet);
+                tr.appendChild(this.$rightFacet);
+                this.$table.appendChild(tr);
+
+                this.el().appendChild(this.$table);
                 this.header(this.$header);
+            }
+
+            var showCheckbox = this.parent().attr('selectionMode') === 'multiple',
+                showSorted = this.parent().attr('sortable') === true;
+
+            if (showCheckbox) {
+                this.$leftFacet.style.display = 'block';
+            } else {
+                this.$leftFacet.style.display = 'none';
+            }
+
+            if (showSorted) {
+                this.$rightFacet.style.display = 'block';
+            } else {
+                this.$rightFacet.style.display = 'none';
             }
 
             if (this.facet("item")) {
                 this.facet("item").update();
 
-                if (this.facet("item").el().parentNode !== this.el()) {
-                    this.el().appendChild(this.facet("item").el());
+                if (this.facet("item").el().parentNode !== this.$middleFacet) {
+                    this.$middleFacet.appendChild(this.facet("item").el());
                 }
             }
 
@@ -106,7 +291,17 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
          * @type {string}
          */
         this.$headerTemplate = "{{text}}";
+
+        /**
+         * @property $placeHolder
+         * @private
+         * @type {HTMLElement}
+         */
+        this.$placeHolder = null;
+
         this.attr('style', 'normal');
+        this.attr('sortable', false);
+        this.attr('selectionMode', 'single');
         return this;
     }
 
@@ -121,6 +316,7 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
      */
     var createItem = function (curItem, i) {
         var item = new ListItem();
+        item.parent(this);
         item.header(curItem.header === true);
 
         if (item.header()) {
@@ -204,7 +400,7 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
      *
      * @event item:clicked
      * @param {String} eventName The event name.
-     * @param {Object|observable.Observable} e The item object associated with the item that was clicked.
+     * @param {Event|observable.Observable} e The item object associated with the item that was clicked.
      */
     var onItemClicked = function (eventName, e) {
         var target = e.target;
@@ -214,8 +410,10 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         }
 
         if (target) {
-            this.fire("item:clicked", target._meems_item);
+            this.fire("item:clicked", target._meems_item, e);
         }
+
+        return true;
     };
 
     List.extend(Widget, {
@@ -339,6 +537,8 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 this.el(document.createElement("ul"));
                 this.el().className =  "ui-list";
                 this.on("dom:" + Events.Touch.touchEndEventName, Utils.Fn.bind(onItemClicked, this));
+                this.$placeHolder = document.createElement("li");
+                this.$placeHolder.className = "ui-list-item ui-list-placeholder";
             }
             
             this.attr('style', this.attr('style'));

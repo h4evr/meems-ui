@@ -200,6 +200,10 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
          * @method update
          */
         update : function () {
+            if (this.el() && this.$attributes['customClass']) {
+                Utils.Dom.addClass(this.el(), this.$attributes['customClass']);
+                this.$attributes['customClass'] = null;
+            }
             //Utils.Dom.applyChanges();
         }
     });

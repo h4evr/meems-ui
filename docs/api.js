@@ -10,13 +10,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "Fn",
         "Footer",
         "Form",
+        "Group",
         "Handler",
         "Header",
         "Html",
         "List",
         "ListItem",
         "Map",
-        "NativeDomEvents",
         "Page",
         "PageHolder",
         "Scroll",
@@ -36,6 +36,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "buttongroup",
         "footer",
         "form",
+        "group",
         "header",
         "html",
         "list",
@@ -79,6 +80,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "A form that can hold several input widgets.\nThe attributes 'action' and 'title' are available."
         },
         {
+            "displayName": "group",
+            "name": "group",
+            "description": "Enables the grouping of several components in the same view."
+        },
+        {
             "displayName": "header",
             "name": "header",
             "description": "A header component, to be used with the Page component.\nExposes a 'buttonsleft' and 'buttonsright' facet.\nThe attribute 'title' must be used to set the title of the page."
@@ -101,7 +107,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "meems-scroll",
             "name": "meems-scroll",
-            "description": "Emulates scrolling on a set of components, with scrollbars, as if on a mobile environment."
+            "description": "Emulates scrolling on a set of components, with scroll-bars, as if on a mobile environment."
         },
         {
             "displayName": "meems-ui",

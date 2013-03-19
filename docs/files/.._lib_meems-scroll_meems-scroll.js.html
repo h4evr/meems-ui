@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/Form.html">Form</a></li>
             
+                <li><a href="..&#x2F;classes/Group.html">Group</a></li>
+            
                 <li><a href="..&#x2F;classes/Handler.html">Handler</a></li>
             
                 <li><a href="..&#x2F;classes/Header.html">Header</a></li>
@@ -72,8 +74,6 @@
                 <li><a href="..&#x2F;classes/Map.html">Map</a></li>
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
-            
-                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
             
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
@@ -110,6 +110,8 @@
                 <li><a href="..&#x2F;modules/footer.html">footer</a></li>
             
                 <li><a href="..&#x2F;modules/form.html">form</a></li>
+            
+                <li><a href="..&#x2F;modules/group.html">group</a></li>
             
                 <li><a href="..&#x2F;modules/header.html">header</a></li>
             
@@ -182,7 +184,7 @@
     <pre class="code prettyprint linenums">
 &#x2F;*global define*&#x2F;
 &#x2F;**
- * Emulates scrolling on a set of components, with scrollbars, as if on a mobile environment.
+ * Emulates scrolling on a set of components, with scroll-bars, as if on a mobile environment.
  * @module meems-scroll
  * @requires meems-utils
  * @requires meems-events
@@ -232,44 +234,12 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
             };
         }
     }());
-    
-    var addEventListener = (function () {
-        if (document.addEventListener) {
-            return function (elm, eventName, fn) {
-                elm.addEventListener(eventName, fn, false);
-            };
-        } else if (document.attachEvent) {
-            return function (elm, eventName, fn) {
-                elm.attachEvent(&#x27;on&#x27; + eventName, fn);
-            };
-        } else {
-            return function (elm, eventName, fn) {
-                elm[&#x27;on&#x27; + eventName] = fn;
-            };
-        }
-    }());
-    
-    var removeEventListener = (function () {
-        if (document.removeEventListener) {
-            return function (elm, eventName, fn) {
-                elm.removeEventListener(eventName, fn, false);
-            };
-        } else if (document.detachEvent) {
-            return function (elm, eventName, fn) {
-                elm.detachEvent(&#x27;on&#x27; + eventName, fn);
-            };
-        } else {
-            return function (elm, eventName) {
-                elm[&#x27;on&#x27; + eventName] = null;
-            };
-        }
-    }());
         
     function registerHandlers(elm, config) {
         if (!config.disableTouchEvents) {
-            addEventListener(elm, Events.Touch.touchStartEventName, onTouchStart);
-            addEventListener(elm, Events.Touch.touchMoveEventName, onTouchMove);
-            addEventListener(elm, Events.Touch.touchEndEventName, onTouchEnd);
+            Events.Dom.on(elm, Events.Touch.touchStartEventName, onTouchStart);
+            Events.Dom.on(elm, Events.Touch.touchMoveEventName, onTouchMove);
+            Events.Dom.on(elm, Events.Touch.touchEndEventName, onTouchEnd);
         }
         
         elm.$meems_scroll = true;
@@ -284,9 +254,9 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         delete elm.$meems_config;
         
         if (!config.disableTouchEvents) {
-            removeEventListener(elm, Events.Touch.touchStartEventName, onTouchStart);
-            removeEventListener(elm, Events.Touch.touchMoveEventName, onTouchMove);
-            removeEventListener(elm, Events.Touch.touchEndEventName, onTouchEnd);
+            Events.Dom.off(elm, Events.Touch.touchStartEventName, onTouchStart);
+            Events.Dom.off(elm, Events.Touch.touchMoveEventName, onTouchMove);
+            Events.Dom.off(elm, Events.Touch.touchEndEventName, onTouchEnd);
         }
     }
     
@@ -296,7 +266,11 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
             return null;
         } *&#x2F;
         
-        var node = e.currentTarget;
+        var node = e.target;
+
+        if (node.className.indexOf(&quot;meems-scroll-skip&quot;) &gt; -1) {
+            return null;
+        }
         
         while (node.$meems_scroll === undefined &amp;&amp; node.parentNode) {
             node = node.parentNode;
@@ -410,7 +384,7 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         } else if (config.axisLock &amp;&amp; scroller.$meems_locked_axis === undefined) {
             scroller.$meems_locked_axis = (offsetX * offsetX &gt; offsetY * offsetY ? &#x27;x&#x27; : &#x27;y&#x27;);
         }
-        
+
         var content = scroller.$meems_content,
             &#x2F;&#x2F;style = content.style,
             posX, posY;
@@ -459,7 +433,7 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         if (e.preventDefault) {
             e.preventDefault();
         }
-        
+
         return true;
     }
     
@@ -507,7 +481,19 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         
         scrollAux(scroller, finalXPos, finalXPosTime, finalYPos, finalYPosTime);
 
-        return true;
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+
+        if (e.cancelBubble !== undefined) {
+            e.cancelBubble = true;
+        }
+
+        return false;
     }
     
     function scrollAux(scroller, finalXPos, finalXPosTime, finalYPos, finalYPosTime) {
@@ -698,7 +684,7 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         Events.Handler.apply(this, arguments); &#x2F;&#x2F; super
         
         config = config || {};
-        config.friction = config.friction || 1000.0;
+        config.friction = config.friction || 100.0;
         config.totalMaxTime = config.totalMaxTime || 1;
         config.totalMaxTimesnap = config.totalMaxTimesnap || 0;
         config.paging = config.paging === true;
@@ -708,7 +694,7 @@ define([&quot;meems-utils&quot;, &quot;meems-events&quot;], function (Utils, Eve
         config.timingFunction = config.timingFunction || &quot;ease-out&quot;;
         config.fadeOutDuration = config.fadeOutDuration || 1;
         config.bouncing = config.bouncing !== false;
-        config.minDistanceOfDrag = config.minDistanceOfDrag || 500;
+        config.minDistanceOfDrag = config.minDistanceOfDrag || 10;
         config.axisLock = config.axisLock !== false;
         config.disableTouchEvents = config.disableTouchEvents === true;
         config.hideScroller = config.hideScroller === true;

@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/Form.html">Form</a></li>
             
+                <li><a href="..&#x2F;classes/Group.html">Group</a></li>
+            
                 <li><a href="..&#x2F;classes/Handler.html">Handler</a></li>
             
                 <li><a href="..&#x2F;classes/Header.html">Header</a></li>
@@ -72,8 +74,6 @@
                 <li><a href="..&#x2F;classes/Map.html">Map</a></li>
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
-            
-                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
             
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
@@ -110,6 +110,8 @@
                 <li><a href="..&#x2F;modules/footer.html">footer</a></li>
             
                 <li><a href="..&#x2F;modules/form.html">form</a></li>
+            
+                <li><a href="..&#x2F;modules/group.html">group</a></li>
             
                 <li><a href="..&#x2F;modules/header.html">header</a></li>
             
@@ -203,11 +205,12 @@ define([&quot;.&#x2F;observable&quot;,
         &quot;.&#x2F;ui&#x2F;tab&quot;,
         &quot;.&#x2F;ui&#x2F;form&quot;,
         &quot;.&#x2F;ui&#x2F;textfield&quot;,
-        &quot;.&#x2F;ui&#x2F;page_holder&quot;],
+        &quot;.&#x2F;ui&#x2F;page_holder&quot;,
+        &quot;.&#x2F;ui&#x2F;group&quot;],
 function (Observable, Widget, Header, Footer, Page,
           Html, Button, ButtonGroup, List,
           Aside, SplitView, TabGroup, Tab, Form,
-          TextField, PageHolder) {
+          TextField, PageHolder, Group) {
     &quot;use strict&quot;;
 
     &#x2F;*
@@ -227,7 +230,8 @@ function (Observable, Widget, Header, Footer, Page,
         &quot;tab&quot;        : Tab,
         &quot;form&quot;       : Form,
         &quot;textfield&quot;  : TextField,
-        &quot;pageholder&quot; : PageHolder
+        &quot;pageholder&quot; : PageHolder,
+        &quot;group&quot;      : Group
     };
 
     &#x2F;**

@@ -59,6 +59,8 @@
             
                 <li><a href="..&#x2F;classes/Form.html">Form</a></li>
             
+                <li><a href="..&#x2F;classes/Group.html">Group</a></li>
+            
                 <li><a href="..&#x2F;classes/Handler.html">Handler</a></li>
             
                 <li><a href="..&#x2F;classes/Header.html">Header</a></li>
@@ -72,8 +74,6 @@
                 <li><a href="..&#x2F;classes/Map.html">Map</a></li>
             
                 <li><a href="..&#x2F;classes/meems-ui.html">meems-ui</a></li>
-            
-                <li><a href="..&#x2F;classes/NativeDomEvents.html">NativeDomEvents</a></li>
             
                 <li><a href="..&#x2F;classes/observable.html">observable</a></li>
             
@@ -110,6 +110,8 @@
                 <li><a href="..&#x2F;modules/footer.html">footer</a></li>
             
                 <li><a href="..&#x2F;modules/form.html">form</a></li>
+            
+                <li><a href="..&#x2F;modules/group.html">group</a></li>
             
                 <li><a href="..&#x2F;modules/header.html">header</a></li>
             
@@ -213,62 +215,19 @@ define(function () {
         };
     }
 
-    var $domEvents = {};
-    var $elToCallbacks = {};
-
-    &#x2F;**
-     * Generic handler for all DOM events.
-     *
-     * @method onDomEvent
-     * @private
-     * @param {String} eventName The name of the event.
-     * @param {Event} e The event object.
-     *&#x2F;
-    var onDomEvent = function (eventName, e) {
-        if ($domEvents[eventName] === undefined) {
-            return;
-        }
-
-        var elements = $domEvents[eventName],
-            target = e.target,
-            i, ln, el,
-            callbacks, j, ln2;
-
-        while (target) {
-            for (i = 0, ln = elements.length; i &lt; ln; ++i) {
-                el = elements[i];
-
-                if (el === target) {
-                    callbacks = $elToCallbacks[eventName][i];
-
-                    for (j = 0, ln2 = callbacks.length; j &lt; ln2; ++j) {
-                        if (callbacks[j](e) === true) {
-                            break;
-                        }
-                    }
-
-                    &#x2F;&#x2F; Found element, stop searching.
-                    return;
-                }
-            }
-
-            target = target.parentNode;
-        }
-    };
-
     &#x2F;**
      * Provides functions to add and remove event listeners to the DOM.
      *
-     * @class NativeDomEvents
+     * @class DomEvents
      * @private
      * @constructor
      *&#x2F;
-    var NativeDomEvents = (function () {
+    var DomEvents = (function () {
         var hasAddEventListener = &#x27;addEventListener&#x27; in window;
         var hasAttachEvent = &#x27;attachEvent&#x27; in window;
 
         function addfn1(el, event, fn) {
-            el.addEventListener(event, fn, false);
+            el.addEventListener(event, fn, true);
         }
 
         function addfn2(el, event, fn) {
@@ -280,7 +239,7 @@ define(function () {
         }
 
         function rmfn1(el, event, fn) {
-            el.removeEventListener(event, fn, false);
+            el.removeEventListener(event, fn, true);
         }
 
         function rmfn2(el, event, fn) {
@@ -308,81 +267,30 @@ define(function () {
              * @param {String} event The event name.
              * @param {Function} fn The callback function that was previously added.
              *&#x2F;
-            off: hasAddEventListener ? rmfn1 : (hasAttachEvent ? rmfn2 : rmfn3)
+            off: hasAddEventListener ? rmfn1 : (hasAttachEvent ? rmfn2 : rmfn3),
+
+            &#x2F;**
+             * Cancel an event and prevent the default handler.
+             * @method cancelEvent
+             * @param {Event} e Event to cancel.
+             * @return {Boolean} You must also return this in the event handler.
+             *&#x2F;
+            cancelEvent: function (e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                }
+
+                e.cancelBubble = true;
+                e.returnValue = false;
+
+                return false;
+            }
         };
     }());
-
-
-    &#x2F;**
-     * Provides functions to add and remove event listeners to the DOM.
-     * @class DomEvents
-     * @constructor
-     *&#x2F;
-    var DomEvents = {
-        &#x2F;**
-         * Add an event listener to a DOM element.
-         * @method on
-         * @param {HTMLElement} el The element to add the listener to.
-         * @param {String} event The event name.
-         * @param {Function} fn The callback function for when the event occurs.
-         *&#x2F;
-        on: function (el, event, fn) {
-            if ($domEvents[event] === undefined) {
-                NativeDomEvents.on(document, event, (function (eventName) {
-                    return function (e) {
-                        return onDomEvent(eventName, e);
-                    };
-                }(event)));
-
-                $domEvents[event] = [ el ];
-                $elToCallbacks[event] = [ [ fn ] ];
-
-            } else {
-                var els = $domEvents[event];
-                var index = -1;
-
-                for (var i = 0, ln = els.length; i &lt; ln; ++i) {
-                    if (els[i] === el) {
-                        index = i;
-                        break;
-                    }
-                }
-
-                if (index === -1) {
-                    els.push(el);
-                    $elToCallbacks[event].push([ fn ]);
-                } else {
-                    $elToCallbacks[event][index].push(fn);
-                }
-            }
-        },
-
-        &#x2F;**
-         * Remove an event listener from a DOM element.
-         * @method off
-         * @param {HTMLElement} el The element to remove the listener from.
-         * @param {String} event The event name.
-         * @param {Function} fn The callback function that was previously added.
-         *&#x2F;
-        off: function (el, event, fn) {
-            if ($domEvents[event] !== undefined) {
-                var els = $domEvents[event], cb;
-
-                for (var i = 0, ln = els.length; i &lt; ln; ++i) {
-                    if (els[i] === el) {
-                        cb = $elToCallbacks[i];
-
-                        for (var j = 0, ln2 = cb.length; j &lt; ln2; ++j) {
-                            if (cb[j] === fn) {
-                                cb.splice(j, 1);
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     &#x2F;**
      * Class that enables an object to act as an event handler.
