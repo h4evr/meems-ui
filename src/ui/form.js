@@ -68,7 +68,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
         },
         
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("form"));
                 this.el().className = "ui-form";
@@ -97,7 +97,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             
             for (var i = 0; i < this.$fields.length; ++i)  {
                 field = this.$fields[i];
-                field.update();
+                field.update(structureOnly);
                 
                 if (field.el().parentNode !== this.$holder) {
                     this.$holder.appendChild(field.el());

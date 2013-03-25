@@ -67,14 +67,14 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-aside");
             }
             
             if (this.facet("menu")) {
-                this.facet("menu").update();
+                this.facet("menu").update(structureOnly);
                 
                 Utils.Dom.addClass(this.facet("menu").el(), "ui-aside-menu");
                 
@@ -84,7 +84,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
             
             if (this.facet("content")) {
-                this.facet("content").update();
+                this.facet("content").update(structureOnly);
                 
                 Utils.Dom.addClass(this.facet("content").el(), "ui-aside-content");
                 

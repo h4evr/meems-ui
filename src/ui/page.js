@@ -42,14 +42,14 @@ function (Utils, Scroll, Widget) {
             return this.$scroller;
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-page";
             }
             
             if (this.facet("header")) {
-                this.facet("header").update();
+                this.facet("header").update(structureOnly);
                 
                 if (this.facet("header").el().parentNode !== this.el()) {
                     this.el().appendChild(this.facet("header").el());
@@ -57,9 +57,9 @@ function (Utils, Scroll, Widget) {
             }
             
             if (this.facet("content")) {
-                this.facet("content").update();
+                this.facet("content").update(structureOnly);
                 
-                if (this.facet("content").el().parentNode !== this.el()) {
+                if (!this.facet("content").el().parentNode || this.facet("content").el().parentNode !== this.$contentWrapper) {
                     this.$contentWrapper = document.createElement("div");
                     this.$contentWrapper.className = "ui-content";
                     this.$contentWrapper.appendChild(this.facet("content").el());
@@ -68,7 +68,7 @@ function (Utils, Scroll, Widget) {
             }
             
             if (this.facet("footer")) {
-                this.facet("footer").update();
+                this.facet("footer").update(structureOnly);
                 
                 if (this.facet("footer").el().parentNode !== this.el()) {
                     this.el().appendChild(this.facet("footer").el());

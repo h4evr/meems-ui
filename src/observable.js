@@ -114,7 +114,27 @@ define(function() {
         'unshift': createProxyMethod(Array.prototype.unshift),
         'reverse': createProxyMethod(Array.prototype.reverse),
         'sort': createProxyMethod(Array.prototype.sort),
-        'remove': createProxyMethod(Array.prototype.remove)
+        'remove': function (element) {
+            var index = this.$currentVal.indexOf(element);
+            if (index > -1) {
+                this.$currentVal.splice(index, 1);
+            }
+        },
+        'removeAll': function (items) {
+            var i, ln, j, ln2, item;
+
+            for (i = 0, ln = items.length; i < ln; ++i) {
+                item = items[i];
+
+                for (j = 0, ln2 = this.$currentVal.length; j < ln2; ++j) {
+                    if (this.$currentVal[j] === item) {
+                        this.$currentVal.splice(j, 1);
+                        --j;
+                        --ln2;
+                    }
+                }
+            }
+        }
     };
 
     /**

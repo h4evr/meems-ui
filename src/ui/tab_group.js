@@ -131,7 +131,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
             }
         },
         
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-tab-group";
@@ -167,7 +167,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
                 for (var i = 0, ln = this.$tabs.length; i < ln; ++i) {
                     tab = this.$tabs[i];
                     
-                    tab.update();
+                    tab.update(structureOnly);
                     
                     if (tab.el().parentNode !== this.$tabHolder) {
                         tab.el().style.position = "absolute";
@@ -178,7 +178,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
                         this.$tabHolder.appendChild(tab.el());
                         
                         btn = (new Button()).attr("style", "vertical");
-                        btn.update();
+                        btn.update(structureOnly);
                         btn.on("dom:" + (Utils.Dom.supportsTouch() ? "touchstart" : "click"),
                             Utils.Fn.bind(onButtonTapped, this));
                             
@@ -189,7 +189,7 @@ function (Utils, Scroll, Widget, Tab, ButtonGroup, Button) {
                     btn = btn || this.$buttonGroup.buttons[i];
                     btn.attr("title", tab.attr("title")).attr("icon", tab.attr("icon"))
                        .attr("disabled", this.$visibleTab !== i);
-                    btn.update();
+                    btn.update(structureOnly);
                     btn.el().style.width = tabSize + "%";
                     
                     if (i === this.$visibleTab) {

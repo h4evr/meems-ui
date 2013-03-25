@@ -38,20 +38,21 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         this.$elementStartPosition = Utils.Dom.getAbsolutePosition(el);
 
         el.style.top = this.$elementStartPosition.y + "px";
-        el.style.width = el.offsetWidth + "px";
-        el.style.height = el.offsetHeight + "px";
 
-        placeHolder.style.width = el.style.width;
-        placeHolder.style.height = el.style.height;
-
-        Utils.Dom.addClass(el, "ui-list-item-drag");
-        parentEl.insertBefore(placeHolder, el);
-
-        Utils.Dom.applyChanges();
+        var elDimensions = Utils.Dom.getDimensions(el);
+        el.style.width = elDimensions.width + "px";
+        el.style.height = elDimensions.height + "px";
+        placeHolder.className = el.className;
+        placeHolder.style.width = elDimensions.width + "px";
+        placeHolder.style.height = elDimensions.height + "px";
 
         this.$cursorStartPosition = Events.Touch.getCursorPosition(e);
         this.$elementStartPosition = Utils.Dom.getAbsolutePosition(el);
-        console.log(this.$elementStartPosition);
+
+        Utils.Dom.addClass(el, "ui-list-item-drag");
+        Utils.Dom.applyChanges();
+
+        parentEl.insertBefore(placeHolder, el);
 
         return Events.Dom.cancelEvent(e);
     };
@@ -79,10 +80,8 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             item;
 
         pos.y += this.$elementStartPosition.y - this.$cursorStartPosition.y;
-
         el.style.top = pos.y + "px";
-
-        var yPos = pos.y; //+ (e.layerY ? e.layerY : e.offsetY);
+        var yPos = pos.y + el.offsetHeight / 2;
 
         for (var i = 0, ln = listItems.length; i < ln; ++i) {
             item = listItems[i];
@@ -139,7 +138,23 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
 
         parentEl.replaceChild(el, placeHolder);
 
+        //noinspection JSValidateTypes
+        var startPos = parent.$generatedItems.indexOf(this),
+            endPos = Array.prototype.indexOf.call(parentEl.children, el);
+
+        Utils.Array.moveElement(parent.$generatedItems, startPos, endPos);
+
+        var items = parent.items();
+        items = typeof(items) === 'function' ? items() : items;
+        Utils.Array.moveElement(items, startPos, endPos);
+
+        if (typeof(parent.items().notify) === 'function') {
+            parent.items().notify(items, items);
+        }
+
         this.$dragging = false;
+
+        updateHeaderClasses.call(parent);
 
         return Events.Dom.cancelEvent(e);
     };
@@ -159,6 +174,7 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         this.$leftFacet = null;
         this.$rightFacet = null;
         this.$middleFacet = null;
+        this.$orderButton = null;
 
         this.$dragging = false;
         this.$cursorStartPosition = null;
@@ -214,14 +230,18 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
 
                 var selectBox = document.createElement("input");
                 selectBox.setAttribute("type", "checkbox");
+                selectBox.className = "meems-scroll-skip";
+                Events.Dom.on(selectBox, 'change', Utils.Fn.bind(function() {
+                    this.parent().fire("item:checked", this, selectBox.checked);
+                }, this));
                 this.$leftFacet.appendChild(selectBox);
 
-                var orderButton = document.createElement("div");
-                orderButton.className = "ui-icon-order meems-scroll-skip";
+                this.$orderButton = document.createElement("div");
+                this.$orderButton.className = "ui-icon-order meems-scroll-skip";
 
-                Events.Dom.on(orderButton, Events.Touch.touchStartEventName, Utils.Fn.bind(onStartOrdering, this));
+                Events.Dom.on(this.$orderButton, Events.Touch.touchStartEventName, Utils.Fn.bind(onStartOrdering, this));
 
-                this.$rightFacet.appendChild(orderButton);
+                this.$rightFacet.appendChild(this.$orderButton);
 
                 var tr = document.createElement("tr");
                 tr.appendChild(this.$leftFacet);
@@ -237,13 +257,13 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 showSorted = this.parent().attr('sortable') === true;
 
             if (showCheckbox) {
-                this.$leftFacet.style.display = 'block';
+                this.$leftFacet.style.display = '';
             } else {
                 this.$leftFacet.style.display = 'none';
             }
 
             if (showSorted) {
-                this.$rightFacet.style.display = 'block';
+                this.$rightFacet.style.display = '';
             } else {
                 this.$rightFacet.style.display = 'none';
             }
@@ -299,6 +319,8 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
          */
         this.$placeHolder = null;
 
+        this.$selectedItems = [];
+
         this.attr('style', 'normal');
         this.attr('sortable', false);
         this.attr('selectionMode', 'single');
@@ -334,21 +356,46 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         return item;
     };
 
+    var updateHeaderClasses = function () {
+        var item, i, ln;
+
+        if (this.$generatedItems) {
+            for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
+                item = this.$generatedItems[i];
+
+                if (!item.header()) {
+                    if (i < ln - 1) {
+                        if (this.$generatedItems[i + 1].header()) {
+                            Utils.Dom.addClass(item.el(), "ui-list-item-last");
+                        } else {
+                            Utils.Dom.removeClass(item.el(), "ui-list-item-last");
+                        }
+                    } else {
+                        Utils.Dom.addClass(item.el(), "ui-list-item-last");
+                    }
+                }
+            }
+
+            Utils.Dom.applyChanges();
+        }
+    };
+
     /**
      * Update the items DOM, based of the array of items before and after.
      *
      * @method updateItems
      * @private
      * @param {Object[]} oldItems The items before.
-     * @param {Object[]} newItems The new items.
+     * @param {Object[]|Function} newItems The new items.
      */
     var updateItems = function (oldItems, newItems) {
         if (!this.el()) {
             return;
         }
 
+        newItems = typeof(newItems) === 'function' ? newItems() : newItems;
         var item, curItem, i, ln, el = this.el(), j, ln2;
-        var processed = [];
+        var processed = {};
 
         if (this.$generatedItems) {
             for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
@@ -358,14 +405,22 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 for (j = 0, ln2 = newItems.length; j < ln2; ++j) {
                     if (item.el()._meems_item === newItems[j]) {
                         found = true;
-                        processed.push(j);
+                        processed[j] = i;
                         Utils.Dom.removeClass(item.el(), "ui-list-item-last");
+                        el.removeChild(item.el());
                         break;
                     }
                 }
 
                 if (!found && item.el() && item.el().parentNode === el) {
                     el.removeChild(item.el());
+                    this.$generatedItems.splice(i, 1);
+                    var iSelected = this.$selectedItems.indexOf(item);
+                    if (iSelected > -1) {
+                        this.$selectedItems.splice(iSelected, 1);
+                    }
+                    --i;
+                    --ln;
                 }
             }
         }
@@ -373,13 +428,14 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         for (i = 0, ln = newItems.length; i < ln; ++i) {
             curItem = newItems[i];
 
-            if (processed.indexOf(i) == -1) {
+            if (processed[i] === undefined) {
                 item = createItem.call(this, curItem, i, ln);
-                el.insertBefore(item.el(), el.childNodes[i]);
                 this.$generatedItems.splice(i, 0, item);
             } else {
-                item = this.$generatedItems[i];
+                item = this.$generatedItems[processed[i]];
             }
+
+            el.appendChild(item.el());
 
             if (!item.header()) {
                 if (i < ln - 1) {
@@ -468,47 +524,12 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             if (items === undefined) {
                 return this.$items;
             } else {
-                var item, curItem, i, ln, el = this.el();
-
-                if (this.$generatedItems && el) {
-                    for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
-                        item = this.$generatedItems[i];
-                        if (item.el()) {
-                            el.removeChild(item.el());
-                        }
-                    }
-                }
-
                 this.$items = items;
 
-                if (this.$items && el) {
-                    var newItems = typeof(this.$items) === 'function' ? this.$items() : this.$items;
+                updateItems.call(this, null, this.$items);
 
-                    this.$generatedItems = [];
-
-                    for (i = 0, ln = newItems.length; i < ln; ++i) {
-                        curItem = newItems[i];
-                        item = createItem.call(this, curItem, i, ln);
-
-                        if (!item.header()) {
-                            if (i < ln - 1) {
-                                if (newItems[i + 1].header === true) {
-                                    Utils.Dom.addClass(item.el(), "ui-list-item-last");
-                                } else {
-                                    Utils.Dom.removeClass(item.el(), "ui-list-item-last");
-                                }
-                            } else {
-                                Utils.Dom.addClass(item.el(), "ui-list-item-last");
-                            }
-                        }
-
-                        el.appendChild(item.el());
-                        this.$generatedItems.push(item);
-                    }
-
-                    if (typeof(this.$items.subscribe) === 'function') {
-                        this.$items.subscribe(Utils.Fn.bind(updateItems, this));
-                    }
+                if (typeof(this.$items.subscribe) === 'function') {
+                    this.$items.subscribe(Utils.Fn.bind(updateItems, this));
                 }
 
                 return this;
@@ -532,17 +553,33 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             return ret;
         },
 
-        update : function () {
+        getSelectedItems : function () {
+            return this.$selectedItems;
+        },
+
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("ul"));
                 this.el().className =  "ui-list";
                 this.on("dom:" + Events.Touch.touchEndEventName, Utils.Fn.bind(onItemClicked, this));
                 this.$placeHolder = document.createElement("li");
                 this.$placeHolder.className = "ui-list-item ui-list-placeholder";
+
+                this.on("item:checked", function (eventName, item, isChecked) {
+                    if (isChecked) {
+                        this.$selectedItems.push(item.el()._meems_item);
+                    } else {
+                        this.$selectedItems.splice(this.$selectedItems.indexOf(item.el()._meems_item), 1);
+                    }
+
+                    this.fire("selection:changed", this.$selectedItems);
+                });
             }
-            
-            this.attr('style', this.attr('style'));
-            this.items(this.$items);
+
+            if (structureOnly !== true) {
+                this.attr('style', this.attr('style'));
+                updateItems.call(this, null, this.$items);
+            }
             
             Widget.prototype.update.apply(this, arguments); //super
         }

@@ -22,14 +22,14 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     }
     
     Footer.extend(Widget, {
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 Utils.Dom.addClass(this.el(), "ui-footer");
             }
             
             if (this.facet("buttons")) {
-                this.facet("buttons").update();
+                this.facet("buttons").update(structureOnly);
                 
                 if (this.facet("buttons").el().parentNode !== this.el()) {
                     Utils.Dom.addClass(this.facet("buttons").el(), "ui-buttons");

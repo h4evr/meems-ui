@@ -8,7 +8,7 @@
  * @submodule textfield
  * @requires meems-utils
  */
-define(["meems-utils", "./widget"], function (Utils, Widget) {
+define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Widget) {
     "use strict";
 
     /**
@@ -30,9 +30,18 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
          * @type {String}
          */
         this.$label = null;
+
+        this.$value = null;
+
         Widget.apply(this, arguments);
         return this;
     }
+
+    var updateTextField = function (oldVal, newVal) {
+        if (this.$input) {
+            this.$input.value = newVal;
+        }
+    };
     
     TextField.extend(Widget, {
         /**
@@ -44,15 +53,16 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
          * the current value otherwise.
          */
         value : function (val) {
-            if (this.el()) {
-                if (val === undefined) {
-                    return this.el().value;
+            if (val === undefined) {
+                if (typeof(this.$value) === 'function') {
+                    return this.$value;
                 } else {
-                    this.el().value = val;
-                    return this;
+                    return this.$input.value;
                 }
             } else {
-                return val === undefined ? this : null;
+                this.$value = val;
+                updateTextField.call(this);
+                return this;
             }
         },
 
@@ -73,6 +83,18 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 tmp.appendChild(this.$input);
                 this.el().appendChild(tmp);
                 this.el().className = "ui-textfield";
+
+                Events.Dom.on(this.$input, 'change', Utils.Fn.bind(function () {
+                    if (typeof(this.$value) === 'function') {
+                        this.$value(this.$input.value);
+                    }
+                }, this));
+
+                if (typeof (this.$value) === 'function') {
+                    if ("subscribe" in this.$value) {
+                        this.$value.subscribe(updateTextField);
+                    }
+                }
             }
             
             Utils.Dom.setHtml(this.$label, this.attr("label") || "");

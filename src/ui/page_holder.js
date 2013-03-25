@@ -100,7 +100,7 @@ define(["meems-utils", "./widget", "./page"], function (Utils, Widget, Page) {
             }
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-page-holder";
@@ -111,7 +111,7 @@ define(["meems-utils", "./widget", "./page"], function (Utils, Widget, Page) {
 
                 for (var i = 0, len = this.$pages.length; i < len; ++i) {
                     page = this.$pages[i];
-                    page.update();
+                    page.update(structureOnly);
 
                     if (page.el() && page.el().parentNode !== this.el()) {
                         this.el().appendChild(page.el());

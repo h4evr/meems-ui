@@ -34,7 +34,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-header";
@@ -46,7 +46,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             Utils.Dom.setHtml(this.$titleEl, "<h1>" + (this.attr("title") || "") + "</h1>");
 
             if (this.facet("buttonsleft")) {
-                this.facet("buttonsleft").update();
+                this.facet("buttonsleft").update(structureOnly);
                 
                 if (this.facet("buttonsleft").el().parentNode !== this.el()) {
                     Utils.Dom.addClass(this.facet("buttonsleft").el(), "ui-buttons-left");
@@ -55,7 +55,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
             
             if (this.facet("buttonsright")) {
-                this.facet("buttonsright").update();
+                this.facet("buttonsright").update(structureOnly);
                 
                 if (this.facet("buttonsright").el().parentNode !== this.el()) {
                     Utils.Dom.addClass(this.facet("buttonsright").el(), "ui-buttons-right");

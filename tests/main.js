@@ -46,7 +46,7 @@ loadCss([
 require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", "meems-events"], function (UI, VmUtils, Utils, Scroll, Events) {
     "use strict";
 
-    var eventClick = 'dom:' + Events.touchEndEventName,
+    var eventClick = 'dom:' + Events.Touch.touchEndEventName,
 
         buttonTitle = VmUtils.observable("Explore"),
 

@@ -25,7 +25,7 @@ define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Wid
     }
     
     Tab.extend(Widget, {
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-tab";
@@ -34,7 +34,7 @@ define(["meems-utils", "meems-scroll", "./widget"], function (Utils, Scroll, Wid
             var facetContent = this.facet("content");
             
             if (facetContent) {
-                facetContent.update();
+                facetContent.update(structureOnly);
                 
                 if (!this.$holder) {
                     this.$holder = document.createElement("div");

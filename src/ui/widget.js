@@ -198,8 +198,9 @@ define(["meems-utils", "meems-events"], function (Utils, Events) {
          * Called for creating and updating the Widget's DOM nodes.
          *
          * @method update
+         * @param {boolean} [structureOnly] If only the DOM structure must be updated.
          */
-        update : function () {
+        update : function (structureOnly) {
             if (this.el() && this.$attributes['customClass']) {
                 Utils.Dom.addClass(this.el(), this.$attributes['customClass']);
                 this.$attributes['customClass'] = null;

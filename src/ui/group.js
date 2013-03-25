@@ -99,7 +99,7 @@ function (Utils, Widget) {
             return this;
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement("div"));
                 this.el().className = "ui-group";
@@ -109,7 +109,7 @@ function (Utils, Widget) {
 
             for (var i = 0, ln = this.$children.length; i < ln; ++i) {
                 child = this.$children[i];
-                child.update();
+                child.update(structureOnly);
 
                 if (child.el().parentNode !== this.el()) {
                     this.el().appendChild(child.el());

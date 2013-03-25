@@ -25,6 +25,39 @@ define([
         var feeds = Obs.observableArray([]),
             title = "Feeds",
 
+            feedsList = UI.create("list")
+                /* Bind to an observable array. */
+                .items(feeds)
+                .template(itemTemplate)
+                .attr('style', 'normal')
+                .attr('sortable', true)
+                .attr('selectionMode', 'multiple')
+                .on("item:clicked", function (eventName, item, e) {
+                    //pageHolder.fire("feeds:clicked", item);
+                    return true;
+                })
+                .on("selection:changed", function (eventName, selection) {
+                    if (selection.length > 0) {
+                        pageManageFeeds.facet("footer", contextMenuFooter).update(true);
+                    } else {
+                        pageManageFeeds.facet("footer", null).update(true);
+                    }
+                    Utils.Dom.applyChanges();
+                }),
+
+            contextMenuFooter = UI.create("footer")
+                .facet("buttons", UI.create("buttongroup").buttons([
+                    UI.create("button").attr("action", "delete").attr("style", "icon").attr("title", "Delete").attr("icon", "delete")
+                ]).on("button:pressed", function (eventName, button) {
+                    var action = button.attr("action");
+
+                    if (action === 'delete') {
+                        feeds.removeAll(feedsList.getSelectedItems());
+                        feedsList.update();
+                        Utils.Dom.applyChanges();
+                    }
+                })),
+
             pageHolder = UI.create("pageholder", parentView),
             pageFeeds =
             UI.create("page", pageHolder)
@@ -55,6 +88,8 @@ define([
                             return true;
                         })),
 
+            newUrl = Obs.observable(""),
+
             pageManageFeeds =
             UI.create("page", pageHolder)
                 .attr("enableScroll", "true")
@@ -76,21 +111,18 @@ define([
                         .attr("customClass", "ui-align-right")
                         .appendChild(
                             UI.create("form")
-                                .addField(UI.create("textfield").attr("label", "URL"))
+                                .addField(UI.create("textfield").attr("label", "URL").value(newUrl))
                         )
-                        .appendChild(UI.create("button").attr("title", "Add"))
-                        .appendChild(
-                            UI.create("list")
-                                /* Bind to an observable array. */
-                                .items(feeds)
-                                .template(manageItemTemplate)
-                                .attr('style', 'normal')
-                                .attr('sortable', true)
-                                .on("item:clicked", function (eventName, item, e) {
-                                    console.log(e);
-                                    //pageHolder.fire("feeds:clicked", item);
-                                    return true;
-                                })));
+                        .appendChild(UI.create("button").attr("title", "Add")
+                            .on("dom:" + Events.Touch.touchEndEventName, function () {
+                                var url = newUrl();
+
+                                if (url.length > 0) {
+                                    pageManageFeeds.fire("feeds:add", url);
+                                    newUrl("");
+                                }
+                            }))
+                        .appendChild(feedsList));
 
         pageHolder.pages([ pageFeeds, pageManageFeeds ]);
 
