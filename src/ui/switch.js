@@ -1,22 +1,21 @@
 /*global define*/
 /**
- * A component that allows the user to input information.
- * Exposes the attributes `label` and `type`.
- * The later can be used to change the type of input it expects, according to the HTML5 specs.
+ * A toggle button that allows a user to set something on or off.
+ * Exposes the attributes `label`.
  *
  * @module meems-ui
- * @submodule textfield
+ * @submodule switch
  * @requires meems-utils
  */
 define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Widget) {
     "use strict";
 
     /**
-     * @class TextField
+     * @class Switch
      * @constructor
      * @extends Widget
      */
-    function TextField() {
+    function Switch() {
         /**
          * @property $input
          * @private
@@ -31,19 +30,21 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
          */
         this.$label = null;
 
-        this.$value = null;
+        this.$value = false;
 
         Widget.apply(this, arguments);
         return this;
     }
 
-    var updateTextField = function (oldVal, newVal) {
+    var updateInput = function (oldVal, newVal) {
+        var nV = typeof(newVal) === 'function' ? newVal() : newVal;
+
         if (this.$input) {
-            this.$input.value = newVal;
+            this.$input.checked = nV;
         }
     };
-    
-    TextField.extend(Widget, {
+
+    Switch.extend(Widget, {
         /**
          * Getter and setter for the value of the field.
          *
@@ -54,14 +55,10 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
          */
         value : function (val) {
             if (val === undefined) {
-                if (typeof(this.$value) === 'function') {
-                    return this.$value;
-                } else {
-                    return this.$input.value;
-                }
+                return this.$value;
             } else {
+                updateInput.call(this, this.$value, val);
                 this.$value = val;
-                updateTextField.call(this, null, val);
                 return this;
             }
         },
@@ -77,31 +74,43 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
                 this.el(document.createElement("div"));
                 this.$label = document.createElement("label");
                 this.$input = document.createElement("input");
-                this.$input.setAttribute("type", this.attr("type") || "text");
-                this.el().appendChild(this.$label);
-                var tmp = document.createElement("div");
-                tmp.appendChild(this.$input);
-                this.el().appendChild(tmp);
-                this.el().className = "ui-textfield";
+                this.$inputLabel = document.createElement("label");
+                this.$inputLabel.appendChild(document.createElement("b"));
+                this.$input.setAttribute("type", "checkbox");
+                this.$input.setAttribute("checked", "checkbox");
 
-                Events.Dom.on(this.$input, 'change', Utils.Fn.bind(function () {
+                var div = document.createElement("div");
+                updateInput.call(this, null, this.$value);
+                div.appendChild(this.$input);
+                div.appendChild(this.$inputLabel);
+                this.el().appendChild(this.$label);
+                this.el().appendChild(div);
+                this.el().className = "ui-switch";
+
+                Events.Dom.on(div, Events.Touch.touchEndEventName, Utils.Fn.bind(function () {
                     if (typeof(this.$value) === 'function') {
-                        this.$value(this.$input.value);
+                        var newVal = !this.$value();
+                        this.$input.checked = newVal;
+                        this.$value(newVal);
+                    } else {
+                        updateInput.call(this, this.$value, !this.$value);
+                        this.$value = !this.$value;
+                        this.$input.checked = this.$value;
                     }
+                    Utils.Dom.applyChanges();
                 }, this));
 
                 if (typeof (this.$value) === 'function') {
                     if ("subscribe" in this.$value) {
-                        this.$value.subscribe(updateTextField);
+                        this.$value.subscribe(Utils.Fn.bind(updateInput, this));
                     }
                 }
             }
             
             Utils.Dom.setHtml(this.$label, this.attr("label") || "");
-            
             Widget.prototype.update.apply(this, arguments); //super
         }
     });
     
-    return TextField;
+    return Switch;
 });

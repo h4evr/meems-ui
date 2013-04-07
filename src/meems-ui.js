@@ -22,11 +22,12 @@ define(["./observable",
         "./ui/form",
         "./ui/textfield",
         "./ui/page_holder",
-        "./ui/group"],
+        "./ui/group",
+        "./ui/switch"],
 function (Observable, Widget, Header, Footer, Page,
           Html, Button, ButtonGroup, List,
           Aside, SplitView, TabGroup, Tab, Form,
-          TextField, PageHolder, Group) {
+          TextField, PageHolder, Group, Switch) {
     "use strict";
 
     /*
@@ -47,7 +48,8 @@ function (Observable, Widget, Header, Footer, Page,
         "form"       : Form,
         "textfield"  : TextField,
         "pageholder" : PageHolder,
-        "group"      : Group
+        "group"      : Group,
+        "switch"     : Switch
     };
 
     /**

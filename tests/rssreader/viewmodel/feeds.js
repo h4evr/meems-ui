@@ -89,8 +89,6 @@ define([
 
                 self.parentController.navigateTo("news");
             }).on("feeds:add", function (eventName, url) {
-                console.log("Must create feed with URL: " + url);
-
                 var onDone = function (url, lastUpdateDate, news, title) {
                     self.feeds.push({
                         id: Math.random() * 1000000.0,

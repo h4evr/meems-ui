@@ -541,7 +541,7 @@ body {
      height: 2em;
      line-height: 2em;
      margin: -1px 0 5px 0;
-     padding: 0px 2%;
+     padding: 0 2%;
      position: relative;
      width: 96%;
 }
@@ -549,7 +549,7 @@ body {
 .ui-textfield > label {
      display: block;
      font-size: 14px;
-     margin: 5px 0px;
+     margin: 5px 0;
      position: relative;
      z-index: 3;
 }
@@ -589,4 +589,77 @@ body {
 
 .ui-align-right {
     text-align: right;
+}
+
+.ui-switch {
+    display: block;
+    font-size: 14px;
+    padding: 12px 0;
+    text-decoration: none;
+    margin: 15px 20px;
+    height: 30px;
+}
+
+.ui-switch > label {
+    display: inline-block;
+    width: 50%;
+}
+
+.ui-switch > div {
+    display: inline-block;
+    border: 1px solid #3C3C3D;
+    width: 90px;
+    height: 30px;
+    position: relative;
+    color: #FFF;
+    font-weight: bold;
+    overflow: hidden;
+    float: right;
+    background-color: #303030;
+}
+
+.ui-switch > div span {
+    position: absolute;
+    right: -100px;
+}
+
+.ui-switch input { display:none; }
+
+.ui-switch > div label::before {
+    content: 'OFF';
+    width: 48px;
+    float: left;
+    margin-right: 0;
+    padding-right: 0;
+    text-align: center;
+    background: #3C3C3D;
+
+}
+
+.ui-switch > div label {
+    width: 200%;
+    height: 100%;
+    line-height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: 1.1em;
+    cursor: pointer;
+    -webkit-transition: 0.12s;
+    -moz-transition: 0.12s;
+    transition: 0.12s;
+}
+
+.ui-switch > div label b {
+    display: none;
+}
+
+.ui-switch > div input:checked ~ label::before {
+    content: 'ON';
+    background: #33B5E5;
+}
+
+.ui-switch > div input:checked ~ label {
+    left: 48px;
 }

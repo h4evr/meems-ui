@@ -69,7 +69,7 @@ define([
                         .facet("buttonsright",
                             UI.create("buttongroup")
                                 .addButton(UI.create("button")
-                                    .attr("title", "Add")
+                                    .attr("title", "Manage")
                                     .attr("icon", "add")
                                     .on('dom:' + Events.Touch.touchEndEventName, function () {
                                         pageHolder.currentPage(pageManageFeeds);
@@ -89,6 +89,9 @@ define([
                         })),
 
             newUrl = Obs.observable(""),
+            switchVal = Obs.observable(false),
+            switchVal2 = Obs.observable(true),
+            switchVal3 = Obs.observable(false),
 
             pageManageFeeds =
             UI.create("page", pageHolder)
@@ -112,6 +115,9 @@ define([
                         .appendChild(
                             UI.create("form")
                                 .addField(UI.create("textfield").attr("label", "URL").value(newUrl))
+                                .addField(UI.create("switch").attr("label", "demo").value(switchVal))
+                                .addField(UI.create("switch").attr("label", "demo 2").value(switchVal2))
+                                .addField(UI.create("switch").attr("label", "demo 3").value(switchVal3))
                         )
                         .appendChild(UI.create("button").attr("title", "Add")
                             .on("dom:" + Events.Touch.touchEndEventName, function () {
