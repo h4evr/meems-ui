@@ -106,7 +106,7 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             parentEl.appendChild(placeHolder);
         }
 
-        return Events.Dom.cancelEvent(e);
+        //return Events.Dom.cancelEvent(e);
     };
 
     /**

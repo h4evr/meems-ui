@@ -663,3 +663,68 @@ body {
 .ui-switch > div input:checked ~ label {
     left: 48px;
 }
+
+.ui-slider {
+    display: block;
+    font-size: 14px;
+    padding: 12px 0;
+    text-decoration: none;
+    margin: 15px 20px;
+    height: 30px;
+}
+
+.ui-slider > label {
+    display: inline-block;
+    width: 50%;
+}
+
+.ui-slider > div {
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    position: relative;
+    float: right;
+}
+
+.ui-slider > div:after {
+    background-color: transparent;
+    border: 1px solid #3C3C3D;
+    content: " ";
+    display: block;
+    height: 5px;
+    left: 0;
+    position: relative;
+    top: 8px;
+    width: 100%;
+}
+
+.ui-slider > div > .ui-bar {
+    background-color: #33B5E5;
+    border: 1px solid transparent;
+    height: 5px;
+    top: 8px;
+    position: absolute;
+    width: 20px;
+}
+
+.ui-slider > div > .ui-handle {
+    background-color: #5FBFE2;
+    border-radius: 7px;
+    height: 14px;
+    left: 25%;
+    margin-left: -7px;
+    opacity: 1;
+    position: absolute;
+    top: 5px;
+    width: 14px;
+    z-index: 2;
+}
+
+.ui-slider > div > .ui-handle:hover {
+    border-radius: 12px;
+    height: 24px;
+    margin-left: -12px;
+    opacity: 0.8;
+    width: 24px;
+    top: 0;
+}

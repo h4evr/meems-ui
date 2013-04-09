@@ -92,10 +92,12 @@ define([
             switchVal = Obs.observable(false),
             switchVal2 = Obs.observable(true),
             switchVal3 = Obs.observable(false),
+            sliderVal = Obs.observable(50),
+            sliderVal2 = Obs.observable(125),
 
             pageManageFeeds =
             UI.create("page", pageHolder)
-                .attr("enableScroll", "true")
+                .attr("enableScroll", true)
                 .facet("header",
                     UI.create("header")
                         .attr("title", title)
@@ -118,6 +120,8 @@ define([
                                 .addField(UI.create("switch").attr("label", "demo").value(switchVal))
                                 .addField(UI.create("switch").attr("label", "demo 2").value(switchVal2))
                                 .addField(UI.create("switch").attr("label", "demo 3").value(switchVal3))
+                                .addField(UI.create("slider").attr("label", "Volume").value(sliderVal).attr("minimum",0).attr("maximum",100))
+                                .addField(UI.create("slider").attr("label", "Volume").value(sliderVal2).attr("minimum",100).attr("maximum",200))
                         )
                         .appendChild(UI.create("button").attr("title", "Add")
                             .on("dom:" + Events.Touch.touchEndEventName, function () {
