@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/Ajax.html">Ajax</a></li>
+            
                 <li><a href="..&#x2F;classes/Array.html">Array</a></li>
             
                 <li><a href="..&#x2F;classes/Aside.html">Aside</a></li>
@@ -83,9 +85,15 @@
             
                 <li><a href="..&#x2F;classes/PageHolder.html">PageHolder</a></li>
             
+                <li><a href="..&#x2F;classes/Router.html">Router</a></li>
+            
                 <li><a href="..&#x2F;classes/Scroll.html">Scroll</a></li>
             
+                <li><a href="..&#x2F;classes/Slider.html">Slider</a></li>
+            
                 <li><a href="..&#x2F;classes/SplitView.html">SplitView</a></li>
+            
+                <li><a href="..&#x2F;classes/Switch.html">Switch</a></li>
             
                 <li><a href="..&#x2F;classes/Tab.html">Tab</a></li>
             
@@ -119,6 +127,8 @@
             
                 <li><a href="..&#x2F;modules/list.html">list</a></li>
             
+                <li><a href="..&#x2F;modules/meems.html">meems</a></li>
+            
                 <li><a href="..&#x2F;modules/meems-events.html">meems-events</a></li>
             
                 <li><a href="..&#x2F;modules/meems-scroll.html">meems-scroll</a></li>
@@ -133,7 +143,13 @@
             
                 <li><a href="..&#x2F;modules/pageholder.html">pageholder</a></li>
             
+                <li><a href="..&#x2F;modules/router.html">router</a></li>
+            
+                <li><a href="..&#x2F;modules/slider.html">slider</a></li>
+            
                 <li><a href="..&#x2F;modules/splitview.html">splitview</a></li>
+            
+                <li><a href="..&#x2F;modules/switch.html">switch</a></li>
             
                 <li><a href="..&#x2F;modules/tab.html">tab</a></li>
             
@@ -206,11 +222,13 @@ define([&quot;.&#x2F;observable&quot;,
         &quot;.&#x2F;ui&#x2F;form&quot;,
         &quot;.&#x2F;ui&#x2F;textfield&quot;,
         &quot;.&#x2F;ui&#x2F;page_holder&quot;,
-        &quot;.&#x2F;ui&#x2F;group&quot;],
+        &quot;.&#x2F;ui&#x2F;group&quot;,
+        &quot;.&#x2F;ui&#x2F;switch&quot;,
+        &quot;.&#x2F;ui&#x2F;slider&quot;],
 function (Observable, Widget, Header, Footer, Page,
           Html, Button, ButtonGroup, List,
           Aside, SplitView, TabGroup, Tab, Form,
-          TextField, PageHolder, Group) {
+          TextField, PageHolder, Group, Switch, Slider) {
     &quot;use strict&quot;;
 
     &#x2F;*
@@ -231,7 +249,9 @@ function (Observable, Widget, Header, Footer, Page,
         &quot;form&quot;       : Form,
         &quot;textfield&quot;  : TextField,
         &quot;pageholder&quot; : PageHolder,
-        &quot;group&quot;      : Group
+        &quot;group&quot;      : Group,
+        &quot;switch&quot;     : Switch,
+        &quot;slider&quot;     : Slider
     };
 
     &#x2F;**

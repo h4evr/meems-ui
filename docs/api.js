@@ -1,6 +1,7 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "Ajax",
         "Array",
         "Aside",
         "Button",
@@ -19,8 +20,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "Map",
         "Page",
         "PageHolder",
+        "Router",
         "Scroll",
+        "Slider",
         "SplitView",
+        "Switch",
         "Tab",
         "TabGroup",
         "TextField",
@@ -40,6 +44,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "header",
         "html",
         "list",
+        "meems",
         "meems-events",
         "meems-scroll",
         "meems-ui",
@@ -47,7 +52,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "observable",
         "page",
         "pageholder",
+        "router",
+        "slider",
         "splitview",
+        "switch",
         "tab",
         "tabgroup",
         "textfield",
@@ -100,6 +108,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "List component that will render based on templates.\nSupports header items for grouping."
         },
         {
+            "displayName": "meems",
+            "name": "meems",
+            "description": "Provides all Meems UI components.\nFactory module, allows the user to create any UI widget through a single method."
+        },
+        {
             "displayName": "meems-events",
             "name": "meems-events",
             "description": "Module that provides methods and mixins related with event handling."
@@ -135,9 +148,24 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "A bag for all the pages in a program. Allows to transition between pages."
         },
         {
+            "displayName": "router",
+            "name": "router",
+            "description": "Singleton manager of routes and application history."
+        },
+        {
+            "displayName": "slider",
+            "name": "slider",
+            "description": "A slider that allows the user to choose a value between a minimum and a maximum.\nExposes the attributes `label`, `minimum`, `maximum`."
+        },
+        {
             "displayName": "splitview",
             "name": "splitview",
             "description": "Component that holds two widgets and puts them side by side.\nExposes the facets `first` and `second`."
+        },
+        {
+            "displayName": "switch",
+            "name": "switch",
+            "description": "A toggle button that allows a user to set something on or off.\nExposes the attributes `label`."
         },
         {
             "displayName": "tab",

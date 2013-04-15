@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Router</title>
+    </head>
+    <body>
+        <script src="../lib/requirejs/require.js"></script>
+        <script>
+            require.config({
+                paths: {
+                    "meems-utils": "../lib/meems-utils/meems-utils",
+                    "meems-events": "../lib/meems-events/meems-events",
+                    "meems-scroll": "../lib/meems-scroll/meems-scroll",
+                    "mustache": "//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min"
+                }
+            });
+
+            require(["../src/meems", "meems-utils"], function (Meems, Utils) {
+                Meems.Router.on("users/:name/?lastname", function (req) {
+                    console.log(req.url, req.params);
+                });
+
+                Meems.Router.on("feeds/:name/?lastname/:demo", function (req) {
+                    console.log(req.url, req.params);
+                });
+
+                // Setup a default route
+                Meems.Router.on("", function (req) {
+                    Meems.Router.goTo("users/diogo");
+                });
+
+                Meems.Router.init();
+            });
+        </script>
+    </body>
+</html>

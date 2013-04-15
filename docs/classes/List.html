@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/Ajax.html">Ajax</a></li>
+            
                 <li><a href="..&#x2F;classes/Array.html">Array</a></li>
             
                 <li><a href="..&#x2F;classes/Aside.html">Aside</a></li>
@@ -83,9 +85,15 @@
             
                 <li><a href="..&#x2F;classes/PageHolder.html">PageHolder</a></li>
             
+                <li><a href="..&#x2F;classes/Router.html">Router</a></li>
+            
                 <li><a href="..&#x2F;classes/Scroll.html">Scroll</a></li>
             
+                <li><a href="..&#x2F;classes/Slider.html">Slider</a></li>
+            
                 <li><a href="..&#x2F;classes/SplitView.html">SplitView</a></li>
+            
+                <li><a href="..&#x2F;classes/Switch.html">Switch</a></li>
             
                 <li><a href="..&#x2F;classes/Tab.html">Tab</a></li>
             
@@ -119,6 +127,8 @@
             
                 <li><a href="..&#x2F;modules/list.html">list</a></li>
             
+                <li><a href="..&#x2F;modules/meems.html">meems</a></li>
+            
                 <li><a href="..&#x2F;modules/meems-events.html">meems-events</a></li>
             
                 <li><a href="..&#x2F;modules/meems-scroll.html">meems-scroll</a></li>
@@ -133,7 +143,13 @@
             
                 <li><a href="..&#x2F;modules/pageholder.html">pageholder</a></li>
             
+                <li><a href="..&#x2F;modules/router.html">router</a></li>
+            
+                <li><a href="..&#x2F;modules/slider.html">slider</a></li>
+            
                 <li><a href="..&#x2F;modules/splitview.html">splitview</a></li>
+            
+                <li><a href="..&#x2F;modules/switch.html">switch</a></li>
             
                 <li><a href="..&#x2F;modules/tab.html">tab</a></li>
             
@@ -190,7 +206,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l263"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:263</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l283"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:283</code></a>
         </div>
     
 
@@ -245,7 +261,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l263"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:263</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l283"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:283</code></a>
         
         </p>
 
@@ -654,7 +670,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l308"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:308</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l330"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:330</code></a>
         
         </p>
 
@@ -1181,7 +1197,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l439"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:439</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l495"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:495</code></a>
         
         </p>
 
@@ -1289,7 +1305,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l458"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:458</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l514"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:514</code></a>
         
         </p>
 
@@ -1903,7 +1919,7 @@ Otherwise, the new value is stored and the Widget itself is returned to allow ch
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l420"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:420</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l476"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:476</code></a>
         
         </p>
 
@@ -1967,7 +1983,17 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
     <h3 class="name"><code>update</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[structureOnly]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
     
@@ -2006,6 +2032,30 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
         <p>Called for creating and updating the Widget's DOM nodes.</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[structureOnly]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If only the DOM structure must be updated.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -2064,7 +2114,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l337"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:337</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l383"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:383</code></a>
         
         </p>
 
@@ -2102,7 +2152,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
                 <li class="param">
                     
                         <code class="param-name">newItems</code>
-                        <span class="type">Object</span>
+                        <span class="type">Object | Function</span>
                     
 
                     
@@ -2157,7 +2207,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l270"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:270</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l290"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:290</code></a>
         
         </p>
 
@@ -2203,7 +2253,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l288"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:288</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l308"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:308</code></a>
         
         </p>
 
@@ -2249,7 +2299,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l276"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:276</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l296"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:296</code></a>
         
         </p>
 
@@ -2295,7 +2345,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l295"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:295</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l315"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:315</code></a>
         
         </p>
 
@@ -2341,7 +2391,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l282"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:282</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l302"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:302</code></a>
         
         </p>
 
@@ -2395,7 +2445,7 @@ Otherwise, the new value is stored and the List itself is returned to allow chai
             
         
         
-        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l398"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:398</code></a>
+        <a href="..&#x2F;files&#x2F;.._src_ui_list.js.html#l454"><code>..&#x2F;src&#x2F;ui&#x2F;list.js:454</code></a>
         
         </p>
 

@@ -31,6 +31,7 @@
                 "meems-utils": 1
             },
             "classes": {
+                "Ajax": 1,
                 "Fn": 1,
                 "Array": 1,
                 "Map": 1,
@@ -161,6 +162,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "../src/ui/slider.js": {
+            "name": "../src/ui/slider.js",
+            "modules": {
+                "slider": 1
+            },
+            "classes": {
+                "Slider": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "../src/ui/split_view.js": {
             "name": "../src/ui/split_view.js",
             "modules": {
@@ -168,6 +180,17 @@
             },
             "classes": {
                 "SplitView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/ui/switch.js": {
+            "name": "../src/ui/switch.js",
+            "modules": {
+                "switch": 1
+            },
+            "classes": {
+                "Switch": 1
             },
             "fors": {},
             "namespaces": {}
@@ -227,6 +250,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "../src/meems.js": {
+            "name": "../src/meems.js",
+            "modules": {
+                "meems": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "../src/observable.js": {
             "name": "../src/observable.js",
             "modules": {
@@ -235,6 +267,17 @@
             "classes": {
                 "observable.Observable": 1,
                 "observable": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "../src/router.js": {
+            "name": "../src/router.js",
+            "modules": {
+                "router": 1
+            },
+            "classes": {
+                "Router": 1
             },
             "fors": {},
             "namespaces": {}
@@ -266,7 +309,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 495,
+            "line": 551,
             "description": "Emulates scrolling on a set of components, with scroll-bars, as if on a mobile environment.",
             "requires": [
                 "meems-utils",
@@ -277,6 +320,7 @@
             "name": "meems-utils",
             "submodules": {},
             "classes": {
+                "Ajax": 1,
                 "Fn": 1,
                 "Array": 1,
                 "Map": 1,
@@ -286,7 +330,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 166,
+            "line": 346,
             "description": "Contains a set of methods that facilitate several tasks."
         },
         "meems-ui": {
@@ -303,7 +347,9 @@
                 "list": 1,
                 "page": 1,
                 "pageholder": 1,
+                "slider": 1,
                 "splitview": 1,
+                "switch": 1,
                 "tab": 1,
                 "tabgroup": 1,
                 "textfield": 1,
@@ -322,7 +368,9 @@
                 "List": 1,
                 "Page": 1,
                 "PageHolder": 1,
+                "Slider": 1,
                 "SplitView": 1,
+                "Switch": 1,
                 "Tab": 1,
                 "TabGroup": 1,
                 "TextField": 1,
@@ -333,7 +381,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../src/meems-ui.js",
-            "line": 53,
+            "line": 57,
             "description": "Provides all Meems UI components.\nFactory module, allows the user to create any UI widget through a single method.",
             "requires": [
                 "observable"
@@ -497,7 +545,7 @@
             "module": "meems-ui",
             "namespace": "",
             "file": "../src/ui/list.js",
-            "line": 263,
+            "line": 283,
             "description": "List component that will render based on templates.\nSupports header items for grouping.",
             "requires": [
                 "meems-utils",
@@ -543,6 +591,24 @@
                 "meems-utils"
             ]
         },
+        "slider": {
+            "name": "slider",
+            "submodules": {},
+            "classes": {
+                "Slider": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/slider.js",
+            "line": 13,
+            "description": "A slider that allows the user to choose a value between a minimum and a maximum.\nExposes the attributes `label`, `minimum`, `maximum`.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
         "splitview": {
             "name": "splitview",
             "submodules": {},
@@ -557,6 +623,24 @@
             "file": "../src/ui/split_view.js",
             "line": 13,
             "description": "Component that holds two widgets and puts them side by side.\nExposes the facets `first` and `second`.",
+            "requires": [
+                "meems-utils"
+            ]
+        },
+        "switch": {
+            "name": "switch",
+            "submodules": {},
+            "classes": {
+                "Switch": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems-ui",
+            "namespace": "",
+            "file": "../src/ui/switch.js",
+            "line": 13,
+            "description": "A toggle button that allows a user to set something on or off.\nExposes the attributes `label`.",
             "requires": [
                 "meems-utils"
             ]
@@ -638,6 +722,24 @@
                 "meems-events"
             ]
         },
+        "meems": {
+            "name": "meems",
+            "submodules": {
+                "router": 1
+            },
+            "classes": {
+                "Router": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "../src/router.js",
+            "line": 39,
+            "description": "Provides all Meems UI components.\nFactory module, allows the user to create any UI widget through a single method.",
+            "requires": [
+                "observable meems-ui"
+            ]
+        },
         "observable": {
             "name": "observable",
             "submodules": {},
@@ -649,8 +751,23 @@
             "namespaces": {},
             "tag": "module",
             "file": "../src/observable.js",
-            "line": 120,
+            "line": 140,
             "description": "This module provides helper methods for detecting changes in object properties,\ntriggering observers when anything happens."
+        },
+        "router": {
+            "name": "router",
+            "submodules": {},
+            "classes": {
+                "Router": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "meems",
+            "namespace": "",
+            "file": "../src/router.js",
+            "line": 39,
+            "description": "Singleton manager of routes and application history."
         }
     },
     "classes": {
@@ -710,8 +827,22 @@
             "module": "meems-scroll",
             "namespace": "",
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 495,
+            "line": 551,
             "is_constructor": 1
+        },
+        "Ajax": {
+            "name": "Ajax",
+            "shortname": "Ajax",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-utils",
+            "namespace": "",
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 81,
+            "description": "Methods related with AJAX."
         },
         "Fn": {
             "name": "Fn",
@@ -724,7 +855,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 17,
+            "line": 161,
             "description": "Methods related with function manipulation."
         },
         "Array": {
@@ -738,7 +869,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 94,
+            "line": 238,
             "description": "All methods related to array manipulation."
         },
         "Map": {
@@ -752,7 +883,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 139,
+            "line": 319,
             "description": "All methods related to map manipulation."
         },
         "Dom": {
@@ -766,7 +897,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 166,
+            "line": 346,
             "description": "All methods related with DOM manipulation."
         },
         "Aside": {
@@ -909,7 +1040,7 @@
             "submodule": "list",
             "namespace": "",
             "file": "../src/ui/list.js",
-            "line": 147,
+            "line": 162,
             "description": "Internal class that holds a single item.",
             "access": "private",
             "tagname": "",
@@ -928,7 +1059,7 @@
             "submodule": "list",
             "namespace": "",
             "file": "../src/ui/list.js",
-            "line": 263,
+            "line": 283,
             "is_constructor": 1,
             "extends": "Widget"
         },
@@ -964,6 +1095,22 @@
             "is_constructor": 1,
             "extends": "Widget"
         },
+        "Slider": {
+            "name": "Slider",
+            "shortname": "Slider",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "slider",
+            "namespace": "",
+            "file": "../src/ui/slider.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
         "SplitView": {
             "name": "SplitView",
             "shortname": "SplitView",
@@ -976,6 +1123,22 @@
             "submodule": "splitview",
             "namespace": "",
             "file": "../src/ui/split_view.js",
+            "line": 13,
+            "is_constructor": 1,
+            "extends": "Widget"
+        },
+        "Switch": {
+            "name": "Switch",
+            "shortname": "Switch",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems-ui",
+            "submodule": "switch",
+            "namespace": "",
+            "file": "../src/ui/switch.js",
             "line": 13,
             "is_constructor": 1,
             "extends": "Widget"
@@ -1055,7 +1218,7 @@
             "module": "meems-ui",
             "namespace": "",
             "file": "../src/meems-ui.js",
-            "line": 53
+            "line": 57
         },
         "observable.Observable": {
             "name": "observable.Observable",
@@ -1092,7 +1255,21 @@
             "module": "observable",
             "namespace": "",
             "file": "../src/observable.js",
-            "line": 120
+            "line": 140
+        },
+        "Router": {
+            "name": "Router",
+            "shortname": "Router",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "meems",
+            "submodule": "router",
+            "namespace": "",
+            "file": "../src/router.js",
+            "line": 39
         }
     },
     "classitems": [
@@ -1316,7 +1493,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 539,
+            "line": 595,
             "description": "Updates all scroller that were ever created and are still active.",
             "itemtype": "method",
             "name": "updateAll",
@@ -1326,7 +1503,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 554,
+            "line": 610,
             "description": "Update the size of the scroller, should be called after a layout change.",
             "itemtype": "method",
             "name": "update",
@@ -1335,7 +1512,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 565,
+            "line": 621,
             "description": "Destroy this scroller instance.",
             "itemtype": "method",
             "name": "destroy",
@@ -1344,7 +1521,7 @@
         },
         {
             "file": "../lib/meems-scroll/meems-scroll.js",
-            "line": 575,
+            "line": 631,
             "description": "Scroll to the given position, with animation.",
             "itemtype": "method",
             "name": "scrollTo",
@@ -1372,7 +1549,97 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 23,
+            "line": 38,
+            "description": "Encodes parameters to URI format.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "serializeUrlObj",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "The object to convert."
+                },
+                {
+                    "name": "prefix",
+                    "description": "A prefix to apply.",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The serialize object.",
+                "type": "String"
+            },
+            "class": "Ajax",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 87,
+            "description": "Make an AJAX request.",
+            "itemtype": "method",
+            "name": "request",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "The necessary data for making the request.",
+                    "props": [
+                        {
+                            "name": "url",
+                            "description": "The URL to send the request to."
+                        },
+                        {
+                            "name": "params",
+                            "description": "The parameters that must be sent.",
+                            "optional": true
+                        },
+                        {
+                            "name": "method",
+                            "description": "Which method to use (GET, POST, PUT, DELETE)",
+                            "optional": true,
+                            "optdefault": "GET"
+                        },
+                        {
+                            "name": "format",
+                            "description": "In which format to encode the parameters (url, json).",
+                            "optional": true,
+                            "optdefault": "url"
+                        },
+                        {
+                            "name": "decoding",
+                            "description": "How the response should be decoded (text, json, xml).",
+                            "optional": true,
+                            "optdefault": "text"
+                        },
+                        {
+                            "name": "headers",
+                            "description": "Custom headers to send in the request.",
+                            "optional": true
+                        },
+                        {
+                            "name": "done",
+                            "description": "Called when the response arrives.",
+                            "props": [
+                                {
+                                    "name": "statusCode",
+                                    "description": "The status code of the response."
+                                },
+                                {
+                                    "name": "response",
+                                    "description": "The textual content of the response.",
+                                    "optional": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "class": "Ajax",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 167,
             "description": "Used for extending classes.",
             "itemtype": "method",
             "name": "extend",
@@ -1399,7 +1666,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 46,
+            "line": 190,
             "description": "Postpones the invocation of a function until the current method chain is finished.",
             "itemtype": "method",
             "name": "postPone",
@@ -1416,7 +1683,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 57,
+            "line": 201,
             "description": "Binds the 'this' variable of a function to the given variable.",
             "itemtype": "method",
             "name": "bind",
@@ -1442,7 +1709,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 72,
+            "line": 216,
             "description": "Ensures a function is called at most once in the given time interval.",
             "itemtype": "method",
             "name": "throttle",
@@ -1468,7 +1735,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 100,
+            "line": 244,
             "description": "Allows to search an array of objects by a property of those objects.",
             "itemtype": "method",
             "name": "indexOfByProp",
@@ -1499,7 +1766,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 121,
+            "line": 265,
             "description": "Removes an element from an array (in-place).",
             "itemtype": "method",
             "name": "remove",
@@ -1521,7 +1788,33 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 145,
+            "line": 282,
+            "description": "Move an element of the array to another position.\nStolen from: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another",
+            "itemtype": "method",
+            "name": "moveElement",
+            "params": [
+                {
+                    "name": "arr",
+                    "description": "The array to modify.",
+                    "type": "Array"
+                },
+                {
+                    "name": "pos1",
+                    "description": "The position where the element is at.",
+                    "type": "Number"
+                },
+                {
+                    "name": "pos2",
+                    "description": "The position where the element must be moved to.",
+                    "type": "Number"
+                }
+            ],
+            "class": "Array",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 325,
             "description": "Extracts all the keys from a map object.",
             "itemtype": "method",
             "name": "getKeys",
@@ -1542,7 +1835,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 172,
+            "line": 352,
             "description": "Retrieves the className of an element.\nUsing this method is required when using other methods from this namespace,\nbecause it will return the most recent changes (even before calling applyChanges).",
             "itemtype": "method",
             "name": "getClass",
@@ -1563,7 +1856,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 194,
+            "line": 374,
             "description": "Append a new class name to an element.",
             "itemtype": "method",
             "name": "addClass",
@@ -1585,7 +1878,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 207,
+            "line": 387,
             "description": "Remove a class name from an element.",
             "itemtype": "method",
             "name": "removeClass",
@@ -1607,7 +1900,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 220,
+            "line": 400,
             "description": "Replace the className of an element.",
             "itemtype": "method",
             "name": "setClass",
@@ -1629,7 +1922,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 236,
+            "line": 416,
             "description": "Set the innerHTML property of an element.",
             "itemtype": "method",
             "name": "setHtml",
@@ -1651,7 +1944,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 252,
+            "line": 432,
             "description": "Applies all the changes made by the addClass, setClass, removeClass, setHtml methods.\nThis is a way to reduce DOM manipulation, speeding up the update process.",
             "itemtype": "method",
             "name": "applyChanges",
@@ -1661,7 +1954,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 285,
+            "line": 465,
             "description": "Add a meta tag to the head element, disabling zooming and fixing the viewport.\nUse only when you can't easily add the tag yourself to the HTML file.",
             "itemtype": "method",
             "name": "fixedViewport",
@@ -1671,7 +1964,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 299,
+            "line": 479,
             "description": "Checks if the browser supports touch events.",
             "itemtype": "method",
             "name": "supportsTouch",
@@ -1685,7 +1978,27 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 310,
+            "line": 490,
+            "description": "Retrieves the absolute x and y components of the provided element,\nrelative to its closest parent with position absolute.",
+            "itemtype": "method",
+            "name": "getPosition",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to calculate the position of.",
+                    "type": "HTMLElement"
+                }
+            ],
+            "return": {
+                "description": "x and y",
+                "type": "Object"
+            },
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 513,
             "description": "Retrieves the absolute x and y components of the provided element,\nrelative to its closest parent with position absolute.",
             "itemtype": "method",
             "name": "getAbsolutePosition",
@@ -1698,6 +2011,26 @@
             ],
             "return": {
                 "description": "x and y",
+                "type": "Object"
+            },
+            "class": "Dom",
+            "module": "meems-utils"
+        },
+        {
+            "file": "../lib/meems-utils/meems-utils.js",
+            "line": 538,
+            "description": "Retrieves the dimensions of an element, excluding padding, margins and borders.",
+            "itemtype": "method",
+            "name": "getDimensions",
+            "params": [
+                {
+                    "name": "el",
+                    "description": "The element to calculate the dimensions of.",
+                    "type": "HTMLElement"
+                }
+            ],
+            "return": {
+                "description": "width and height",
                 "type": "Object"
             },
             "class": "Dom",
@@ -1749,7 +2082,7 @@
         },
         {
             "file": "../src/ui/button_group.js",
-            "line": 44,
+            "line": 79,
             "description": "Adds a new button to the group.",
             "itemtype": "method",
             "name": "addButton",
@@ -1770,7 +2103,7 @@
         },
         {
             "file": "../src/ui/button_group.js",
-            "line": 56,
+            "line": 91,
             "description": "Getter and setter for all the buttons in this group.",
             "itemtype": "method",
             "name": "buttons",
@@ -1910,7 +2243,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 59,
+            "line": 60,
             "description": "Called when the item is moved.",
             "itemtype": "method",
             "name": "onItemMoved",
@@ -1929,7 +2262,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 113,
+            "line": 112,
             "description": "Called when the order button of an item is released.",
             "itemtype": "method",
             "name": "onEndOrdering",
@@ -1948,7 +2281,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 176,
+            "line": 192,
             "description": "Getter and setter for indicating if the item is a header.",
             "itemtype": "method",
             "name": "header",
@@ -1971,7 +2304,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 270,
+            "line": 290,
             "itemtype": "property",
             "name": "$generatedItems",
             "access": "private",
@@ -1983,7 +2316,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 276,
+            "line": 296,
             "itemtype": "property",
             "name": "$items",
             "access": "private",
@@ -1995,7 +2328,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 282,
+            "line": 302,
             "itemtype": "property",
             "name": "$template",
             "access": "private",
@@ -2007,7 +2340,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 288,
+            "line": 308,
             "itemtype": "property",
             "name": "$headerTemplate",
             "access": "private",
@@ -2019,7 +2352,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 295,
+            "line": 315,
             "itemtype": "property",
             "name": "$placeHolder",
             "access": "private",
@@ -2031,7 +2364,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 308,
+            "line": 330,
             "description": "Create a new list item.",
             "itemtype": "method",
             "name": "createItem",
@@ -2059,7 +2392,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 337,
+            "line": 383,
             "description": "Update the items DOM, based of the array of items before and after.",
             "itemtype": "method",
             "name": "updateItems",
@@ -2074,7 +2407,7 @@
                 {
                     "name": "newItems",
                     "description": "The new items.",
-                    "type": "Object[]"
+                    "type": "Object[]|Function"
                 }
             ],
             "class": "List",
@@ -2083,7 +2416,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 398,
+            "line": 454,
             "description": "Fired when an item is clicked.",
             "itemtype": "event",
             "name": "item:clicked",
@@ -2105,7 +2438,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 420,
+            "line": 476,
             "description": "Getter and setter for the template of an item.",
             "itemtype": "method",
             "name": "template",
@@ -2128,7 +2461,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 439,
+            "line": 495,
             "description": "Getter and setter for the template of a header item.",
             "itemtype": "method",
             "name": "headerTemplate",
@@ -2151,7 +2484,7 @@
         },
         {
             "file": "../src/ui/list.js",
-            "line": 458,
+            "line": 514,
             "description": "Getter and setter for the items of the list.",
             "itemtype": "method",
             "name": "item",
@@ -2255,6 +2588,98 @@
             "class": "PageHolder",
             "module": "meems-ui",
             "submodule": "pageholder"
+        },
+        {
+            "file": "../src/ui/slider.js",
+            "line": 19,
+            "itemtype": "property",
+            "name": "$input",
+            "access": "private",
+            "tagname": "",
+            "type": "{HTMLElement}",
+            "class": "Slider",
+            "module": "meems-ui",
+            "submodule": "slider"
+        },
+        {
+            "file": "../src/ui/slider.js",
+            "line": 26,
+            "itemtype": "property",
+            "name": "$label",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "class": "Slider",
+            "module": "meems-ui",
+            "submodule": "slider"
+        },
+        {
+            "file": "../src/ui/slider.js",
+            "line": 130,
+            "description": "Getter and setter for the value of the field.",
+            "itemtype": "method",
+            "name": "value",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new value.",
+                    "type": "observable.Observable|String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "`this` if called as a setter,\nthe current value otherwise.",
+                "type": "TextField|observable,Observable|String"
+            },
+            "class": "Slider",
+            "module": "meems-ui",
+            "submodule": "slider"
+        },
+        {
+            "file": "../src/ui/switch.js",
+            "line": 19,
+            "itemtype": "property",
+            "name": "$input",
+            "access": "private",
+            "tagname": "",
+            "type": "{HTMLElement}",
+            "class": "Switch",
+            "module": "meems-ui",
+            "submodule": "switch"
+        },
+        {
+            "file": "../src/ui/switch.js",
+            "line": 26,
+            "itemtype": "property",
+            "name": "$label",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "class": "Switch",
+            "module": "meems-ui",
+            "submodule": "switch"
+        },
+        {
+            "file": "../src/ui/switch.js",
+            "line": 48,
+            "description": "Getter and setter for the value of the field.",
+            "itemtype": "method",
+            "name": "value",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The new value.",
+                    "type": "observable.Observable|String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "`this` if called as a setter,\nthe current value otherwise.",
+                "type": "TextField|observable,Observable|String"
+            },
+            "class": "Switch",
+            "module": "meems-ui",
+            "submodule": "switch"
         },
         {
             "file": "../src/ui/tab_group.js",
@@ -2396,7 +2821,7 @@
         },
         {
             "file": "../src/ui/textfield.js",
-            "line": 38,
+            "line": 47,
             "description": "Getter and setter for the value of the field.",
             "itemtype": "method",
             "name": "value",
@@ -2565,13 +2990,21 @@
             "description": "Called for creating and updating the Widget's DOM nodes.",
             "itemtype": "method",
             "name": "update",
+            "params": [
+                {
+                    "name": "structureOnly",
+                    "description": "If only the DOM structure must be updated.",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
             "class": "Widget",
             "module": "meems-ui",
             "submodule": "widget"
         },
         {
             "file": "../src/meems-ui.js",
-            "line": 57,
+            "line": 61,
             "description": "Creates a new widget.",
             "itemtype": "method",
             "name": "create",
@@ -2700,7 +3133,7 @@
         },
         {
             "file": "../src/observable.js",
-            "line": 124,
+            "line": 144,
             "description": "Creates a new observable property.",
             "itemtype": "method",
             "name": "observable",
@@ -2722,7 +3155,7 @@
         },
         {
             "file": "../src/observable.js",
-            "line": 136,
+            "line": 156,
             "description": "Creates a new observable array.\nNote that notifications will only be triggered when the structure of the\narray is changed. Modifications to properties of elements of the array will\nnot be detected. For that, you must define them as observable properties.",
             "itemtype": "method",
             "name": "observableArray",
@@ -2741,6 +3174,71 @@
             },
             "class": "observable",
             "module": "observable"
+        },
+        {
+            "file": "../src/router.js",
+            "line": 43,
+            "description": "Obtain the current location.",
+            "itemtype": "method",
+            "name": "get",
+            "return": {
+                "description": "The current location",
+                "type": "String"
+            },
+            "class": "Router",
+            "module": "meems",
+            "submodule": "router"
+        },
+        {
+            "file": "../src/router.js",
+            "line": 53,
+            "description": "Associates a callback with a route.",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "route",
+                    "description": "The route to match."
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback to be invoked."
+                }
+            ],
+            "class": "Router",
+            "module": "meems",
+            "submodule": "router"
+        },
+        {
+            "file": "../src/router.js",
+            "line": 84,
+            "description": "Jump to a certain route.",
+            "itemtype": "method",
+            "name": "goTo",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "Jump to the given url"
+                },
+                {
+                    "name": "skipUpdateLocation",
+                    "description": "true if the window location is not to be updated.",
+                    "optional": true
+                }
+            ],
+            "class": "Router",
+            "module": "meems",
+            "submodule": "router"
+        },
+        {
+            "file": "../src/router.js",
+            "line": 105,
+            "description": "Reads the current URL and invokes the appropriate handlers.\nCall this after you've set up the route handlers.",
+            "itemtype": "method",
+            "name": "init",
+            "class": "Router",
+            "module": "meems",
+            "submodule": "router"
         }
     ],
     "warnings": []

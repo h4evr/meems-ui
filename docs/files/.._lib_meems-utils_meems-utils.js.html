@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/Ajax.html">Ajax</a></li>
+            
                 <li><a href="..&#x2F;classes/Array.html">Array</a></li>
             
                 <li><a href="..&#x2F;classes/Aside.html">Aside</a></li>
@@ -83,9 +85,15 @@
             
                 <li><a href="..&#x2F;classes/PageHolder.html">PageHolder</a></li>
             
+                <li><a href="..&#x2F;classes/Router.html">Router</a></li>
+            
                 <li><a href="..&#x2F;classes/Scroll.html">Scroll</a></li>
             
+                <li><a href="..&#x2F;classes/Slider.html">Slider</a></li>
+            
                 <li><a href="..&#x2F;classes/SplitView.html">SplitView</a></li>
+            
+                <li><a href="..&#x2F;classes/Switch.html">Switch</a></li>
             
                 <li><a href="..&#x2F;classes/Tab.html">Tab</a></li>
             
@@ -119,6 +127,8 @@
             
                 <li><a href="..&#x2F;modules/list.html">list</a></li>
             
+                <li><a href="..&#x2F;modules/meems.html">meems</a></li>
+            
                 <li><a href="..&#x2F;modules/meems-events.html">meems-events</a></li>
             
                 <li><a href="..&#x2F;modules/meems-scroll.html">meems-scroll</a></li>
@@ -133,7 +143,13 @@
             
                 <li><a href="..&#x2F;modules/pageholder.html">pageholder</a></li>
             
+                <li><a href="..&#x2F;modules/router.html">router</a></li>
+            
+                <li><a href="..&#x2F;modules/slider.html">slider</a></li>
+            
                 <li><a href="..&#x2F;modules/splitview.html">splitview</a></li>
+            
+                <li><a href="..&#x2F;modules/switch.html">switch</a></li>
             
                 <li><a href="..&#x2F;modules/tab.html">tab</a></li>
             
@@ -197,7 +213,151 @@ define(function () {
         elmId = 0,
         elementsById = {};
 
+    var getXmlHttpRequest = function () {
+        if (typeof XMLHttpRequest !== &#x27;undefined&#x27;) {
+            return new XMLHttpRequest();
+        } else {
+            var versions = [
+                &quot;MSXML2.XmlHttp.5.0&quot;,
+                &quot;MSXML2.XmlHttp.4.0&quot;,
+                &quot;MSXML2.XmlHttp.3.0&quot;,
+                &quot;MSXML2.XmlHttp.2.0&quot;,
+                &quot;Microsoft.XmlHttp&quot;
+            ];
+
+            var xhr;
+            for(var i = 0, len = versions.length; i &lt; len; ++i) {
+                try {
+                    xhr = new ActiveXObject(versions[i]);
+                    return xhr;
+                } catch (e) { }
+            }
+        }
+    };
+
+    &#x2F;**
+     * Encodes parameters to URI format.
+     *
+     * @private
+     * @method serializeUrlObj
+     * @param obj The object to convert.
+     * @param [prefix] A prefix to apply.
+     * @return {string} The serialize object.
+     *&#x2F;
+    var serializeUrlObj = function(obj, prefix) {
+        var str = [];
+
+        for (var p in obj) {
+            var k = prefix ? prefix + &quot;[&quot; + p + &quot;]&quot; : p,
+                v = obj[p];
+            str.push(typeof(v) === &quot;object&quot; ?
+                serializeUrlObj(v, k) :
+                encodeURIComponent(k) + &quot;=&quot; + encodeURIComponent(v));
+        }
+
+        return str.join(&quot;&amp;&quot;);
+    }
+
+    function buildPayload(output, params) {
+        if (output === &#x27;json&#x27;) {
+            return JSON.stringify(params);
+        } else if (output === &#x27;url&#x27;) {
+            return serializeUrlObj(params);
+        }
+    }
+
+    function decodeResponse(method, text) {
+        if (method === &#x27;text&#x27;) {
+            return text;
+        } else if (method === &#x27;json&#x27;) {
+            return JSON.parse(text);
+        } else if (method === &#x27;xml&#x27;) {
+            var parser = new DOMParser();
+            return parser.parseFromString(text, &quot;application&#x2F;xml&quot;);
+        }
+    }
+
     var Utils = {
+        &#x2F;**
+         * Methods related with AJAX.
+         *
+         * @class Ajax
+         *&#x2F;
+        Ajax : {
+            &#x2F;**
+             * Make an AJAX request.
+             *
+             * @method request
+             * @param options The necessary data for making the request.
+             * @param options.url The URL to send the request to.
+             * @param [options.params] The parameters that must be sent.
+             * @param [options.method=GET] Which method to use (GET, POST, PUT, DELETE)
+             * @param [options.format=url] In which format to encode the parameters (url, json).
+             * @param [options.decoding=text] How the response should be decoded (text, json, xml).
+             * @param [options.headers] Custom headers to send in the request.
+             * @param options.done Called when the response arrives.
+             * @param options.done.statusCode The status code of the response.
+             * @param [options.done.response] The textual content of the response.
+             *&#x2F;
+            request : function (options) {
+                var xhr = getXmlHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState &lt; 4) {
+                        return;
+                    }
+
+                    if(xhr.status !== 200) {
+                        options.done({
+                            statusCode: xhr.status
+                        });
+                        return;
+                    }
+
+                    &#x2F;&#x2F; all is well
+                    if(xhr.readyState === 4) {
+                        var decoding = options.decoding || &#x27;text&#x27;;
+
+                        options.done({
+                            statusCode: xhr.status,
+                            response: decodeResponse(decoding, xhr.responseText)
+                        });
+                    }
+                };
+
+                var url = options.url,
+                    headers = options.headers || {},
+                    method = options.method || &#x27;GET&#x27;,
+                    format = options.format || &#x27;url&#x27;;
+
+                if (method === &#x27;GET&#x27;) {
+                    xhr.open(method, url + &quot;?&quot; + buildPayload(&#x27;url&#x27;, options.params), true);
+                } else {
+                    xhr.open(method, url, true);
+                }
+
+                if (format === &#x27;url&#x27;) {
+                    xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;x-www-form-urlencoded&quot;);
+                } else if (format === &#x27;json&#x27;) {
+                    xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;json&quot;);
+                } else if (format === &#x27;xml&#x27;) {
+                    xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;xml&quot;);
+                }
+
+                for (var k in headers) {
+                    if (headers.hasOwnProperty(k)) {
+                        xhr.setRequestHeader(k, headers[k]);
+                    }
+                }
+
+                if (method === &#x27;GET&#x27;) {
+                    xhr.send();
+                } else {
+                    xhr.send(buildPayload(format, options.params));
+                }
+            }
+        },
+
         &#x2F;**
          * Methods related with function manipulation.
          *
@@ -316,6 +476,42 @@ define(function () {
                         arr.splice(i, 0);
                         return;
                     }
+                }
+            },
+
+            &#x2F;**
+             * Move an element of the array to another position.
+             * Stolen from: http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;5306680&#x2F;move-an-array-element-from-one-array-position-to-another
+             *
+             * @method moveElement
+             * @param {Array} arr The array to modify.
+             * @param {Number} pos1 The position where the element is at.
+             * @param {Number} pos2 The position where the element must be moved to.
+             *&#x2F;
+            moveElement : function(arr, pos1, pos2) {
+                &#x2F;&#x2F; local variables
+                var i, tmp;
+                &#x2F;&#x2F; cast input parameters to integers
+                pos1 = parseInt(pos1, 10);
+                pos2 = parseInt(pos2, 10);
+                &#x2F;&#x2F; if positions are different and inside array
+                if (pos1 !== pos2 &amp;&amp; 0 &lt;= pos1 &amp;&amp; pos1 &lt;= arr.length &amp;&amp; 0 &lt;= pos2 &amp;&amp; pos2 &lt;= arr.length) {
+                    &#x2F;&#x2F; save element from position 1
+                    tmp = arr[pos1];
+                    &#x2F;&#x2F; move element down and shift other elements up
+                    if (pos1 &lt; pos2) {
+                        for (i = pos1; i &lt; pos2; i++) {
+                            arr[i] = arr[i + 1];
+                        }
+                    }
+                    &#x2F;&#x2F; move element up and shift other elements down
+                    else {
+                        for (i = pos1; i &gt; pos2; i--) {
+                            arr[i] = arr[i - 1];
+                        }
+                    }
+                    &#x2F;&#x2F; put element from position 1 to destination
+                    arr[pos2] = tmp;
                 }
             }
         },
@@ -495,6 +691,29 @@ define(function () {
              * Retrieves the absolute x and y components of the provided element,
              * relative to its closest parent with position absolute.
              *
+             * @method getPosition
+             * @param {HTMLElement} el The element to calculate the position of.
+             * @return {Object} x and y
+             *&#x2F;
+            getPosition : function (el) {
+                var currentEl = el,
+                    ret = {
+                        x: 0,
+                        y: 0
+                    };
+
+                do {
+                    ret.x += currentEl.offsetLeft;
+                    ret.y += currentEl.offsetTop;
+                } while (currentEl = currentEl.offsetParent);
+
+                return ret;
+            },
+
+            &#x2F;**
+             * Retrieves the absolute x and y components of the provided element,
+             * relative to its closest parent with position absolute.
+             *
              * @method getAbsolutePosition
              * @param {HTMLElement} el The element to calculate the position of.
              * @return {Object} x and y
@@ -514,6 +733,21 @@ define(function () {
                 }
 
                 return ret;
+            },
+
+            &#x2F;**
+             * Retrieves the dimensions of an element, excluding padding, margins and borders.
+             *
+             * @method getDimensions
+             * @param {HTMLElement} el The element to calculate the dimensions of.
+             * @return {Object} width and height
+             *&#x2F;
+            getDimensions : function (el) {
+                var style = window.getComputedStyle(el, null);
+                return {
+                    width: parseFloat(style.getPropertyValue(&quot;width&quot;)),
+                    height: parseFloat(style.getPropertyValue(&quot;height&quot;))
+                }
             }
         }
     };

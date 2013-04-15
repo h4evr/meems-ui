@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="..&#x2F;classes/Ajax.html">Ajax</a></li>
+            
                 <li><a href="..&#x2F;classes/Array.html">Array</a></li>
             
                 <li><a href="..&#x2F;classes/Aside.html">Aside</a></li>
@@ -83,9 +85,15 @@
             
                 <li><a href="..&#x2F;classes/PageHolder.html">PageHolder</a></li>
             
+                <li><a href="..&#x2F;classes/Router.html">Router</a></li>
+            
                 <li><a href="..&#x2F;classes/Scroll.html">Scroll</a></li>
             
+                <li><a href="..&#x2F;classes/Slider.html">Slider</a></li>
+            
                 <li><a href="..&#x2F;classes/SplitView.html">SplitView</a></li>
+            
+                <li><a href="..&#x2F;classes/Switch.html">Switch</a></li>
             
                 <li><a href="..&#x2F;classes/Tab.html">Tab</a></li>
             
@@ -119,6 +127,8 @@
             
                 <li><a href="..&#x2F;modules/list.html">list</a></li>
             
+                <li><a href="..&#x2F;modules/meems.html">meems</a></li>
+            
                 <li><a href="..&#x2F;modules/meems-events.html">meems-events</a></li>
             
                 <li><a href="..&#x2F;modules/meems-scroll.html">meems-scroll</a></li>
@@ -133,7 +143,13 @@
             
                 <li><a href="..&#x2F;modules/pageholder.html">pageholder</a></li>
             
+                <li><a href="..&#x2F;modules/router.html">router</a></li>
+            
+                <li><a href="..&#x2F;modules/slider.html">slider</a></li>
+            
                 <li><a href="..&#x2F;modules/splitview.html">splitview</a></li>
+            
+                <li><a href="..&#x2F;modules/switch.html">switch</a></li>
             
                 <li><a href="..&#x2F;modules/tab.html">tab</a></li>
             
@@ -226,14 +242,14 @@ function (Utils, Scroll, Widget) {
             return this.$scroller;
         },
 
-        update : function () {
+        update : function (structureOnly) {
             if (!this.el()) {
                 this.el(document.createElement(&quot;div&quot;));
                 this.el().className = &quot;ui-page&quot;;
             }
             
             if (this.facet(&quot;header&quot;)) {
-                this.facet(&quot;header&quot;).update();
+                this.facet(&quot;header&quot;).update(structureOnly);
                 
                 if (this.facet(&quot;header&quot;).el().parentNode !== this.el()) {
                     this.el().appendChild(this.facet(&quot;header&quot;).el());
@@ -241,9 +257,9 @@ function (Utils, Scroll, Widget) {
             }
             
             if (this.facet(&quot;content&quot;)) {
-                this.facet(&quot;content&quot;).update();
+                this.facet(&quot;content&quot;).update(structureOnly);
                 
-                if (this.facet(&quot;content&quot;).el().parentNode !== this.el()) {
+                if (!this.facet(&quot;content&quot;).el().parentNode || this.facet(&quot;content&quot;).el().parentNode !== this.$contentWrapper) {
                     this.$contentWrapper = document.createElement(&quot;div&quot;);
                     this.$contentWrapper.className = &quot;ui-content&quot;;
                     this.$contentWrapper.appendChild(this.facet(&quot;content&quot;).el());
@@ -252,7 +268,7 @@ function (Utils, Scroll, Widget) {
             }
             
             if (this.facet(&quot;footer&quot;)) {
-                this.facet(&quot;footer&quot;).update();
+                this.facet(&quot;footer&quot;).update(structureOnly);
                 
                 if (this.facet(&quot;footer&quot;).el().parentNode !== this.el()) {
                     this.el().appendChild(this.facet(&quot;footer&quot;).el());
