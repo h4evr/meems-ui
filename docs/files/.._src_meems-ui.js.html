@@ -275,6 +275,17 @@ function (Observable, Widget, Header, Footer, Page,
             }
 
             return obj;
+        },
+
+        &#x2F;**
+         * Register a new type of widget.
+         *
+         * @method registerWidget
+         * @param {String} name The name that will be used to identify this type of widget.
+         * @param {Function} constructor The widget constructor.
+         *&#x2F;
+        registerWidget : function (name, constructor) {
+            factories[name] = constructor;
         }
     };
     

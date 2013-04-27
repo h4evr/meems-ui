@@ -330,7 +330,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 346,
+            "line": 350,
             "description": "Contains a set of methods that facilitate several tasks."
         },
         "meems-ui": {
@@ -855,7 +855,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 161,
+            "line": 165,
             "description": "Methods related with function manipulation."
         },
         "Array": {
@@ -869,7 +869,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 238,
+            "line": 242,
             "description": "All methods related to array manipulation."
         },
         "Map": {
@@ -883,7 +883,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 319,
+            "line": 323,
             "description": "All methods related to map manipulation."
         },
         "Dom": {
@@ -897,7 +897,7 @@
             "module": "meems-utils",
             "namespace": "",
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 346,
+            "line": 350,
             "description": "All methods related with DOM manipulation."
         },
         "Aside": {
@@ -1639,7 +1639,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 167,
+            "line": 171,
             "description": "Used for extending classes.",
             "itemtype": "method",
             "name": "extend",
@@ -1666,7 +1666,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 190,
+            "line": 194,
             "description": "Postpones the invocation of a function until the current method chain is finished.",
             "itemtype": "method",
             "name": "postPone",
@@ -1683,7 +1683,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 201,
+            "line": 205,
             "description": "Binds the 'this' variable of a function to the given variable.",
             "itemtype": "method",
             "name": "bind",
@@ -1709,7 +1709,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 216,
+            "line": 220,
             "description": "Ensures a function is called at most once in the given time interval.",
             "itemtype": "method",
             "name": "throttle",
@@ -1735,7 +1735,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 244,
+            "line": 248,
             "description": "Allows to search an array of objects by a property of those objects.",
             "itemtype": "method",
             "name": "indexOfByProp",
@@ -1766,7 +1766,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 265,
+            "line": 269,
             "description": "Removes an element from an array (in-place).",
             "itemtype": "method",
             "name": "remove",
@@ -1788,7 +1788,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 282,
+            "line": 286,
             "description": "Move an element of the array to another position.\nStolen from: http://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another",
             "itemtype": "method",
             "name": "moveElement",
@@ -1814,7 +1814,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 325,
+            "line": 329,
             "description": "Extracts all the keys from a map object.",
             "itemtype": "method",
             "name": "getKeys",
@@ -1835,7 +1835,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 352,
+            "line": 356,
             "description": "Retrieves the className of an element.\nUsing this method is required when using other methods from this namespace,\nbecause it will return the most recent changes (even before calling applyChanges).",
             "itemtype": "method",
             "name": "getClass",
@@ -1856,7 +1856,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 374,
+            "line": 378,
             "description": "Append a new class name to an element.",
             "itemtype": "method",
             "name": "addClass",
@@ -1878,7 +1878,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 387,
+            "line": 391,
             "description": "Remove a class name from an element.",
             "itemtype": "method",
             "name": "removeClass",
@@ -1900,7 +1900,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 400,
+            "line": 404,
             "description": "Replace the className of an element.",
             "itemtype": "method",
             "name": "setClass",
@@ -1922,7 +1922,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 416,
+            "line": 420,
             "description": "Set the innerHTML property of an element.",
             "itemtype": "method",
             "name": "setHtml",
@@ -1944,7 +1944,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 432,
+            "line": 436,
             "description": "Applies all the changes made by the addClass, setClass, removeClass, setHtml methods.\nThis is a way to reduce DOM manipulation, speeding up the update process.",
             "itemtype": "method",
             "name": "applyChanges",
@@ -1954,7 +1954,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 465,
+            "line": 469,
             "description": "Add a meta tag to the head element, disabling zooming and fixing the viewport.\nUse only when you can't easily add the tag yourself to the HTML file.",
             "itemtype": "method",
             "name": "fixedViewport",
@@ -1964,7 +1964,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 479,
+            "line": 483,
             "description": "Checks if the browser supports touch events.",
             "itemtype": "method",
             "name": "supportsTouch",
@@ -1978,7 +1978,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 490,
+            "line": 494,
             "description": "Retrieves the absolute x and y components of the provided element,\nrelative to its closest parent with position absolute.",
             "itemtype": "method",
             "name": "getPosition",
@@ -1998,7 +1998,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 513,
+            "line": 517,
             "description": "Retrieves the absolute x and y components of the provided element,\nrelative to its closest parent with position absolute.",
             "itemtype": "method",
             "name": "getAbsolutePosition",
@@ -2018,7 +2018,7 @@
         },
         {
             "file": "../lib/meems-utils/meems-utils.js",
-            "line": 538,
+            "line": 542,
             "description": "Retrieves the dimensions of an element, excluding padding, margins and borders.",
             "itemtype": "method",
             "name": "getDimensions",
@@ -3026,6 +3026,27 @@
                 "description": "The widget, or null in case of error.",
                 "type": "Mixed"
             },
+            "class": "meems-ui",
+            "module": "meems-ui"
+        },
+        {
+            "file": "../src/meems-ui.js",
+            "line": 80,
+            "description": "Register a new type of widget.",
+            "itemtype": "method",
+            "name": "registerWidget",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name that will be used to identify this type of widget.",
+                    "type": "String"
+                },
+                {
+                    "name": "constructor",
+                    "description": "The widget constructor.",
+                    "type": "Function"
+                }
+            ],
             "class": "meems-ui",
             "module": "meems-ui"
         },

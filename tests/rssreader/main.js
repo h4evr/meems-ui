@@ -3,7 +3,7 @@ require.config({
     paths: {
         "viewmodel": "./viewmodel",
         "view": "./view",
-        "meems": "../../src/",
+        "meems": "../../src/meems",
         "meems-utils": "../../lib/meems-utils/meems-utils",
         "meems-events": "../../lib/meems-events/meems-events",
         "meems-scroll": "../../lib/meems-scroll/meems-scroll",

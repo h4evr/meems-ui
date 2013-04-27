@@ -336,6 +336,10 @@ define(function () {
                     xhr.open(method, url, true);
                 }
 
+                if (&quot;withCredentials&quot; in xhr) {
+                    xhr.withCredentials = true;
+                }
+
                 if (format === &#x27;url&#x27;) {
                     xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application&#x2F;x-www-form-urlencoded&quot;);
                 } else if (format === &#x27;json&#x27;) {

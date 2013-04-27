@@ -94,7 +94,8 @@ function (Utils, Scroll, Widget) {
                     scrollX: false,
                     scrollY: true,
                     disableTouchEvents : false,
-                    hideScroller : false
+                    hideScroller : false,
+                    friction: 1000.0
                 });
             }
 
