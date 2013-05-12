@@ -59,6 +59,9 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 } else {
                     Utils.Dom.addClass(this.el(), "ui-button-normal");
                 }
+            } else if (attrName === 'icon' && this.$iconEl) {
+                Utils.Dom.setClass(this.$iconEl, (newValue ? "ui-icon ui-icon-" + newValue : "ui-no-icon")
+                    + (this.attr("disabled") === true ? " ui-disabled" : ""));
             }
         },
 

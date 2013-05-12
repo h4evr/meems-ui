@@ -90,6 +90,16 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
                     }
                 }, this));
 
+                Events.Dom.on(this.$input, 'focus', Utils.Fn.bind(function () {
+                    Utils.Dom.addClass(this.el(), "ui-focused");
+                    Utils.Dom.applyChanges();
+                }, this));
+
+                Events.Dom.on(this.$input, 'blur', Utils.Fn.bind(function () {
+                    Utils.Dom.removeClass(this.el(), "ui-focused");
+                    Utils.Dom.applyChanges();
+                }, this));
+
                 if (typeof (this.$value) === 'function') {
                     if ("subscribe" in this.$value) {
                         this.$value.subscribe(updateTextField);

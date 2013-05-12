@@ -319,6 +319,13 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
          */
         this.$placeHolder = null;
 
+        /**
+         * @property $empty
+         * @private
+         * @type {HTMLElement}
+         */
+        this.$empty = null;
+
         this.$selectedItems = [];
 
         this.attr('style', 'normal');
@@ -397,6 +404,8 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         var item, curItem, i, ln, el = this.el(), j, ln2;
         var processed = {};
 
+        Utils.Dom.addClass(this.$empty, "ui-hide-layout");
+
         if (this.$generatedItems) {
             for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
                 item = this.$generatedItems[i];
@@ -448,6 +457,10 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                     Utils.Dom.addClass(item.el(), "ui-list-item-last");
                 }
             }
+        }
+
+        if (this.$generatedItems.length == 0) {
+            Utils.Dom.removeClass(this.$empty, "ui-hide-layout");
         }
     };
 
@@ -548,6 +561,8 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 if (val) {
                     Utils.Dom.addClass(this.el(), "ui-list-" +  val);
                 }
+            } else if (name === 'empty' && this.$empty) {
+                Utils.Dom.setHtml(this.$empty, val);
             }
 
             return ret;
@@ -564,7 +579,10 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 this.on("dom:" + Events.Touch.touchEndEventName, Utils.Fn.bind(onItemClicked, this));
                 this.$placeHolder = document.createElement("li");
                 this.$placeHolder.className = "ui-list-item ui-list-placeholder";
-
+                this.$empty = document.createElement("li");
+                this.$empty.className = "ui-list-empty";
+                this.$empty.innerHTML = this.attr("empty") || "No data.";
+                this.el().appendChild(this.$empty);
                 this.on("item:checked", function (eventName, item, isChecked) {
                     if (isChecked) {
                         this.$selectedItems.push(item.el()._meems_item);
