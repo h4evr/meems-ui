@@ -218,54 +218,60 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         },
 
         update : function () {
-            if (!this.el()) {
-                this.el(document.createElement("li"));
-                this.$table = document.createElement("table");
-                this.$table.className = "ui-fill-width";
-
-                this.$leftFacet = document.createElement("td");
-                this.$middleFacet = document.createElement("td");
-                this.$middleFacet.className = "ui-fill-width";
-                this.$rightFacet = document.createElement("td");
-
-                var selectBox = document.createElement("input");
-                selectBox.setAttribute("type", "checkbox");
-                selectBox.className = "meems-scroll-skip";
-                Events.Dom.on(selectBox, 'change', Utils.Fn.bind(function() {
-                    this.parent().fire("item:checked", this, selectBox.checked);
-                }, this));
-                this.$leftFacet.appendChild(selectBox);
-
-                this.$orderButton = document.createElement("div");
-                this.$orderButton.className = "ui-icon-order meems-scroll-skip";
-
-                Events.Dom.on(this.$orderButton, Events.Touch.touchStartEventName, Utils.Fn.bind(onStartOrdering, this));
-
-                this.$rightFacet.appendChild(this.$orderButton);
-
-                var tr = document.createElement("tr");
-                tr.appendChild(this.$leftFacet);
-                tr.appendChild(this.$middleFacet);
-                tr.appendChild(this.$rightFacet);
-                this.$table.appendChild(tr);
-
-                this.el().appendChild(this.$table);
-                this.header(this.$header);
-            }
-
             var showCheckbox = this.parent().attr('selectionMode') === 'multiple',
                 showSorted = this.parent().attr('sortable') === true;
 
-            if (showCheckbox) {
-                this.$leftFacet.style.display = '';
-            } else {
-                this.$leftFacet.style.display = 'none';
-            }
+            if (!this.el()) {
+                this.el(document.createElement("li"));
 
-            if (showSorted) {
-                this.$rightFacet.style.display = '';
-            } else {
-                this.$rightFacet.style.display = 'none';
+                if (showCheckbox || showSorted) {
+                    this.$table = document.createElement("table");
+                    this.$table.className = "ui-fill-width";
+
+                    this.$leftFacet = document.createElement("td");
+                    this.$middleFacet = document.createElement("td");
+                    this.$middleFacet.className = "ui-fill-width";
+                    this.$rightFacet = document.createElement("td");
+
+                    var selectBox = document.createElement("input");
+                    selectBox.setAttribute("type", "checkbox");
+                    selectBox.className = "meems-scroll-skip";
+                    Events.Dom.on(selectBox, 'change', Utils.Fn.bind(function() {
+                        this.parent().fire("item:checked", this, selectBox.checked);
+                    }, this));
+                    this.$leftFacet.appendChild(selectBox);
+
+                    this.$orderButton = document.createElement("div");
+                    this.$orderButton.className = "ui-icon-order meems-scroll-skip";
+
+                    Events.Dom.on(this.$orderButton, Events.Touch.touchStartEventName, Utils.Fn.bind(onStartOrdering, this));
+
+                    this.$rightFacet.appendChild(this.$orderButton);
+
+                    var tr = document.createElement("tr");
+                    tr.appendChild(this.$leftFacet);
+                    tr.appendChild(this.$middleFacet);
+                    tr.appendChild(this.$rightFacet);
+                    this.$table.appendChild(tr);
+
+                    if (showCheckbox) {
+                        this.$leftFacet.style.display = '';
+                    } else {
+                        this.$leftFacet.style.display = 'none';
+                    }
+
+                    if (showSorted) {
+                        this.$rightFacet.style.display = '';
+                    } else {
+                        this.$rightFacet.style.display = 'none';
+                    }
+
+                    this.el().appendChild(this.$table);
+                } else {
+                    this.$middleFacet = this.el();
+                }
+
+                this.header(this.$header);
             }
 
             if (this.facet("item")) {
@@ -404,8 +410,6 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         var item, curItem, i, ln, el = this.el(), j, ln2;
         var processed = {};
 
-        Utils.Dom.addClass(this.$empty, "ui-hide-layout");
-
         if (this.$generatedItems) {
             for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
                 item = this.$generatedItems[i];
@@ -459,8 +463,14 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             }
         }
 
-        if (this.$generatedItems.length == 0) {
-            Utils.Dom.removeClass(this.$empty, "ui-hide-layout");
+        console.log("updateItems", !this.$emptyIsVisible && this.$generatedItems.length == 0);
+        if (!this.$emptyIsVisible && this.$generatedItems.length == 0) {
+            console.log(el, this.$empty);
+            el.appendChild(this.$empty);
+            this.$emptyIsVisible = true;
+        } else if (this.$emptyIsVisible && this.$generatedItems.length > 0) {
+            el.removeChild(this.$empty);
+            this.$emptyIsVisible = false;
         }
     };
 
@@ -583,6 +593,7 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
                 this.$empty.className = "ui-list-empty";
                 this.$empty.innerHTML = this.attr("empty") || "No data.";
                 this.el().appendChild(this.$empty);
+                this.$emptyIsVisible = true;
                 this.on("item:checked", function (eventName, item, isChecked) {
                     if (isChecked) {
                         this.$selectedItems.push(item.el()._meems_item);
