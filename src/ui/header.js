@@ -11,6 +11,16 @@
 define(["meems-utils", "./widget"], function (Utils, Widget) {
     "use strict";
 
+    var MAX_BUTTONS = 999,
+        userAgent = Utils.Dom.userAgent();
+
+    console.log(userAgent);
+    if (userAgent === 'ios') {
+        MAX_BUTTONS = 1;
+    } else if (userAgent === 'android') {
+        MAX_BUTTONS = 4;
+    }
+
     /**
      * @class Header
      * @constructor
@@ -46,6 +56,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             Utils.Dom.setHtml(this.$titleEl, "<h1>" + (this.attr("title") || "") + "</h1>");
 
             if (this.facet("buttonsleft")) {
+                this.facet("buttonsleft").attr("maxButtons", 1);
                 this.facet("buttonsleft").update(structureOnly);
                 
                 if (this.facet("buttonsleft").el().parentNode !== this.el()) {
@@ -55,6 +66,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
             }
             
             if (this.facet("buttonsright")) {
+                this.facet("buttonsright").attr("maxButtons", MAX_BUTTONS);
                 this.facet("buttonsright").update(structureOnly);
                 
                 if (this.facet("buttonsright").el().parentNode !== this.el()) {

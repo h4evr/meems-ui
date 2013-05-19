@@ -19,7 +19,24 @@ define([
 
         /* and simple page on the left side, which will contain the menu items .*/
             asideMenu = UI.create("page")
-                .facet("header", UI.create("header").attr("title", title))
+                .facet("header",
+                    UI.create("header")
+                        .attr("title", title)
+                        .facet("buttonsright",
+                            UI.create("buttongroup")
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .addButton(UI.create("button").attr('title', 'demo 1').attr('icon', 'explore'))
+                                .on("button:pressed", function (eventName, btn) {
+                                    console.log(btn);
+                                })
+                           ))
                 .facet("content", UI.create("list").items(menuItems)
                     .attr('style', 'normal')
 

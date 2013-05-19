@@ -9,6 +9,8 @@
     name: "../tools/almond",
     out: "../meems.min.js",
     optimize: "uglify2",
+    preserveLicenseComments: false,
+    generateSourceMaps: true,
     include: [ "meems" ],
     wrap: {
         startFile: "../tools/start.frag",

@@ -410,6 +410,15 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
         var item, curItem, i, ln, el = this.el(), j, ln2;
         var processed = {};
 
+        var oldParent = el.parentNode,
+            oldChildIndex = 0;
+
+        if (oldParent) {
+            oldChildIndex = Array.prototype.indexOf.call(oldParent.childNodes, el);
+            oldParent.removeChild(el);
+            console.log("remove list parent");
+        }
+
         if (this.$generatedItems) {
             for (i = 0, ln = this.$generatedItems.length; i < ln; ++i) {
                 item = this.$generatedItems[i];
@@ -463,14 +472,17 @@ define(["meems-utils", "meems-events", "./widget", "./html"], function (Utils, E
             }
         }
 
-        console.log("updateItems", !this.$emptyIsVisible && this.$generatedItems.length == 0);
         if (!this.$emptyIsVisible && this.$generatedItems.length == 0) {
-            console.log(el, this.$empty);
             el.appendChild(this.$empty);
             this.$emptyIsVisible = true;
         } else if (this.$emptyIsVisible && this.$generatedItems.length > 0) {
             el.removeChild(this.$empty);
             this.$emptyIsVisible = false;
+        }
+
+        if (oldParent) {
+            oldParent.insertBefore(el, oldParent.childNodes[oldChildIndex]);
+            console.log("inserted list parent");
         }
     };
 

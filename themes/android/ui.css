@@ -1,9 +1,8 @@
 html,body{
     height: 100%;
-}
-
-body {
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .ui-show {
@@ -361,6 +360,13 @@ body {
     top: 0;
     bottom: 0;
     overflow: hidden;
+    background: #000000;
+    background: -moz-linear-gradient(top, #000000 1%, #272d33 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#000000), color-stop(100%,#272d33));
+    background: -webkit-linear-gradient(top, #000000 1%,#272d33 100%);
+    background: -o-linear-gradient(top, #000000 1%,#272d33 100%);
+    background: -ms-linear-gradient(top, #000000 1%,#272d33 100%);
+    background: linear-gradient(to bottom, #000000 1%,#272d33 100%);
 }
 
 .ui-aside > .ui-aside-menu {
@@ -500,6 +506,7 @@ body {
 }
 
 .ui-page-holder {
+    height: 100%;
     overflow: hidden;
     background: #000000;
     background: -moz-linear-gradient(top, #000000 1%, #272d33 100%);
@@ -750,4 +757,21 @@ body {
     opacity: 0.8;
     width: 24px;
     top: 0;
+}
+
+.ui-popup-menu {
+    position: absolute;
+    z-index: 999;
+}
+
+.ui-popup-menu .ui-popup-item {
+    list-style: none;
+    padding: 10px;
+    background-color: #303030;
+    color: #ffffff;
+    border-bottom: 1px solid #3C3C3D;
+}
+
+.ui-popup-menu .ui-popup-item-last {
+    border-bottom: 0;
 }
