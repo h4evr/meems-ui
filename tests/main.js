@@ -66,6 +66,24 @@ require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", 
                         aside.expanded(!aside.expanded());
                         Utils.Dom.applyChanges();
                     }))));
+            /*.facet("footer", UI.create("footer").facet("buttons",
+                UI.create("buttongroup").attr("stretch", true)
+                    .addButton(UI.create("button")
+                        .attr("title", "Share")
+                        .attr("icon", "facebook")
+                        .attr("style", "vertical"))
+                    .addButton(UI.create("button")
+                        .attr("title", "Accept")
+                        .attr("icon", "accept")
+                        .attr("style", "vertical"))
+                    .addButton(UI.create("button")
+                        .attr("title", "Delete")
+                        .attr("icon", "delete")
+                        .attr("style", "vertical"))
+                    .addButton(UI.create("button")
+                        .attr("title", "Order")
+                        .attr("icon", "order")
+                        .attr("style", "vertical"))));*/
 
     /** @type {Tab} */
     var tab1 = UI.create("tab").attr("title", "Thesis").attr("icon", "facebook").facet("content",
@@ -113,6 +131,7 @@ require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", 
             { text: "References" }
         ]).attr('style', 'normal'));
 
+    var iconSize = VmUtils.observable(10);
     /** @type {Tab} */
     var tab3 = UI.create("tab").attr("title", "Form").attr("icon", "facebook").facet("content",
         UI.create("form").attr("title", "Form Demo").fields([
@@ -121,6 +140,9 @@ require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", 
             UI.create("textfield").attr("label", "Birthdate").attr("type", "date"),
             UI.create("textfield").attr("label", "Email").attr("type", "email"),
             UI.create("textfield").attr("label", "Phone").attr("type", "tel"),
+            UI.create("switch").attr("label", "Notifications"),
+            UI.create("switch").attr("label", "Vibrate"),
+            UI.create("slider").attr("label", "Icon Size").value(iconSize),
             UI.create("textfield").attr("label", "Notes")
         ])),
     
@@ -137,7 +159,25 @@ require(["../src/meems-ui", "../src/observable", "meems-utils", "meems-scroll", 
                     .on(eventClick, function () {
                         aside.expanded(!aside.expanded());
                         Utils.Dom.applyChanges();
-                    })))),
+                    }))))
+        .facet("footer", UI.create("footer").facet("buttons",
+            UI.create("buttongroup").attr("stretch", true)
+                .addButton(UI.create("button")
+                    .attr("title", "Share")
+                    .attr("icon", "facebook")
+                    .attr("style", "vertical"))
+                .addButton(UI.create("button")
+                    .attr("title", "Accept")
+                    .attr("icon", "accept")
+                    .attr("style", "vertical"))
+                .addButton(UI.create("button")
+                    .attr("title", "Delete")
+                    .attr("icon", "delete")
+                    .attr("style", "vertical"))
+                .addButton(UI.create("button")
+                    .attr("title", "Order")
+                    .attr("icon", "order")
+                    .attr("style", "vertical")))),
     
     page3 = UI.create("page")
         .facet("content", UI.create("list").items([

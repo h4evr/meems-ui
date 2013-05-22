@@ -17,8 +17,8 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
     console.log(userAgent);
     if (userAgent === 'ios') {
         MAX_BUTTONS = 1;
-    } else if (userAgent === 'android') {
-        MAX_BUTTONS = 4;
+    } else {
+        MAX_BUTTONS = 2;
     }
 
     /**

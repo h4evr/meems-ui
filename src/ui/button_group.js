@@ -135,7 +135,6 @@ define(["meems-utils", "./widget", "./button", "./popup_menu"], function (Utils,
             });
         }
 
-        console.log(menuitems);
         this.$popupMenu.items(menuitems);
         this.$popupMenu.show(this.$overflow.el(), 'below-right-aligned', 0, 5);
     };

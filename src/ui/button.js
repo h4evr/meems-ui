@@ -46,6 +46,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
         partialUpdate : function (attrName, oldValue, newValue) {
             if (attrName === 'title' && this.$titleEl) {
                 Utils.Dom.setHtml(this.$titleEl, this.attr("title"));
+                this.$iconEl.setAttribute("title", this.attr("title"));
                 Utils.Dom.applyChanges();
             } else if (attrName === 'style' && this.el()) {
                 if (oldValue) {
@@ -71,6 +72,7 @@ define(["meems-utils", "./widget"], function (Utils, Widget) {
                 
                 this.$iconEl = document.createElement("div");
                 this.$iconEl.className = "ui-icon";
+                this.$iconEl.setAttribute("title", this.attr("title") || "");
                 this.el().appendChild(this.$iconEl);
                 
                 this.$titleEl = document.createElement("div");

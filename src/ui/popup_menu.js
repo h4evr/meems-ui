@@ -60,6 +60,7 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
         if (target) {
             var popupEl = target.parentNode.parentNode,
                 pos = Utils.Array.indexOfByProp(visiblePopups, "$el", popupEl);
+
             if (pos > -1) {
                 var masterPopup = visiblePopups[pos],
                     itemIndex = Array.prototype.indexOf.call(target.parentNode.childNodes, target),

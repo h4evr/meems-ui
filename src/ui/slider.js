@@ -70,7 +70,7 @@ define(["meems-utils", "meems-events", "./widget"], function (Utils, Events, Wid
         // The position of the cursor when the dragging started
         this.$meems_ui_slider_start_pos = Events.Touch.getCursorPosition(e);
         // The position of the slider
-        this.$meems_ui_slider_pos = Utils.Dom.getPosition(this.$input);
+        this.$meems_ui_slider_pos = Utils.Dom.getAbsolutePosition(this.$input);
         this.$meems_ui_slider_size = Utils.Dom.getDimensions(this.$input);
 
         var x = this.$meems_ui_slider_start_pos.x - this.$meems_ui_slider_pos.x,

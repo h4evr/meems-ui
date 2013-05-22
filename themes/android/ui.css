@@ -133,6 +133,21 @@ html,body{
     text-align: center;
 }
 
+.ui-footer .ui-button {
+    border: 0;
+    background: transparent;
+    text-align: center;
+}
+
+.ui-footer .ui-button > .ui-icon {
+    float: none;
+    display: inline-block;
+}
+
+.ui-footer .ui-button > .ui-title {
+    display: none;
+}
+
 .ui-page > .ui-content {
     position: absolute;
     left: 0;
