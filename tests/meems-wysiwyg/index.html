@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meems Editor</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/codemirror/3.1/codemirror.css" />
+    </head>
+    <body>
+        <div id="settings">
+            <label for="width">Width:</label>
+            <input type="number" id="width" value="320" />
+            <label for="height">Height:</label>
+            <input type="number" id="height" value="480" />
+            <label for="theme">Theme:</label>
+            <select id="theme">
+                <option value="android">Android</option>
+                <option value="ios">iOS</option>
+            </select>
+        </div>
+        <div id="contents">
+            <textarea id="code">
+{
+    "type": "pageholder",
+    "pages": [
+        {
+            "id": "myaside",
+            "type": "aside",
+            "facets": {
+                "menu": {
+                    "type": "page",
+                    "enableScroll": true,
+                    "facets": {
+                        "content": {
+                            "type": "list",
+                            "items": [
+                                { text: "Hello world!"},
+                                { text: "Hello world 1!"},
+                                { text: "Hello world 2!"},
+                                { text: "Hello world 3!"},
+                                { text: "Hello world 4!"},
+                                { text: "Hello world 5!"},
+                                { text: "Hello world 6!"},
+                            ]
+                        }
+                    }
+                },
+                "content": {
+                    "type": "page",
+                    "enableScroll": true,
+                    "facets": {
+                        "header": {
+                            "type": "header",
+                            "title": "Demo",
+                            "facets": {
+                                "buttonsleft": {
+                                    "type": "buttongroup",
+                                    "buttons": [
+                                        {
+                                          "type": "button",
+                                          "icon": "explore",
+                                          "title": "explore"
+                                        }
+                                    ],
+                                    "on": {
+                                        "button:pressed" : function (eventName, btn) {
+                                            var aside = find("myaside");
+                                            aside.expanded(!aside.expanded());
+                                            Meems.Utils.Dom.applyChanges();
+                                        }
+                                    }
+                                },
+                                "buttonsright": {
+                                    "type": "buttongroup",
+                                    "buttons": [
+                                        {
+                                          "type": "button",
+                                          "icon": "add",
+                                          "title": "Add"
+                                        }   
+                                    ]
+                                }
+                            }
+                        },
+                        "content": {
+                            "type": "html",
+                            "html": "Hello World"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
+    </textarea></div>
+
+<!--
+var ui = Meems.UI.create("pageholder").pages([
+    Meems.UI.create("page")
+        .facet("header", Meems.UI.create("header").attr("title", "Demo"))
+        .facet("content", Meems.UI.create("html").attr("html", "Hello World"))
+        ])-->
+        <button id="btnUpdate">Update</button>
+        <iframe src="blank.html" id="output" style="width:320px;height:480px;"></iframe>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/codemirror/3.1/codemirror.js"></script>
+        <script type="text/javascript" src="js/lib/codemirror/mode/javascript.js"></script>
+        <script type="text/javascript" src="js/lib/meems/meems.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

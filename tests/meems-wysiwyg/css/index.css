@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#settings {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#contents {
+    width: 60%;
+    height: 80%;
+}
+
+#contents > .CodeMirror {
+    height: 100%;
+}
+
+#output {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    border: 1px solid #000000;
+}
+
+#btnUpdate {
+    display: none;
+}
